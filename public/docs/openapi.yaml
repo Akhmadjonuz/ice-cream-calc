@@ -1,0 +1,186 @@
+openapi: 3.0.3
+info:
+  title: Laravel
+  description: ''
+  version: 1.0.0
+servers:
+  -
+    url: 'http://kassa.test'
+paths:
+  /api/partners/new:
+    post:
+      summary: 'create partner'
+      operationId: createPartner
+      description: ''
+      parameters: []
+      responses: {  }
+      tags:
+        - Partners
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                name:
+                  type: string
+                  description: 'The name of the partner.'
+                  example: 'John Doe'
+                phone_number:
+                  type: string
+                  description: 'The phone number of the partner.'
+                  example: '998901234567'
+                address:
+                  type: string
+                  description: 'nullable The address of the partner.'
+                  example: '123, Main Street, New York'
+                type:
+                  type: string
+                  description: 'The type of the partner.'
+                  example: 'debtor or partner'
+              required:
+                - name
+                - phone_number
+                - type
+      security: []
+  '/api/partners/get{id}':
+    get:
+      summary: 'get all partners'
+      operationId: getAllPartners
+      description: ''
+      parameters: []
+      responses:
+        200:
+          description: ''
+          content:
+            application/json:
+              schema:
+                type: object
+                example:
+                  result:
+                    -
+                      id: 1
+                      name: 'John Doe'
+                      phone_number: '998901234567'
+                      address: '123, Main Street, New York'
+                      type: debtor
+                      created_at: '2023-06-02T22:23:36.000000Z'
+                      updated_at: '2023-06-02T22:23:36.000000Z'
+                properties:
+                  result:
+                    type: array
+                    example:
+                      -
+                        id: 1
+                        name: 'John Doe'
+                        phone_number: '998901234567'
+                        address: '123, Main Street, New York'
+                        type: debtor
+                        created_at: '2023-06-02T22:23:36.000000Z'
+                        updated_at: '2023-06-02T22:23:36.000000Z'
+                    items:
+                      type: object
+                      properties:
+                        id:
+                          type: integer
+                          example: 1
+                        name:
+                          type: string
+                          example: 'John Doe'
+                        phone_number:
+                          type: string
+                          example: '998901234567'
+                        address:
+                          type: string
+                          example: '123, Main Street, New York'
+                        type:
+                          type: string
+                          example: debtor
+                        created_at:
+                          type: string
+                          example: '2023-06-02T22:23:36.000000Z'
+                        updated_at:
+                          type: string
+                          example: '2023-06-02T22:23:36.000000Z'
+      tags:
+        - Partners
+      security: []
+    parameters:
+      -
+        in: path
+        name: id
+        description: 'Optional parameter. nullable The id of the partner.'
+        required: true
+        schema:
+          type: integer
+        examples:
+          omitted:
+            summary: 'When the value is omitted'
+            value: ''
+          present:
+            summary: 'When the value is present'
+            value: 1
+  /api/partners/edit:
+    put:
+      summary: 'update partner'
+      operationId: updatePartner
+      description: ''
+      parameters: []
+      responses: {  }
+      tags:
+        - Partners
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                id:
+                  type: integer
+                  description: 'The id of the partner.'
+                  example: 1
+                name:
+                  type: string
+                  description: 'The name of the partner.'
+                  example: 'John Doe'
+                phone_number:
+                  type: string
+                  description: 'nullable The phone number of the partner.'
+                  example: '998901234567'
+                address:
+                  type: string
+                  description: 'nullable The address of the partner.'
+                  example: '123, Main Street, New York'
+              required:
+                - id
+                - name
+      security: []
+  /api/partners/delete:
+    delete:
+      summary: 'delete partner'
+      operationId: deletePartner
+      description: ''
+      parameters: []
+      responses: {  }
+      tags:
+        - Partners
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                id:
+                  type: integer
+                  description: 'The id of the partner.'
+                  example: 1
+              required:
+                - id
+      security: []
+tags:
+  -
+    name: Partners
+    description: ''
