@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Http\Requests\CreatePartnersRequest;
 use App\Http\Requests\DeletePartnersRequest;
+use App\Http\Requests\GetPartnersRequest;
 use App\Http\Requests\UpdatePartnersRequest;
 use App\Traits\HttpResponses;
 use App\Models\Partner;
@@ -60,7 +61,8 @@ class PartnersController extends Controller
      * 
      * get all partners
      * 
-     * @urlParam id int nullable The id of the partner. Example: 1
+     * @bodyParam id int nullable The id of the partner. Example: 1
+     * @bodyParam type string nullable The type of the partner. Example: debtor or partner
      * 
      * 
      * @response {
@@ -77,20 +79,29 @@ class PartnersController extends Controller
      *]
      *}
      * 
-     * @param int $id
+     * @param GetPartnersRequest $request
      * @return JsonResponse
      */
 
-    public function getAll(int $id): JsonResponse
+    public function get(GetPartnersRequest $request): JsonResponse
     {
         try {
-            if (isset($id) and is_numeric($id))
-                $partners = Partner::where('id', $id)->get();
-            else
-                $partners = Partner::all();
+            $data = $request->validated();
 
-            // return success response
-            return $this->success($partners, 200);
+
+            // create query builder
+            $query = Partner::query();
+
+            // check if id is set
+            if (isset($data['id']))
+                $query->where('id', $data['id'])->with($data['type'] == 'debtor' ? 'debts' : 'exchanges');
+
+            // check if type is set
+            if (isset($data['type']))
+                $query->where('type', $data['type']);
+
+            // Return success response
+            return $this->success($query->get(), 200);
         } catch (\Exception $e) {
             return $this->log($e);
         }

@@ -65,8 +65,8 @@ endpoints:
     custom: []
   -
     httpMethods:
-      - GET
-    uri: 'api/partners/get{id?}'
+      - POST
+    uri: api/partners/get
     metadata:
       groupName: Partners
       groupDescription: ''
@@ -79,7 +79,18 @@ endpoints:
     headers:
       Content-Type: application/json
       Accept: application/json
-    urlParameters:
+    urlParameters: []
+    cleanUrlParameters: []
+    queryParameters: []
+    cleanQueryParameters: []
+    bodyParameters:
+      type:
+        name: type
+        description: 'nullable The type of the partner.'
+        required: false
+        example: 'debtor or partner'
+        type: string
+        custom: []
       id:
         name: id
         description: 'nullable The id of the partner.'
@@ -87,12 +98,9 @@ endpoints:
         example: 1
         type: integer
         custom: []
-    cleanUrlParameters:
+    cleanBodyParameters:
+      type: 'debtor or partner'
       id: 1
-    queryParameters: []
-    cleanQueryParameters: []
-    bodyParameters: []
-    cleanBodyParameters: []
     fileParameters: []
     responses:
       -

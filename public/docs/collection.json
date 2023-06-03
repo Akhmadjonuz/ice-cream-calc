@@ -10,11 +10,131 @@
     ],
     "info": {
         "name": "Laravel",
-        "_postman_id": "e7fa4706-15b0-4e23-80da-4b99b19efa88",
+        "_postman_id": "0e50ad24-0388-422a-9eb9-28be349c8845",
         "description": "",
         "schema": "https:\/\/schema.getpostman.com\/json\/collection\/v2.1.0\/collection.json"
     },
     "item": [
+        {
+            "name": "Exchanges",
+            "description": "",
+            "item": [
+                {
+                    "name": "create exchange",
+                    "request": {
+                        "url": {
+                            "host": "{{baseUrl}}",
+                            "path": "api\/exchanges\/new",
+                            "query": [],
+                            "raw": "{{baseUrl}}\/api\/exchanges\/new"
+                        },
+                        "method": "POST",
+                        "header": [
+                            {
+                                "key": "Content-Type",
+                                "value": "application\/json"
+                            },
+                            {
+                                "key": "Accept",
+                                "value": "application\/json"
+                            }
+                        ],
+                        "body": {
+                            "mode": "raw",
+                            "raw": "{\"name\":\"John Doe\",\"parter_id\":19,\"value\":\"1000\",\"type\":\"Tonna, metr, M3, M2\",\"amount\":1,\"given_amount\":1000,\"other\":\"123, Main Street, New York\",\"partner_id\":1}"
+                        },
+                        "description": "",
+                        "auth": {
+                            "type": "noauth"
+                        }
+                    },
+                    "response": [
+                        {
+                            "header": [],
+                            "code": 200,
+                            "body": "{\n\"result\": \"Exchange created successfully\",\n}",
+                            "name": ""
+                        }
+                    ]
+                },
+                {
+                    "name": "update exchange",
+                    "request": {
+                        "url": {
+                            "host": "{{baseUrl}}",
+                            "path": "api\/exchanges\/edit",
+                            "query": [],
+                            "raw": "{{baseUrl}}\/api\/exchanges\/edit"
+                        },
+                        "method": "PUT",
+                        "header": [
+                            {
+                                "key": "Content-Type",
+                                "value": "application\/json"
+                            },
+                            {
+                                "key": "Accept",
+                                "value": "application\/json"
+                            }
+                        ],
+                        "body": {
+                            "mode": "raw",
+                            "raw": "{\"id\":1,\"name\":\"John Doe\",\"parter_id\":19,\"value\":\"1000\",\"type\":\"Tonna, metr, M3, M2\",\"amount\":1,\"given_amount\":1000,\"other\":\"123, Main Street, New York\",\"excess\":true}"
+                        },
+                        "description": "",
+                        "auth": {
+                            "type": "noauth"
+                        }
+                    },
+                    "response": [
+                        {
+                            "header": [],
+                            "code": 200,
+                            "body": "{\n\"result\": \"Exchange updated successfully\",\n}",
+                            "name": ""
+                        }
+                    ]
+                },
+                {
+                    "name": "delete exchange",
+                    "request": {
+                        "url": {
+                            "host": "{{baseUrl}}",
+                            "path": "api\/exchanges\/delete",
+                            "query": [],
+                            "raw": "{{baseUrl}}\/api\/exchanges\/delete"
+                        },
+                        "method": "DELETE",
+                        "header": [
+                            {
+                                "key": "Content-Type",
+                                "value": "application\/json"
+                            },
+                            {
+                                "key": "Accept",
+                                "value": "application\/json"
+                            }
+                        ],
+                        "body": {
+                            "mode": "raw",
+                            "raw": "{\"id\":1}"
+                        },
+                        "description": "",
+                        "auth": {
+                            "type": "noauth"
+                        }
+                    },
+                    "response": [
+                        {
+                            "header": [],
+                            "code": 200,
+                            "body": "{\n\"result\": \"Exchange deleted successfully\",\n}",
+                            "name": ""
+                        }
+                    ]
+                }
+            ]
+        },
         {
             "name": "Partners",
             "description": "",
@@ -55,19 +175,11 @@
                     "request": {
                         "url": {
                             "host": "{{baseUrl}}",
-                            "path": "api\/partners\/get:id",
+                            "path": "api\/partners\/get",
                             "query": [],
-                            "raw": "{{baseUrl}}\/api\/partners\/get:id",
-                            "variable": [
-                                {
-                                    "id": "id",
-                                    "key": "id",
-                                    "value": "1",
-                                    "description": "nullable The id of the partner."
-                                }
-                            ]
+                            "raw": "{{baseUrl}}\/api\/partners\/get"
                         },
-                        "method": "GET",
+                        "method": "POST",
                         "header": [
                             {
                                 "key": "Content-Type",
@@ -78,7 +190,10 @@
                                 "value": "application\/json"
                             }
                         ],
-                        "body": null,
+                        "body": {
+                            "mode": "raw",
+                            "raw": "{\"type\":\"debtor or partner\",\"id\":1}"
+                        },
                         "description": "",
                         "auth": {
                             "type": "noauth"

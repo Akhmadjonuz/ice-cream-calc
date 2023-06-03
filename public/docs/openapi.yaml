@@ -7,6 +7,169 @@ servers:
   -
     url: 'http://kassa.test'
 paths:
+  /api/exchanges/new:
+    post:
+      summary: 'create exchange'
+      operationId: createExchange
+      description: ''
+      parameters: []
+      responses:
+        200:
+          description: ''
+          content:
+            text/plain:
+              schema:
+                type: string
+                example: "{\n\"result\": \"Exchange created successfully\",\n}"
+      tags:
+        - Exchanges
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                name:
+                  type: string
+                  description: 'The name of the exchange.'
+                  example: 'John Doe'
+                parter_id:
+                  type: integer
+                  description: ''
+                  example: 19
+                value:
+                  type: string
+                  description: 'The value of the exchange.'
+                  example: '1000'
+                type:
+                  type: string
+                  description: 'The type of the exchange.'
+                  example: 'Tonna, metr, M3, M2'
+                amount:
+                  type: integer
+                  description: 'The amount of the exchange.'
+                  example: 1
+                given_amount:
+                  type: integer
+                  description: 'The given amount of the exchange.'
+                  example: 1000
+                other:
+                  type: string
+                  description: 'nullable The other of the exchange.'
+                  example: '123, Main Street, New York'
+                partner_id:
+                  type: integer
+                  description: 'The id of the partner.'
+                  example: 1
+              required:
+                - name
+                - parter_id
+                - value
+                - type
+                - amount
+                - given_amount
+                - partner_id
+      security: []
+  /api/exchanges/edit:
+    put:
+      summary: 'update exchange'
+      operationId: updateExchange
+      description: ''
+      parameters: []
+      responses:
+        200:
+          description: ''
+          content:
+            text/plain:
+              schema:
+                type: string
+                example: "{\n\"result\": \"Exchange updated successfully\",\n}"
+      tags:
+        - Exchanges
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                id:
+                  type: integer
+                  description: 'The id of the exchange.'
+                  example: 1
+                name:
+                  type: string
+                  description: 'The name of the exchange.'
+                  example: 'John Doe'
+                parter_id:
+                  type: integer
+                  description: ''
+                  example: 19
+                value:
+                  type: string
+                  description: 'The value of the exchange.'
+                  example: '1000'
+                type:
+                  type: string
+                  description: 'The type of the exchange.'
+                  example: 'Tonna, metr, M3, M2'
+                amount:
+                  type: integer
+                  description: 'The amount of the exchange.'
+                  example: 1
+                given_amount:
+                  type: integer
+                  description: 'The given amount of the exchange.'
+                  example: 1000
+                other:
+                  type: string
+                  description: 'nullable The other of the exchange.'
+                  example: '123, Main Street, New York'
+                excess:
+                  type: boolean
+                  description: 'The excess of the exchange.'
+                  example: true
+              required:
+                - id
+                - name
+                - parter_id
+                - value
+                - type
+                - amount
+                - given_amount
+                - excess
+      security: []
+  /api/exchanges/delete:
+    delete:
+      summary: 'delete exchange'
+      operationId: deleteExchange
+      description: ''
+      parameters: []
+      responses:
+        200:
+          description: ''
+          content:
+            text/plain:
+              schema:
+                type: string
+                example: "{\n\"result\": \"Exchange deleted successfully\",\n}"
+      tags:
+        - Exchanges
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                id:
+                  type: integer
+                  description: 'The id of the exchange.'
+                  example: 1
+              required:
+                - id
+      security: []
   /api/partners/new:
     post:
       summary: 'create partner'
@@ -44,8 +207,8 @@ paths:
                 - phone_number
                 - type
       security: []
-  '/api/partners/get{id}':
-    get:
+  /api/partners/get:
+    post:
       summary: 'get all partners'
       operationId: getAllPartners
       description: ''
@@ -105,22 +268,22 @@ paths:
                           example: '2023-06-02T22:23:36.000000Z'
       tags:
         - Partners
+      requestBody:
+        required: false
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                type:
+                  type: string
+                  description: 'nullable The type of the partner.'
+                  example: 'debtor or partner'
+                id:
+                  type: integer
+                  description: 'nullable The id of the partner.'
+                  example: 1
       security: []
-    parameters:
-      -
-        in: path
-        name: id
-        description: 'Optional parameter. nullable The id of the partner.'
-        required: true
-        schema:
-          type: integer
-        examples:
-          omitted:
-            summary: 'When the value is omitted'
-            value: ''
-          present:
-            summary: 'When the value is present'
-            value: 1
   /api/partners/edit:
     put:
       summary: 'update partner'
@@ -181,6 +344,9 @@ paths:
                 - id
       security: []
 tags:
+  -
+    name: Exchanges
+    description: ''
   -
     name: Partners
     description: ''
