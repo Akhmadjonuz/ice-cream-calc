@@ -8,4 +8,6 @@ use Illuminate\Database\Eloquent\Model;
 class Exchange extends Model
 {
     use HasFactory;
+
+    protected $table = 'exchanges';
 }

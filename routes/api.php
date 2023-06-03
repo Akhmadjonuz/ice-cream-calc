@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\ExchangesController;
 use App\Http\Controllers\PartnersController;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
@@ -22,7 +23,15 @@ use Illuminate\Support\Facades\Route;
 // partners manipulation
 Route::prefix('partners')->controller(PartnersController::class)->group(function () {
     Route::post('new', 'create')->name('create');
-    Route::get('get{id?}', 'getAll')->name('getAll');
+    Route::post('get', 'get')->name('get');
+    Route::put('edit', 'update')->name('update');
+    Route::delete('delete', 'delete')->name('delete');
+});
+
+
+// exchanges manipulation
+Route::prefix('exchanges')->controller(ExchangesController::class)->group(function () {
+    Route::post('new', 'create')->name('create');
     Route::put('edit', 'update')->name('update');
     Route::delete('delete', 'delete')->name('delete');
 });
