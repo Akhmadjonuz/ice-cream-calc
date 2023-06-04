@@ -17,6 +17,7 @@ return new class extends Migration
             $table->foreign('partner_id')->references('id')->on('partners');
             $table->string('name');
             $table->string('value');
+            $table->string('car');
             $table->string('type');
             $table->integer('amount');
             $table->integer('given_amount')->default(0);

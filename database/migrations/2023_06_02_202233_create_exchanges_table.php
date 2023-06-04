@@ -16,6 +16,7 @@ return new class extends Migration
             $table->string('name');
             $table->unsignedBigInteger('partner_id');
             $table->foreign('partner_id')->references('id')->on('partners');
+            // $table->string('car');
             $table->string('value');
             $table->string('type');
             $table->integer('amount');
