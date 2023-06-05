@@ -38,7 +38,6 @@ class DebtsController extends Controller
             $debt->partner_id = $data['partner_id'];
             $debt->name = $data['name'];
             $debt->value = $data['value'];
-            $debt->car = $data['car'];
             $debt->type = $data['type'];
             $debt->amount = $data['amount'];
             $debt->given_amount = $data['given_amount'];

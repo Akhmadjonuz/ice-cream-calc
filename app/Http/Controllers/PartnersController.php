@@ -6,6 +6,7 @@ use App\Http\Requests\CreatePartnersRequest;
 use App\Http\Requests\DeletePartnersRequest;
 use App\Http\Requests\GetPartnersRequest;
 use App\Http\Requests\UpdatePartnersRequest;
+use App\Models\Exchange;
 use App\Traits\HttpResponses;
 use App\Models\Partner;
 use Illuminate\Http\JsonResponse;
@@ -93,8 +94,23 @@ class PartnersController extends Controller
             $query = Partner::query();
 
             // check if id is set
-            if (isset($data['id']))
+            if (isset($data['id'])) {
+                $summ = 0;
+                $right =  0;
+
                 $query->where('id', $data['id'])->with($data['type'] == 'debtor' ? 'debts' : 'exchanges');
+                if ($data['type'] == 'partner') {
+                    // if given_amount is == amount then we have $summ = 0;
+                    $exchanges = Exchange::where('partner_id', $data['id'])->get();
+                    foreach ($exchanges as $exchange) {
+                        if ($exchange->amount !== $exchange->given_amount)
+                            $summ += $exchange->amount - $exchange->given_amount;
+                        elseif ($exchange->amount < $exchange->given_amount)
+                            $right += $exchange->given_amount - $exchange->amount;
+                    }
+                }
+                return $this->success(['partner' => $query->first(), 'debt' => $summ, 'right' => $right], 200);
+            }
 
             // check if type is set
             if (isset($data['type']))

@@ -11,16 +11,10 @@ return new class extends Migration
      */
     public function up(): void
     {
-        Schema::create('exchanges', function (Blueprint $table) {
+        Schema::create('settings', function (Blueprint $table) {
             $table->id();
             $table->string('name');
-            $table->unsignedBigInteger('partner_id');
-            $table->foreign('partner_id')->references('id')->on('partners');
             $table->string('value');
-            $table->string('type');
-            $table->integer('amount');
-            $table->integer('given_amount');
-            $table->string('other')->nullable()->default(null);
             $table->timestamps();
         });
     }
@@ -30,6 +24,6 @@ return new class extends Migration
      */
     public function down(): void
     {
-        Schema::dropIfExists('exchanges');
+        Schema::dropIfExists('settings');
     }
 };

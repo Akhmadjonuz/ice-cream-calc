@@ -34,10 +34,10 @@ paths:
                   type: string
                   description: 'The name of the exchange.'
                   example: 'John Doe'
-                parter_id:
+                partner_id:
                   type: integer
-                  description: ''
-                  example: 19
+                  description: 'The id of the partner.'
+                  example: 1
                 value:
                   type: string
                   description: 'The value of the exchange.'
@@ -58,18 +58,13 @@ paths:
                   type: string
                   description: 'nullable The other of the exchange.'
                   example: '123, Main Street, New York'
-                partner_id:
-                  type: integer
-                  description: 'The id of the partner.'
-                  example: 1
               required:
                 - name
-                - parter_id
+                - partner_id
                 - value
                 - type
                 - amount
                 - given_amount
-                - partner_id
       security: []
   /api/exchanges/edit:
     put:
@@ -105,7 +100,7 @@ paths:
                 parter_id:
                   type: integer
                   description: ''
-                  example: 19
+                  example: 11
                 value:
                   type: string
                   description: 'The value of the exchange.'
@@ -126,10 +121,6 @@ paths:
                   type: string
                   description: 'nullable The other of the exchange.'
                   example: '123, Main Street, New York'
-                excess:
-                  type: boolean
-                  description: 'The excess of the exchange.'
-                  example: true
               required:
                 - id
                 - name
@@ -138,7 +129,6 @@ paths:
                 - type
                 - amount
                 - given_amount
-                - excess
       security: []
   /api/exchanges/delete:
     delete:

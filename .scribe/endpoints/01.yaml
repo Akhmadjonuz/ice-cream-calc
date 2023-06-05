@@ -29,11 +29,11 @@ endpoints:
         example: 'John Doe'
         type: string
         custom: []
-      parter_id:
-        name: parter_id
-        description: ''
+      partner_id:
+        name: partner_id
+        description: 'The id of the partner.'
         required: true
-        example: 19
+        example: 1
         type: integer
         custom: []
       value:
@@ -71,22 +71,14 @@ endpoints:
         example: '123, Main Street, New York'
         type: string
         custom: []
-      partner_id:
-        name: partner_id
-        description: 'The id of the partner.'
-        required: true
-        example: 1
-        type: integer
-        custom: []
     cleanBodyParameters:
       name: 'John Doe'
-      parter_id: 19
+      partner_id: 1
       value: '1000'
       type: 'Tonna, metr, M3, M2'
       amount: 1
       given_amount: 1000
       other: '123, Main Street, New York'
-      partner_id: 1
     fileParameters: []
     responses:
       -
@@ -143,7 +135,7 @@ endpoints:
         name: parter_id
         description: ''
         required: true
-        example: 19
+        example: 11
         type: integer
         custom: []
       value:
@@ -181,23 +173,15 @@ endpoints:
         example: '123, Main Street, New York'
         type: string
         custom: []
-      excess:
-        name: excess
-        description: 'The excess of the exchange.'
-        required: true
-        example: true
-        type: boolean
-        custom: []
     cleanBodyParameters:
       id: 1
       name: 'John Doe'
-      parter_id: 19
+      parter_id: 11
       value: '1000'
       type: 'Tonna, metr, M3, M2'
       amount: 1
       given_amount: 1000
       other: '123, Main Street, New York'
-      excess: true
     fileParameters: []
     responses:
       -

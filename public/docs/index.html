@@ -110,7 +110,7 @@
     </ul>
 
     <ul class="toc-footer" id="last-updated">
-        <li>Last updated: June 3, 2023</li>
+        <li>Last updated: June 5, 2023</li>
     </ul>
 </div>
 
@@ -150,13 +150,12 @@ You can switch the language used with the tabs at the top right (or from the nav
     --header "Accept: application/json" \
     --data "{
     \"name\": \"John Doe\",
-    \"parter_id\": 19,
+    \"partner_id\": 1,
     \"value\": \"1000\",
     \"type\": \"Tonna, metr, M3, M2\",
     \"amount\": 1,
     \"given_amount\": 1000,
-    \"other\": \"123, Main Street, New York\",
-    \"partner_id\": 1
+    \"other\": \"123, Main Street, New York\"
 }"
 </code></pre></div>
 
@@ -173,13 +172,12 @@ const headers = {
 
 let body = {
     "name": "John Doe",
-    "parter_id": 19,
+    "partner_id": 1,
     "value": "1000",
     "type": "Tonna, metr, M3, M2",
     "amount": 1,
     "given_amount": 1000,
-    "other": "123, Main Street, New York",
-    "partner_id": 1
+    "other": "123, Main Street, New York"
 };
 
 fetch(url, {
@@ -283,15 +281,15 @@ You can check the Dev Tools console for debugging information.</code></pre>
 <p>The name of the exchange. Example: <code>John Doe</code></p>
         </div>
                 <div style=" padding-left: 28px;  clear: unset;">
-            <b style="line-height: 2;"><code>parter_id</code></b>&nbsp;&nbsp;
+            <b style="line-height: 2;"><code>partner_id</code></b>&nbsp;&nbsp;
 <small>integer</small>&nbsp;
  &nbsp;
                 <input type="number" style="display: none"
-               name="parter_id"                data-endpoint="POSTapi-exchanges-new"
-               value="19"
+               name="partner_id"                data-endpoint="POSTapi-exchanges-new"
+               value="1"
                data-component="body">
     <br>
-<p>Example: <code>19</code></p>
+<p>The id of the partner. Example: <code>1</code></p>
         </div>
                 <div style=" padding-left: 28px;  clear: unset;">
             <b style="line-height: 2;"><code>value</code></b>&nbsp;&nbsp;
@@ -348,17 +346,6 @@ You can check the Dev Tools console for debugging information.</code></pre>
     <br>
 <p>nullable The other of the exchange. Example: <code>123, Main Street, New York</code></p>
         </div>
-                <div style=" padding-left: 28px;  clear: unset;">
-            <b style="line-height: 2;"><code>partner_id</code></b>&nbsp;&nbsp;
-<small>integer</small>&nbsp;
- &nbsp;
-                <input type="number" style="display: none"
-               name="partner_id"                data-endpoint="POSTapi-exchanges-new"
-               value="1"
-               data-component="body">
-    <br>
-<p>The id of the partner. Example: <code>1</code></p>
-        </div>
         </form>
 
                     <h2 id="exchanges-PUTapi-exchanges-edit">update exchange</h2>
@@ -380,13 +367,12 @@ You can check the Dev Tools console for debugging information.</code></pre>
     --data "{
     \"id\": 1,
     \"name\": \"John Doe\",
-    \"parter_id\": 19,
+    \"parter_id\": 11,
     \"value\": \"1000\",
     \"type\": \"Tonna, metr, M3, M2\",
     \"amount\": 1,
     \"given_amount\": 1000,
-    \"other\": \"123, Main Street, New York\",
-    \"excess\": true
+    \"other\": \"123, Main Street, New York\"
 }"
 </code></pre></div>
 
@@ -404,13 +390,12 @@ const headers = {
 let body = {
     "id": 1,
     "name": "John Doe",
-    "parter_id": 19,
+    "parter_id": 11,
     "value": "1000",
     "type": "Tonna, metr, M3, M2",
     "amount": 1,
     "given_amount": 1000,
-    "other": "123, Main Street, New York",
-    "excess": true
+    "other": "123, Main Street, New York"
 };
 
 fetch(url, {
@@ -530,10 +515,10 @@ You can check the Dev Tools console for debugging information.</code></pre>
  &nbsp;
                 <input type="number" style="display: none"
                name="parter_id"                data-endpoint="PUTapi-exchanges-edit"
-               value="19"
+               value="11"
                data-component="body">
     <br>
-<p>Example: <code>19</code></p>
+<p>Example: <code>11</code></p>
         </div>
                 <div style=" padding-left: 28px;  clear: unset;">
             <b style="line-height: 2;"><code>value</code></b>&nbsp;&nbsp;
@@ -589,27 +574,6 @@ You can check the Dev Tools console for debugging information.</code></pre>
                data-component="body">
     <br>
 <p>nullable The other of the exchange. Example: <code>123, Main Street, New York</code></p>
-        </div>
-                <div style=" padding-left: 28px;  clear: unset;">
-            <b style="line-height: 2;"><code>excess</code></b>&nbsp;&nbsp;
-<small>boolean</small>&nbsp;
- &nbsp;
-                <label data-endpoint="PUTapi-exchanges-edit" style="display: none">
-            <input type="radio" name="excess"
-                   value="true"
-                   data-endpoint="PUTapi-exchanges-edit"
-                   data-component="body"             >
-            <code>true</code>
-        </label>
-        <label data-endpoint="PUTapi-exchanges-edit" style="display: none">
-            <input type="radio" name="excess"
-                   value="false"
-                   data-endpoint="PUTapi-exchanges-edit"
-                   data-component="body"             >
-            <code>false</code>
-        </label>
-    <br>
-<p>The excess of the exchange. Example: <code>true</code></p>
         </div>
         </form>
 
