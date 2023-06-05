@@ -9,7 +9,7 @@ use App\Models\Exchange;
 use App\Models\Partner;
 use App\Traits\HttpResponses;
 use Illuminate\Http\JsonResponse;
-
+use Illuminate\Support\Facades\DB;
 
 class ExchangesController extends Controller
 {
@@ -20,13 +20,13 @@ class ExchangesController extends Controller
      * 
      * create exchange
      * 
-     * @bodyParam name string required The name of the exchange. Example: John Doe
+     * @bodyParam name string nullable The name of the exchange. Example: John Doe
      * @bodyParam partner_id integer required The id of the partner. Example: 1
-     * @bodyParam value string required The value of the exchange. Example: 1000
-     * @bodyParam type string required The type of the exchange. Example: Tonna, metr, M3, M2
+     * @bodyParam value string nullable The value of the exchange. Example: 1000
+     * @bodyParam type string nullable The type of the exchange. Example: Tonna, metr, M3, M2
      * @bodyParam amount integer required The amount of the exchange. Example: 1
-     * @bodyParam given_amount integer required The given amount of the exchange. Example: 1000
-     * @bodyParam other string nullable The other of the exchange. Example: 123, Main Street, New York
+     * @bodyParam given_amount nullable required The given amount of the exchange. Example: 1000
+     * @bodyParam other boolean false The other of the exchange. Example: false
      * 
      * @response {
      * "result": "Exchange created successfully",
@@ -42,6 +42,8 @@ class ExchangesController extends Controller
         try {
             $data = $request->validated();
 
+            DB::beginTransaction();
+
             $partner = Partner::where('id', $data['partner_id'])->first();
             if ($partner->type !== 'partner')
                 return $this->error('Partner type not partner', 400);
@@ -53,8 +55,21 @@ class ExchangesController extends Controller
             $exchange->type = $data['type'];
             $exchange->amount = $data['amount'];
             $exchange->given_amount = $data['given_amount'];
+
+            // if other is true and not debts in db then return error
+            $exchanges = Exchange::where('partner_id', $data['partner_id'])->first();
+            $summ = 0;
+            foreach ($exchanges as $item) {
+                if ($item->amount !== $item->given_amount && $item->other == false)
+                    $summ += $item->amount - $item->given_amount;
+            }
+            if ($data['other'] == true && $summ == 0)
+                return $this->error('Exchange other is true but not debts in db', 400);
+
             $exchange->other = $data['other'];
             $exchange->save();
+
+            DB::commit();
 
             // return success response
             return $this->success('Exchange created successfully', 200);
@@ -69,12 +84,11 @@ class ExchangesController extends Controller
      * update exchange
      * 
      * @bodyParam id integer required The id of the exchange. Example: 1
-     * @bodyParam name string required The name of the exchange. Example: John Doe
-     * @bodyParam value string required The value of the exchange. Example: 1000
-     * @bodyParam type string required The type of the exchange. Example: Tonna, metr, M3, M2
+     * @bodyParam name string nullable The name of the exchange. Example: John Doe
+     * @bodyParam value string nullable The value of the exchange. Example: 1000
+     * @bodyParam type string nullable The type of the exchange. Example: Tonna, metr, M3, M2
      * @bodyParam amount integer required The amount of the exchange. Example: 1
-     * @bodyParam given_amount integer required The given amount of the exchange. Example: 1000
-     * @bodyParam other string nullable The other of the exchange. Example: 123, Main Street, New York
+     * @bodyParam given_amount nullable required The given amount of the exchange. Example: 1000
      * 
      * @response {
      * "result": "Exchange updated successfully",
@@ -95,7 +109,6 @@ class ExchangesController extends Controller
             $exchange->type = $data['type'];
             $exchange->amount = $data['amount'];
             $exchange->given_amount = $data['given_amount'];
-            $exchange->other = $data['other'];
             $exchange->save();
 
             // return success response

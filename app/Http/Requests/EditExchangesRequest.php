@@ -23,13 +23,11 @@ class EditExchangesRequest extends FormRequest
     {
         return [
             'id' => 'required|integer|exists:exchanges,id',
-            'name' => 'required|string|max:30',
-            'parter_id' => 'required|integer|exists:partners,id',
-            'value' => 'required|string|max:255',
-            'type' => 'required|string|max:255|exists:settings,value',
+            'name' => 'nullable|string|max:30',
+            'value' => 'nullable|string|max:255',
+            'type' => 'nullable|string|max:255|exists:settings,value',
             'amount' => 'required|integer',
             'given_amount' => 'nullable|integer',
-            'other' => 'nullable|string|max:255',
         ];
     }
 }

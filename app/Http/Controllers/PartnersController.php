@@ -76,7 +76,9 @@ class PartnersController extends Controller
      *      "type": "debtor",
      *     "created_at": "2023-06-02T22:23:36.000000Z",
      *     "updated_at": "2023-06-02T22:23:36.000000Z"
-     * }
+     * },
+     * "debts": 0,
+     * "right": 0,
      *]
      *}
      * 
@@ -95,21 +97,25 @@ class PartnersController extends Controller
 
             // check if id is set
             if (isset($data['id'])) {
-                $summ = 0;
+                $debt = 0;
                 $right =  0;
 
                 $query->where('id', $data['id'])->with($data['type'] == 'debtor' ? 'debts' : 'exchanges');
                 if ($data['type'] == 'partner') {
-                    // if given_amount is == amount then we have $summ = 0;
+                    // if given_amount is == amount then we have $debt = 0;
                     $exchanges = Exchange::where('partner_id', $data['id'])->get();
                     foreach ($exchanges as $exchange) {
-                        if ($exchange->amount !== $exchange->given_amount)
-                            $summ += $exchange->amount - $exchange->given_amount;
-                        elseif ($exchange->amount < $exchange->given_amount)
+                        if ($exchange->amount !== $exchange->given_amount && $exchange->other == false)
+                            $debt += $exchange->amount - $exchange->given_amount;
+                        elseif ($exchange->amount < $exchange->given_amount && $exchange->other == false)
                             $right += $exchange->given_amount - $exchange->amount;
                     }
+
+                    // come back to this later. get me the value of the other true get me amount
+                    $exchanges = Exchange::where('partner_id', $data['id'])->where(['other', true])->sum('amount');
+                    $debt -= $exchanges;
                 }
-                return $this->success(['partner' => $query->first(), 'debt' => $summ, 'right' => $right], 200);
+                return $this->success(['partner' => $query->first(), 'debt' => $debt, 'right' => $right], 200);
             }
 
             // check if type is set
