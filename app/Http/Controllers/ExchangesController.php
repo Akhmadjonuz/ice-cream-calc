@@ -53,7 +53,6 @@ class ExchangesController extends Controller
             $exchange->type = $data['type'];
             $exchange->amount = $data['amount'];
             $exchange->given_amount = $data['given_amount'];
-            $exchange->excess = $data['given_amount'] > 0 ? true : false;
             $exchange->other = $data['other'];
             $exchange->save();
 
@@ -75,7 +74,6 @@ class ExchangesController extends Controller
      * @bodyParam type string required The type of the exchange. Example: Tonna, metr, M3, M2
      * @bodyParam amount integer required The amount of the exchange. Example: 1
      * @bodyParam given_amount integer required The given amount of the exchange. Example: 1000
-     * @bodyParam excess boolean required The excess of the exchange. Example: true or false
      * @bodyParam other string nullable The other of the exchange. Example: 123, Main Street, New York
      * 
      * @response {
@@ -97,7 +95,6 @@ class ExchangesController extends Controller
             $exchange->type = $data['type'];
             $exchange->amount = $data['amount'];
             $exchange->given_amount = $data['given_amount'];
-            $exchange->excess = $data['given_amount'] > 0 ? true : false;
             $exchange->other = $data['other'];
             $exchange->save();
 

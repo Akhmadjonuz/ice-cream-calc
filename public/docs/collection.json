@@ -10,7 +10,7 @@
     ],
     "info": {
         "name": "Laravel",
-        "_postman_id": "0e50ad24-0388-422a-9eb9-28be349c8845",
+        "_postman_id": "74945c44-a7ee-4c13-a299-bfe4fb448131",
         "description": "",
         "schema": "https:\/\/schema.getpostman.com\/json\/collection\/v2.1.0\/collection.json"
     },
@@ -41,7 +41,7 @@
                         ],
                         "body": {
                             "mode": "raw",
-                            "raw": "{\"name\":\"John Doe\",\"parter_id\":19,\"value\":\"1000\",\"type\":\"Tonna, metr, M3, M2\",\"amount\":1,\"given_amount\":1000,\"other\":\"123, Main Street, New York\",\"partner_id\":1}"
+                            "raw": "{\"name\":\"John Doe\",\"partner_id\":1,\"value\":\"1000\",\"type\":\"Tonna, metr, M3, M2\",\"amount\":1,\"given_amount\":1000,\"other\":\"123, Main Street, New York\"}"
                         },
                         "description": "",
                         "auth": {
@@ -79,7 +79,7 @@
                         ],
                         "body": {
                             "mode": "raw",
-                            "raw": "{\"id\":1,\"name\":\"John Doe\",\"parter_id\":19,\"value\":\"1000\",\"type\":\"Tonna, metr, M3, M2\",\"amount\":1,\"given_amount\":1000,\"other\":\"123, Main Street, New York\",\"excess\":true}"
+                            "raw": "{\"id\":1,\"name\":\"John Doe\",\"parter_id\":11,\"value\":\"1000\",\"type\":\"Tonna, metr, M3, M2\",\"amount\":1,\"given_amount\":1000,\"other\":\"123, Main Street, New York\"}"
                         },
                         "description": "",
                         "auth": {
