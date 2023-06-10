@@ -13,14 +13,14 @@ return new class extends Migration
     {
         Schema::create('exchanges', function (Blueprint $table) {
             $table->id();
-            $table->string('name');
+            $table->string('name')->nullable()->default(null);
             $table->unsignedBigInteger('partner_id');
             $table->foreign('partner_id')->references('id')->on('partners');
-            $table->string('value');
-            $table->string('type');
-            $table->integer('amount');
+            $table->string('value')->nullable()->default(null);
+            $table->string('type')->nullable()->default(null);
+            $table->integer('amount')->default(0);
             $table->integer('given_amount');
-            $table->string('other')->nullable()->default(null);
+            $table->boolean('other')->nullable()->default(null);
             $table->timestamps();
         });
     }

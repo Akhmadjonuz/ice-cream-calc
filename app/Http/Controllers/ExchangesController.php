@@ -24,9 +24,9 @@ class ExchangesController extends Controller
      * @bodyParam partner_id integer required The id of the partner. Example: 1
      * @bodyParam value string nullable The value of the exchange. Example: 1000
      * @bodyParam type string nullable The type of the exchange. Example: Tonna, metr, M3, M2
-     * @bodyParam amount integer required The amount of the exchange. Example: 1
+     * @bodyParam amount integer nullable The amount of the exchange. Example: 1
      * @bodyParam given_amount nullable required The given amount of the exchange. Example: 1000
-     * @bodyParam other boolean false The other of the exchange. Example: false
+     * @bodyParam other boolean required The other of the exchange. Example: false
      * 
      * @response {
      * "result": "Exchange created successfully",
@@ -49,22 +49,26 @@ class ExchangesController extends Controller
                 return $this->error('Partner type not partner', 400);
 
             $exchange = new Exchange();
-            $exchange->name = $data['name'];
+            $exchange->name = $data['name'] ?? null;
             $exchange->partner_id = $data['partner_id'];
-            $exchange->value = $data['value'];
-            $exchange->type = $data['type'];
-            $exchange->amount = $data['amount'];
+            $exchange->value = $data['value'] ?? null;
+            $exchange->type = $data['type'] ?? null;
+            $exchange->amount = $data['amount'] ?? 0;
             $exchange->given_amount = $data['given_amount'];
 
+
             // if other is true and not debts in db then return error
-            $exchanges = Exchange::where('partner_id', $data['partner_id'])->first();
-            $summ = 0;
-            foreach ($exchanges as $item) {
-                if ($item->amount !== $item->given_amount && $item->other == false)
-                    $summ += $item->amount - $item->given_amount;
+            if ($data['other'] == true) {
+                $exchanges = Exchange::where('partner_id', $data['partner_id'])->get();
+                $summ = 0;
+                foreach ($exchanges as $item) {
+                    if ($item->amount !== $item->given_amount && $item->other == false)
+                        $summ += $item->amount - $item->given_amount;
+                }
+                if ($summ == 0)
+                    return $this->error('Exchange other is true but not debts in db', 400);
             }
-            if ($data['other'] == true && $summ == 0)
-                return $this->error('Exchange other is true but not debts in db', 400);
+
 
             $exchange->other = $data['other'];
             $exchange->save();

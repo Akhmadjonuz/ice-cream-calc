@@ -10,4 +10,14 @@ class Exchange extends Model
     use HasFactory;
 
     protected $table = 'exchanges';
+
+    protected $fillable = [
+        'name',
+        'partner_id',
+        'value',
+        'type',
+        'amount',
+        'given_amount',
+        'other',
+    ];
 }
