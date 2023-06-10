@@ -20,6 +20,11 @@ use Illuminate\Support\Facades\Route;
 //     return $request->user();
 // });
 
+// if route hello return hello world
+Route::get('hello', function () {
+    return 'Hello World';
+});
+
 // partners manipulation
 Route::prefix('partners')->controller(PartnersController::class)->group(function () {
     Route::post('new', 'create')->name('create');

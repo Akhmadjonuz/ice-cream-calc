@@ -10,11 +10,73 @@
     ],
     "info": {
         "name": "Laravel",
-        "_postman_id": "74945c44-a7ee-4c13-a299-bfe4fb448131",
+        "_postman_id": "6be248a4-c487-4dcf-8a2c-6a8d2f4c14bb",
         "description": "",
         "schema": "https:\/\/schema.getpostman.com\/json\/collection\/v2.1.0\/collection.json"
     },
     "item": [
+        {
+            "name": "Endpoints",
+            "description": "",
+            "item": [
+                {
+                    "name": "GET api\/hello",
+                    "request": {
+                        "url": {
+                            "host": "{{baseUrl}}",
+                            "path": "api\/hello",
+                            "query": [],
+                            "raw": "{{baseUrl}}\/api\/hello"
+                        },
+                        "method": "GET",
+                        "header": [
+                            {
+                                "key": "Content-Type",
+                                "value": "application\/json"
+                            },
+                            {
+                                "key": "Accept",
+                                "value": "application\/json"
+                            }
+                        ],
+                        "body": null,
+                        "description": "",
+                        "auth": {
+                            "type": "noauth"
+                        }
+                    },
+                    "response": [
+                        {
+                            "header": [
+                                {
+                                    "key": "content-type",
+                                    "value": "text\/html; charset=UTF-8"
+                                },
+                                {
+                                    "key": "cache-control",
+                                    "value": "no-cache, private"
+                                },
+                                {
+                                    "key": "x-ratelimit-limit",
+                                    "value": "60"
+                                },
+                                {
+                                    "key": "x-ratelimit-remaining",
+                                    "value": "59"
+                                },
+                                {
+                                    "key": "access-control-allow-origin",
+                                    "value": "*"
+                                }
+                            ],
+                            "code": 200,
+                            "body": "Hello World",
+                            "name": ""
+                        }
+                    ]
+                }
+            ]
+        },
         {
             "name": "Exchanges",
             "description": "",
@@ -41,7 +103,7 @@
                         ],
                         "body": {
                             "mode": "raw",
-                            "raw": "{\"name\":\"John Doe\",\"partner_id\":1,\"value\":\"1000\",\"type\":\"Tonna, metr, M3, M2\",\"amount\":1,\"given_amount\":1000,\"other\":\"123, Main Street, New York\"}"
+                            "raw": "{\"name\":\"John Doe\",\"partner_id\":1,\"value\":\"1000\",\"type\":\"Tonna, metr, M3, M2\",\"amount\":1,\"given_amount\":\"1000\",\"other\":false}"
                         },
                         "description": "",
                         "auth": {
@@ -79,7 +141,7 @@
                         ],
                         "body": {
                             "mode": "raw",
-                            "raw": "{\"id\":1,\"name\":\"John Doe\",\"parter_id\":11,\"value\":\"1000\",\"type\":\"Tonna, metr, M3, M2\",\"amount\":1,\"given_amount\":1000,\"other\":\"123, Main Street, New York\"}"
+                            "raw": "{\"id\":1,\"name\":\"John Doe\",\"value\":\"1000\",\"type\":\"Tonna, metr, M3, M2\",\"amount\":1,\"given_amount\":\"1000\"}"
                         },
                         "description": "",
                         "auth": {
@@ -203,7 +265,7 @@
                         {
                             "header": [],
                             "code": 200,
-                            "body": "{\n   \"result\": [\n      {\n         \"id\": 1,\n        \"name\": \"John Doe\",\n       \"phone_number\": \"998901234567\",\n      \"address\": \"123, Main Street, New York\",\n     \"type\": \"debtor\",\n    \"created_at\": \"2023-06-02T22:23:36.000000Z\",\n    \"updated_at\": \"2023-06-02T22:23:36.000000Z\"\n}\n]\n}",
+                            "body": "{\n   \"result\": [\n      {\n         \"id\": 1,\n        \"name\": \"John Doe\",\n       \"phone_number\": \"998901234567\",\n      \"address\": \"123, Main Street, New York\",\n     \"type\": \"debtor\",\n    \"created_at\": \"2023-06-02T22:23:36.000000Z\",\n    \"updated_at\": \"2023-06-02T22:23:36.000000Z\"\n},\n\"debts\": 0,\n\"right\": 0,\n]\n}",
                             "name": ""
                         }
                     ]

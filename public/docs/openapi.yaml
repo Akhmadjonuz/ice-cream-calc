@@ -7,6 +7,23 @@ servers:
   -
     url: 'http://kassa.test'
 paths:
+  /api/hello:
+    get:
+      summary: ''
+      operationId: getApiHello
+      description: ''
+      parameters: []
+      responses:
+        200:
+          description: ''
+          content:
+            text/plain:
+              schema:
+                type: string
+                example: 'Hello World'
+      tags:
+        - Endpoints
+      security: []
   /api/exchanges/new:
     post:
       summary: 'create exchange'
@@ -32,7 +49,7 @@ paths:
               properties:
                 name:
                   type: string
-                  description: 'The name of the exchange.'
+                  description: 'nullable The name of the exchange.'
                   example: 'John Doe'
                 partner_id:
                   type: integer
@@ -40,29 +57,26 @@ paths:
                   example: 1
                 value:
                   type: string
-                  description: 'The value of the exchange.'
+                  description: 'nullable The value of the exchange.'
                   example: '1000'
                 type:
                   type: string
-                  description: 'The type of the exchange.'
+                  description: 'nullable The type of the exchange.'
                   example: 'Tonna, metr, M3, M2'
                 amount:
                   type: integer
                   description: 'The amount of the exchange.'
                   example: 1
                 given_amount:
-                  type: integer
+                  type: nullable
                   description: 'The given amount of the exchange.'
-                  example: 1000
+                  example: '1000'
                 other:
-                  type: string
-                  description: 'nullable The other of the exchange.'
-                  example: '123, Main Street, New York'
+                  type: boolean
+                  description: 'false The other of the exchange.'
+                  example: false
               required:
-                - name
                 - partner_id
-                - value
-                - type
                 - amount
                 - given_amount
       security: []
@@ -95,38 +109,26 @@ paths:
                   example: 1
                 name:
                   type: string
-                  description: 'The name of the exchange.'
+                  description: 'nullable The name of the exchange.'
                   example: 'John Doe'
-                parter_id:
-                  type: integer
-                  description: ''
-                  example: 11
                 value:
                   type: string
-                  description: 'The value of the exchange.'
+                  description: 'nullable The value of the exchange.'
                   example: '1000'
                 type:
                   type: string
-                  description: 'The type of the exchange.'
+                  description: 'nullable The type of the exchange.'
                   example: 'Tonna, metr, M3, M2'
                 amount:
                   type: integer
                   description: 'The amount of the exchange.'
                   example: 1
                 given_amount:
-                  type: integer
+                  type: nullable
                   description: 'The given amount of the exchange.'
-                  example: 1000
-                other:
-                  type: string
-                  description: 'nullable The other of the exchange.'
-                  example: '123, Main Street, New York'
+                  example: '1000'
               required:
                 - id
-                - name
-                - parter_id
-                - value
-                - type
                 - amount
                 - given_amount
       security: []
@@ -207,55 +209,10 @@ paths:
         200:
           description: ''
           content:
-            application/json:
+            text/plain:
               schema:
-                type: object
-                example:
-                  result:
-                    -
-                      id: 1
-                      name: 'John Doe'
-                      phone_number: '998901234567'
-                      address: '123, Main Street, New York'
-                      type: debtor
-                      created_at: '2023-06-02T22:23:36.000000Z'
-                      updated_at: '2023-06-02T22:23:36.000000Z'
-                properties:
-                  result:
-                    type: array
-                    example:
-                      -
-                        id: 1
-                        name: 'John Doe'
-                        phone_number: '998901234567'
-                        address: '123, Main Street, New York'
-                        type: debtor
-                        created_at: '2023-06-02T22:23:36.000000Z'
-                        updated_at: '2023-06-02T22:23:36.000000Z'
-                    items:
-                      type: object
-                      properties:
-                        id:
-                          type: integer
-                          example: 1
-                        name:
-                          type: string
-                          example: 'John Doe'
-                        phone_number:
-                          type: string
-                          example: '998901234567'
-                        address:
-                          type: string
-                          example: '123, Main Street, New York'
-                        type:
-                          type: string
-                          example: debtor
-                        created_at:
-                          type: string
-                          example: '2023-06-02T22:23:36.000000Z'
-                        updated_at:
-                          type: string
-                          example: '2023-06-02T22:23:36.000000Z'
+                type: string
+                example: "{\n   \"result\": [\n      {\n         \"id\": 1,\n        \"name\": \"John Doe\",\n       \"phone_number\": \"998901234567\",\n      \"address\": \"123, Main Street, New York\",\n     \"type\": \"debtor\",\n    \"created_at\": \"2023-06-02T22:23:36.000000Z\",\n    \"updated_at\": \"2023-06-02T22:23:36.000000Z\"\n},\n\"debts\": 0,\n\"right\": 0,\n]\n}"
       tags:
         - Partners
       requestBody:
@@ -334,6 +291,9 @@ paths:
                 - id
       security: []
 tags:
+  -
+    name: Endpoints
+    description: ''
   -
     name: Exchanges
     description: ''

@@ -26,9 +26,9 @@ class CreateExchangesRequest extends FormRequest
             'partner_id' => 'required|integer|exists:partners,id',
             'value' => 'nullable|string|max:255',
             'type' => 'nullable|string|max:255|exists:settings,value',
-            'amount' => 'required|integer',
-            'given_amount' => 'nullable|integer',
-            'other' => 'nullable|string|max:255',
+            'amount' => 'nullable|integer',
+            'given_amount' => 'required|integer',
+            'other' => 'required|boolean|max:255',
         ];
     }
 }

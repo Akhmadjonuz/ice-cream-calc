@@ -66,6 +66,16 @@
                     <a href="#authenticating-requests">Authenticating requests</a>
                 </li>
                             </ul>
+                    <ul id="tocify-header-endpoints" class="tocify-header">
+                <li class="tocify-item level-1" data-unique="endpoints">
+                    <a href="#endpoints">Endpoints</a>
+                </li>
+                                    <ul id="tocify-subheader-endpoints" class="tocify-subheader">
+                                                    <li class="tocify-item level-2" data-unique="endpoints-GETapi-hello">
+                                <a href="#endpoints-GETapi-hello">GET api/hello</a>
+                            </li>
+                                                                        </ul>
+                            </ul>
                     <ul id="tocify-header-exchanges" class="tocify-header">
                 <li class="tocify-item level-1" data-unique="exchanges">
                     <a href="#exchanges">Exchanges</a>
@@ -110,7 +120,7 @@
     </ul>
 
     <ul class="toc-footer" id="last-updated">
-        <li>Last updated: June 5, 2023</li>
+        <li>Last updated: June 10, 2023</li>
     </ul>
 </div>
 
@@ -128,7 +138,135 @@ You can switch the language used with the tabs at the top right (or from the nav
         <h1 id="authenticating-requests">Authenticating requests</h1>
 <p>This API is not authenticated.</p>
 
-        <h1 id="exchanges">Exchanges</h1>
+        <h1 id="endpoints">Endpoints</h1>
+
+    
+
+                                <h2 id="endpoints-GETapi-hello">GET api/hello</h2>
+
+<p>
+</p>
+
+
+
+<span id="example-requests-GETapi-hello">
+<blockquote>Example request:</blockquote>
+
+
+<div class="bash-example">
+    <pre><code class="language-bash">curl --request GET \
+    --get "http://kassa.test/api/hello" \
+    --header "Content-Type: application/json" \
+    --header "Accept: application/json"</code></pre></div>
+
+
+<div class="javascript-example">
+    <pre><code class="language-javascript">const url = new URL(
+    "http://kassa.test/api/hello"
+);
+
+const headers = {
+    "Content-Type": "application/json",
+    "Accept": "application/json",
+};
+
+fetch(url, {
+    method: "GET",
+    headers,
+}).then(response =&gt; response.json());</code></pre></div>
+
+</span>
+
+<span id="example-responses-GETapi-hello">
+            <blockquote>
+            <p>Example response (200):</p>
+        </blockquote>
+                <details class="annotation">
+            <summary style="cursor: pointer;">
+                <small onclick="textContent = parentElement.parentElement.open ? 'Show headers' : 'Hide headers'">Show headers</small>
+            </summary>
+            <pre><code class="language-http">content-type: text/html; charset=UTF-8
+cache-control: no-cache, private
+x-ratelimit-limit: 60
+x-ratelimit-remaining: 59
+access-control-allow-origin: *
+ </code></pre></details>         <pre>
+
+<code class="language-json" style="max-height: 300px;">Hello World</code>
+ </pre>
+    </span>
+<span id="execution-results-GETapi-hello" hidden>
+    <blockquote>Received response<span
+                id="execution-response-status-GETapi-hello"></span>:
+    </blockquote>
+    <pre class="json"><code id="execution-response-content-GETapi-hello"
+      data-empty-response-text="<Empty response>" style="max-height: 400px;"></code></pre>
+</span>
+<span id="execution-error-GETapi-hello" hidden>
+    <blockquote>Request failed with error:</blockquote>
+    <pre><code id="execution-error-message-GETapi-hello">
+
+Tip: Check that you&#039;re properly connected to the network.
+If you&#039;re a maintainer of ths API, verify that your API is running and you&#039;ve enabled CORS.
+You can check the Dev Tools console for debugging information.</code></pre>
+</span>
+<form id="form-GETapi-hello" data-method="GET"
+      data-path="api/hello"
+      data-authed="0"
+      data-hasfiles="0"
+      data-isarraybody="0"
+      autocomplete="off"
+      onsubmit="event.preventDefault(); executeTryOut('GETapi-hello', this);">
+    <h3>
+        Request&nbsp;&nbsp;&nbsp;
+                    <button type="button"
+                    style="background-color: #8fbcd4; padding: 5px 10px; border-radius: 5px; border-width: thin;"
+                    id="btn-tryout-GETapi-hello"
+                    onclick="tryItOut('GETapi-hello');">Try it out ⚡
+            </button>
+            <button type="button"
+                    style="background-color: #c97a7e; padding: 5px 10px; border-radius: 5px; border-width: thin;"
+                    id="btn-canceltryout-GETapi-hello"
+                    onclick="cancelTryOut('GETapi-hello');" hidden>Cancel 🛑
+            </button>&nbsp;&nbsp;
+            <button type="submit"
+                    style="background-color: #6ac174; padding: 5px 10px; border-radius: 5px; border-width: thin;"
+                    id="btn-executetryout-GETapi-hello"
+                    data-initial-text="Send Request 💥"
+                    data-loading-text="⏱ Sending..."
+                    hidden>Send Request 💥
+            </button>
+            </h3>
+            <p>
+            <small class="badge badge-green">GET</small>
+            <b><code>api/hello</code></b>
+        </p>
+                <h4 class="fancy-heading-panel"><b>Headers</b></h4>
+                                <div style="padding-left: 28px; clear: unset;">
+                <b style="line-height: 2;"><code>Content-Type</code></b>&nbsp;&nbsp;
+&nbsp;
+ &nbsp;
+                <input type="text" style="display: none"
+               name="Content-Type"                data-endpoint="GETapi-hello"
+               value="application/json"
+               data-component="header">
+    <br>
+<p>Example: <code>application/json</code></p>
+            </div>
+                                <div style="padding-left: 28px; clear: unset;">
+                <b style="line-height: 2;"><code>Accept</code></b>&nbsp;&nbsp;
+&nbsp;
+ &nbsp;
+                <input type="text" style="display: none"
+               name="Accept"                data-endpoint="GETapi-hello"
+               value="application/json"
+               data-component="header">
+    <br>
+<p>Example: <code>application/json</code></p>
+            </div>
+                        </form>
+
+                <h1 id="exchanges">Exchanges</h1>
 
     
 
@@ -154,8 +292,8 @@ You can switch the language used with the tabs at the top right (or from the nav
     \"value\": \"1000\",
     \"type\": \"Tonna, metr, M3, M2\",
     \"amount\": 1,
-    \"given_amount\": 1000,
-    \"other\": \"123, Main Street, New York\"
+    \"given_amount\": \"1000\",
+    \"other\": false
 }"
 </code></pre></div>
 
@@ -176,8 +314,8 @@ let body = {
     "value": "1000",
     "type": "Tonna, metr, M3, M2",
     "amount": 1,
-    "given_amount": 1000,
-    "other": "123, Main Street, New York"
+    "given_amount": "1000",
+    "other": false
 };
 
 fetch(url, {
@@ -272,13 +410,13 @@ You can check the Dev Tools console for debugging information.</code></pre>
         <div style=" padding-left: 28px;  clear: unset;">
             <b style="line-height: 2;"><code>name</code></b>&nbsp;&nbsp;
 <small>string</small>&nbsp;
- &nbsp;
+<i>optional</i> &nbsp;
                 <input type="text" style="display: none"
                name="name"                data-endpoint="POSTapi-exchanges-new"
                value="John Doe"
                data-component="body">
     <br>
-<p>The name of the exchange. Example: <code>John Doe</code></p>
+<p>nullable The name of the exchange. Example: <code>John Doe</code></p>
         </div>
                 <div style=" padding-left: 28px;  clear: unset;">
             <b style="line-height: 2;"><code>partner_id</code></b>&nbsp;&nbsp;
@@ -294,24 +432,24 @@ You can check the Dev Tools console for debugging information.</code></pre>
                 <div style=" padding-left: 28px;  clear: unset;">
             <b style="line-height: 2;"><code>value</code></b>&nbsp;&nbsp;
 <small>string</small>&nbsp;
- &nbsp;
+<i>optional</i> &nbsp;
                 <input type="text" style="display: none"
                name="value"                data-endpoint="POSTapi-exchanges-new"
                value="1000"
                data-component="body">
     <br>
-<p>The value of the exchange. Example: <code>1000</code></p>
+<p>nullable The value of the exchange. Example: <code>1000</code></p>
         </div>
                 <div style=" padding-left: 28px;  clear: unset;">
             <b style="line-height: 2;"><code>type</code></b>&nbsp;&nbsp;
 <small>string</small>&nbsp;
- &nbsp;
+<i>optional</i> &nbsp;
                 <input type="text" style="display: none"
                name="type"                data-endpoint="POSTapi-exchanges-new"
                value="Tonna, metr, M3, M2"
                data-component="body">
     <br>
-<p>The type of the exchange. Example: <code>Tonna, metr, M3, M2</code></p>
+<p>nullable The type of the exchange. Example: <code>Tonna, metr, M3, M2</code></p>
         </div>
                 <div style=" padding-left: 28px;  clear: unset;">
             <b style="line-height: 2;"><code>amount</code></b>&nbsp;&nbsp;
@@ -326,9 +464,9 @@ You can check the Dev Tools console for debugging information.</code></pre>
         </div>
                 <div style=" padding-left: 28px;  clear: unset;">
             <b style="line-height: 2;"><code>given_amount</code></b>&nbsp;&nbsp;
-<small>integer</small>&nbsp;
+<small>nullable</small>&nbsp;
  &nbsp;
-                <input type="number" style="display: none"
+                <input type="text" style="display: none"
                name="given_amount"                data-endpoint="POSTapi-exchanges-new"
                value="1000"
                data-component="body">
@@ -337,14 +475,24 @@ You can check the Dev Tools console for debugging information.</code></pre>
         </div>
                 <div style=" padding-left: 28px;  clear: unset;">
             <b style="line-height: 2;"><code>other</code></b>&nbsp;&nbsp;
-<small>string</small>&nbsp;
+<small>boolean</small>&nbsp;
 <i>optional</i> &nbsp;
-                <input type="text" style="display: none"
-               name="other"                data-endpoint="POSTapi-exchanges-new"
-               value="123, Main Street, New York"
-               data-component="body">
+                <label data-endpoint="POSTapi-exchanges-new" style="display: none">
+            <input type="radio" name="other"
+                   value="true"
+                   data-endpoint="POSTapi-exchanges-new"
+                   data-component="body"             >
+            <code>true</code>
+        </label>
+        <label data-endpoint="POSTapi-exchanges-new" style="display: none">
+            <input type="radio" name="other"
+                   value="false"
+                   data-endpoint="POSTapi-exchanges-new"
+                   data-component="body"             >
+            <code>false</code>
+        </label>
     <br>
-<p>nullable The other of the exchange. Example: <code>123, Main Street, New York</code></p>
+<p>false The other of the exchange. Example: <code>false</code></p>
         </div>
         </form>
 
@@ -367,12 +515,10 @@ You can check the Dev Tools console for debugging information.</code></pre>
     --data "{
     \"id\": 1,
     \"name\": \"John Doe\",
-    \"parter_id\": 11,
     \"value\": \"1000\",
     \"type\": \"Tonna, metr, M3, M2\",
     \"amount\": 1,
-    \"given_amount\": 1000,
-    \"other\": \"123, Main Street, New York\"
+    \"given_amount\": \"1000\"
 }"
 </code></pre></div>
 
@@ -390,12 +536,10 @@ const headers = {
 let body = {
     "id": 1,
     "name": "John Doe",
-    "parter_id": 11,
     "value": "1000",
     "type": "Tonna, metr, M3, M2",
     "amount": 1,
-    "given_amount": 1000,
-    "other": "123, Main Street, New York"
+    "given_amount": "1000"
 };
 
 fetch(url, {
@@ -501,46 +645,35 @@ You can check the Dev Tools console for debugging information.</code></pre>
                 <div style=" padding-left: 28px;  clear: unset;">
             <b style="line-height: 2;"><code>name</code></b>&nbsp;&nbsp;
 <small>string</small>&nbsp;
- &nbsp;
+<i>optional</i> &nbsp;
                 <input type="text" style="display: none"
                name="name"                data-endpoint="PUTapi-exchanges-edit"
                value="John Doe"
                data-component="body">
     <br>
-<p>The name of the exchange. Example: <code>John Doe</code></p>
-        </div>
-                <div style=" padding-left: 28px;  clear: unset;">
-            <b style="line-height: 2;"><code>parter_id</code></b>&nbsp;&nbsp;
-<small>integer</small>&nbsp;
- &nbsp;
-                <input type="number" style="display: none"
-               name="parter_id"                data-endpoint="PUTapi-exchanges-edit"
-               value="11"
-               data-component="body">
-    <br>
-<p>Example: <code>11</code></p>
+<p>nullable The name of the exchange. Example: <code>John Doe</code></p>
         </div>
                 <div style=" padding-left: 28px;  clear: unset;">
             <b style="line-height: 2;"><code>value</code></b>&nbsp;&nbsp;
 <small>string</small>&nbsp;
- &nbsp;
+<i>optional</i> &nbsp;
                 <input type="text" style="display: none"
                name="value"                data-endpoint="PUTapi-exchanges-edit"
                value="1000"
                data-component="body">
     <br>
-<p>The value of the exchange. Example: <code>1000</code></p>
+<p>nullable The value of the exchange. Example: <code>1000</code></p>
         </div>
                 <div style=" padding-left: 28px;  clear: unset;">
             <b style="line-height: 2;"><code>type</code></b>&nbsp;&nbsp;
 <small>string</small>&nbsp;
- &nbsp;
+<i>optional</i> &nbsp;
                 <input type="text" style="display: none"
                name="type"                data-endpoint="PUTapi-exchanges-edit"
                value="Tonna, metr, M3, M2"
                data-component="body">
     <br>
-<p>The type of the exchange. Example: <code>Tonna, metr, M3, M2</code></p>
+<p>nullable The type of the exchange. Example: <code>Tonna, metr, M3, M2</code></p>
         </div>
                 <div style=" padding-left: 28px;  clear: unset;">
             <b style="line-height: 2;"><code>amount</code></b>&nbsp;&nbsp;
@@ -555,25 +688,14 @@ You can check the Dev Tools console for debugging information.</code></pre>
         </div>
                 <div style=" padding-left: 28px;  clear: unset;">
             <b style="line-height: 2;"><code>given_amount</code></b>&nbsp;&nbsp;
-<small>integer</small>&nbsp;
+<small>nullable</small>&nbsp;
  &nbsp;
-                <input type="number" style="display: none"
+                <input type="text" style="display: none"
                name="given_amount"                data-endpoint="PUTapi-exchanges-edit"
                value="1000"
                data-component="body">
     <br>
 <p>The given amount of the exchange. Example: <code>1000</code></p>
-        </div>
-                <div style=" padding-left: 28px;  clear: unset;">
-            <b style="line-height: 2;"><code>other</code></b>&nbsp;&nbsp;
-<small>string</small>&nbsp;
-<i>optional</i> &nbsp;
-                <input type="text" style="display: none"
-               name="other"                data-endpoint="PUTapi-exchanges-edit"
-               value="123, Main Street, New York"
-               data-component="body">
-    <br>
-<p>nullable The other of the exchange. Example: <code>123, Main Street, New York</code></p>
         </div>
         </form>
 
@@ -940,17 +1062,19 @@ fetch(url, {
                 <pre>
 
 <code class="language-json" style="max-height: 300px;">{
-    &quot;result&quot;: [
-        {
-            &quot;id&quot;: 1,
-            &quot;name&quot;: &quot;John Doe&quot;,
-            &quot;phone_number&quot;: &quot;998901234567&quot;,
-            &quot;address&quot;: &quot;123, Main Street, New York&quot;,
-            &quot;type&quot;: &quot;debtor&quot;,
-            &quot;created_at&quot;: &quot;2023-06-02T22:23:36.000000Z&quot;,
-            &quot;updated_at&quot;: &quot;2023-06-02T22:23:36.000000Z&quot;
-        }
-    ]
+   &quot;result&quot;: [
+      {
+         &quot;id&quot;: 1,
+        &quot;name&quot;: &quot;John Doe&quot;,
+       &quot;phone_number&quot;: &quot;998901234567&quot;,
+      &quot;address&quot;: &quot;123, Main Street, New York&quot;,
+     &quot;type&quot;: &quot;debtor&quot;,
+    &quot;created_at&quot;: &quot;2023-06-02T22:23:36.000000Z&quot;,
+    &quot;updated_at&quot;: &quot;2023-06-02T22:23:36.000000Z&quot;
+},
+&quot;debts&quot;: 0,
+&quot;right&quot;: 0,
+]
 }</code>
  </pre>
     </span>

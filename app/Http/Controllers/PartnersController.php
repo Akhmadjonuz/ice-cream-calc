@@ -100,7 +100,7 @@ class PartnersController extends Controller
                 $debt = 0;
                 $right =  0;
 
-                $query->where('id', $data['id'])->with($data['type'] == 'debtor' ? 'debts' : 'exchanges');
+                $query->where('id', $data['id'])->with('exchanges', 'debts');
                 if ($data['type'] == 'partner') {
                     // if given_amount is == amount then we have $debt = 0;
                     $exchanges = Exchange::where('partner_id', $data['id'])->get();
@@ -109,10 +109,12 @@ class PartnersController extends Controller
                             $debt += $exchange->amount - $exchange->given_amount;
                         elseif ($exchange->amount < $exchange->given_amount && $exchange->other == false)
                             $right += $exchange->given_amount - $exchange->amount;
+                        elseif ($exchange->other == true)
+                            $debt -= $exchange->given_amount;
                     }
 
                     // come back to this later. get me the value of the other true get me amount
-                    $exchanges = Exchange::where('partner_id', $data['id'])->where(['other', true])->sum('amount');
+                    $exchanges = Exchange::where('partner_id', $data['id'])->where('other', true)->sum('amount');
                     $debt -= $exchanges;
                 }
                 return $this->success(['partner' => $query->first(), 'debt' => $debt, 'right' => $right], 200);
