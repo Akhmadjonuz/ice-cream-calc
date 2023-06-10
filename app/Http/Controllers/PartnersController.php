@@ -93,14 +93,25 @@ class PartnersController extends Controller
 
 
             // create query builder
-            $query = Partner::query();
+            $query = Partner::query()->orderBy('id', 'desc');
 
             // check if id is set
             if (isset($data['id'])) {
                 $debt = 0;
                 $right =  0;
 
-                $query->where('id', $data['id'])->with('exchanges', 'debts');
+                $query->where('id', $data['id'])->with(
+                    [
+                        'exchanges' => function ($query) {
+                            $query->orderBy('id', 'desc');
+                        }
+                    ],
+                    [
+                        'debts' => function ($query) {
+                            $query->orderBy('id', 'desc');
+                        }
+                    ]
+                );
                 if ($data['type'] == 'partner') {
                     // if given_amount is == amount then we have $debt = 0;
                     $exchanges = Exchange::where('partner_id', $data['id'])->get();
