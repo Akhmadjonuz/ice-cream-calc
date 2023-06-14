@@ -27,6 +27,7 @@ class ExchangesController extends Controller
      * @bodyParam amount integer nullable The amount of the exchange. Example: 1
      * @bodyParam given_amount nullable required The given amount of the exchange. Example: 1000
      * @bodyParam other boolean required The other of the exchange. Example: false
+     * @bodyParam created_at date nullable The created_at of the exchange. Example: 2023-06-15 00:00:00
      * 
      * @response {
      * "result": "Exchange created successfully",
@@ -54,8 +55,10 @@ class ExchangesController extends Controller
             $exchange->value = $data['value'] ?? null;
             $exchange->type = $data['type'] ?? null;
             $exchange->amount = $data['amount'] ?? 0;
-            $exchange->given_amount = $data['given_amount'];
+            $exchange->given_amount = $data['given_amount'] ?? 0;
 
+            if (!empty($data['created_at']))
+                $exchange->created_at = $data['created_at'];
 
             // if other is true and not debts in db then return error
             if ($data['other'] == true) {

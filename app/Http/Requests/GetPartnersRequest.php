@@ -24,6 +24,8 @@ class GetPartnersRequest extends FormRequest
         return [
             'type' => 'required|string|in:debtor,partner',
             'id' => 'nullable|integer|exists:partners,id',
+            'from_date' => 'nullable|string|date_format:Y-m-d H:i',
+            'to_date' => 'nullable|string|date_format:Y-m-d H:i',
         ];
     }
 }

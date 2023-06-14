@@ -98,9 +98,25 @@ endpoints:
         example: 1
         type: integer
         custom: []
+      from_date:
+        name: from_date
+        description: 'nullable The from date of the partner.'
+        required: false
+        example: '2023-06-02'
+        type: date
+        custom: []
+      to_date:
+        name: to_date
+        description: 'nullable The to date of the partner.'
+        required: false
+        example: '2023-06-03'
+        type: date
+        custom: []
     cleanBodyParameters:
       type: 'debtor or partner'
       id: 1
+      from_date: '2023-06-02'
+      to_date: '2023-06-03'
     fileParameters: []
     responses:
       -

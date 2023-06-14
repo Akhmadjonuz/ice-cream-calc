@@ -27,8 +27,9 @@ class CreateExchangesRequest extends FormRequest
             'value' => 'nullable|string|max:255',
             'type' => 'nullable|string|max:255|exists:settings,value',
             'amount' => 'nullable|integer',
-            'given_amount' => 'required|integer',
+            'given_amount' => 'nullable|integer',
             'other' => 'required|boolean|max:255',
+            'created_at' => 'nullable|date_format:Y-m-d H:i:s',
         ];
     }
 }
