@@ -6,6 +6,7 @@ use App\Http\Requests\CreatePartnersRequest;
 use App\Http\Requests\DeletePartnersRequest;
 use App\Http\Requests\GetPartnersRequest;
 use App\Http\Requests\UpdatePartnersRequest;
+use App\Models\Debt;
 use App\Models\Exchange;
 use App\Traits\HttpResponses;
 use App\Models\Partner;
@@ -64,6 +65,8 @@ class PartnersController extends Controller
      * 
      * @bodyParam id int nullable The id of the partner. Example: 1
      * @bodyParam type string nullable The type of the partner. Example: debtor or partner
+     * @bodyParam from_date date nullable The from date of the partner. Example: 2023-06-02
+     * @bodyParam to_date date nullable The to date of the partner. Example: 2023-06-03
      * 
      * 
      * @response {
@@ -97,26 +100,33 @@ class PartnersController extends Controller
 
             // check if id is set
             if (isset($data['id'])) {
+                $from_date = $data['from_date'] ?? date('Y-m-d H:i');
+                $to_date = $data['to_date'] ?? date('Y-m-d H:i');
                 $debt = 0;
                 $right =  0;
 
                 $query->where('id', $data['id'])->with(
                     [
-                        'exchanges' => function ($query) {
-                            $query->orderBy('id', 'desc');
+                        'exchanges' => function ($query) use ($from_date, $to_date) {
+                            $query->whereBetween('created_at', [$from_date, $to_date])
+                                ->orderBy('id', 'desc');
                         }
                     ],
                     [
-                        'debts' => function ($query) {
-                            $query->orderBy('id', 'desc');
+                        'debts' => function ($query) use ($from_date, $to_date) {
+                            $query->whereBetween('created_at', [$from_date, $to_date])
+                                ->orderBy('id', 'desc');
                         }
                     ]
                 );
+
+
                 if ($data['type'] == 'partner') {
                     // if given_amount is == amount then we have $debt = 0;
-                    $exchanges = Exchange::where('partner_id', $data['id'])->get();
+                    $exchanges = Exchange::where('partner_id', $data['id'])->whereBetween('created_at', [$from_date, $to_date])->get();
+
                     foreach ($exchanges as $exchange) {
-                        if ($exchange->amount !== $exchange->given_amount && $exchange->other == false)
+                        if ($exchange->amount > $exchange->given_amount && $exchange->other == false)
                             $debt += $exchange->amount - $exchange->given_amount;
                         elseif ($exchange->amount < $exchange->given_amount && $exchange->other == false)
                             $right += $exchange->given_amount - $exchange->amount;
@@ -125,9 +135,20 @@ class PartnersController extends Controller
                     }
 
                     // come back to this later. get me the value of the other true get me amount
-                    $exchanges = Exchange::where('partner_id', $data['id'])->where('other', true)->sum('amount');
+                    $exchanges = $exchanges->where('other', true)->sum('amount');
                     $debt -= $exchanges;
                 }
+
+                if ($right > $debt) {
+                    $right -= $debt;
+                    $debt = 0;
+                } elseif ($right < $debt) {
+                    $debt -= $right;
+                    $right = 0;
+                } elseif ($right == $debt)
+                    $right = $debt = 0;
+
+
                 return $this->success(['partner' => $query->first(), 'debt' => $debt, 'right' => $right], 200);
             }
 
@@ -193,8 +214,14 @@ class PartnersController extends Controller
         try {
             $data = $request->validated();
 
-            $partner = Partner::find($data['id']);
-            $partner->delete();
+            // delete partner from exchange table
+            Exchange::where('partner_id', $data['id'])->delete();
+
+            // delete partner from debt table
+            Debt::where('partner_id', $data['id'])->delete();
+
+            // delete partner from partner table
+            Partner::where('id', $data['id'])->delete();
 
             // return success response
             return $this->success('Partner deleted successfully', 200);

@@ -120,7 +120,7 @@
     </ul>
 
     <ul class="toc-footer" id="last-updated">
-        <li>Last updated: June 10, 2023</li>
+        <li>Last updated: June 14, 2023</li>
     </ul>
 </div>
 
@@ -293,7 +293,8 @@ You can check the Dev Tools console for debugging information.</code></pre>
     \"type\": \"Tonna, metr, M3, M2\",
     \"amount\": 1,
     \"given_amount\": \"1000\",
-    \"other\": false
+    \"other\": false,
+    \"created_at\": \"2023-06-15 00:00:00\"
 }"
 </code></pre></div>
 
@@ -315,7 +316,8 @@ let body = {
     "type": "Tonna, metr, M3, M2",
     "amount": 1,
     "given_amount": "1000",
-    "other": false
+    "other": false,
+    "created_at": "2023-06-15 00:00:00"
 };
 
 fetch(url, {
@@ -454,13 +456,13 @@ You can check the Dev Tools console for debugging information.</code></pre>
                 <div style=" padding-left: 28px;  clear: unset;">
             <b style="line-height: 2;"><code>amount</code></b>&nbsp;&nbsp;
 <small>integer</small>&nbsp;
- &nbsp;
+<i>optional</i> &nbsp;
                 <input type="number" style="display: none"
                name="amount"                data-endpoint="POSTapi-exchanges-new"
                value="1"
                data-component="body">
     <br>
-<p>The amount of the exchange. Example: <code>1</code></p>
+<p>nullable The amount of the exchange. Example: <code>1</code></p>
         </div>
                 <div style=" padding-left: 28px;  clear: unset;">
             <b style="line-height: 2;"><code>given_amount</code></b>&nbsp;&nbsp;
@@ -476,7 +478,7 @@ You can check the Dev Tools console for debugging information.</code></pre>
                 <div style=" padding-left: 28px;  clear: unset;">
             <b style="line-height: 2;"><code>other</code></b>&nbsp;&nbsp;
 <small>boolean</small>&nbsp;
-<i>optional</i> &nbsp;
+ &nbsp;
                 <label data-endpoint="POSTapi-exchanges-new" style="display: none">
             <input type="radio" name="other"
                    value="true"
@@ -492,7 +494,18 @@ You can check the Dev Tools console for debugging information.</code></pre>
             <code>false</code>
         </label>
     <br>
-<p>false The other of the exchange. Example: <code>false</code></p>
+<p>The other of the exchange. Example: <code>false</code></p>
+        </div>
+                <div style=" padding-left: 28px;  clear: unset;">
+            <b style="line-height: 2;"><code>created_at</code></b>&nbsp;&nbsp;
+<small>date</small>&nbsp;
+<i>optional</i> &nbsp;
+                <input type="text" style="display: none"
+               name="created_at"                data-endpoint="POSTapi-exchanges-new"
+               value="2023-06-15 00:00:00"
+               data-component="body">
+    <br>
+<p>nullable The created_at of the exchange. Example: <code>2023-06-15 00:00:00</code></p>
         </div>
         </form>
 
@@ -1027,7 +1040,9 @@ You can check the Dev Tools console for debugging information.</code></pre>
     --header "Accept: application/json" \
     --data "{
     \"type\": \"debtor or partner\",
-    \"id\": 1
+    \"id\": 1,
+    \"from_date\": \"2023-06-02\",
+    \"to_date\": \"2023-06-03\"
 }"
 </code></pre></div>
 
@@ -1044,7 +1059,9 @@ const headers = {
 
 let body = {
     "type": "debtor or partner",
-    "id": 1
+    "id": 1,
+    "from_date": "2023-06-02",
+    "to_date": "2023-06-03"
 };
 
 fetch(url, {
@@ -1169,6 +1186,28 @@ You can check the Dev Tools console for debugging information.</code></pre>
                data-component="body">
     <br>
 <p>nullable The id of the partner. Example: <code>1</code></p>
+        </div>
+                <div style=" padding-left: 28px;  clear: unset;">
+            <b style="line-height: 2;"><code>from_date</code></b>&nbsp;&nbsp;
+<small>date</small>&nbsp;
+<i>optional</i> &nbsp;
+                <input type="text" style="display: none"
+               name="from_date"                data-endpoint="POSTapi-partners-get"
+               value="2023-06-02"
+               data-component="body">
+    <br>
+<p>nullable The from date of the partner. Example: <code>2023-06-02</code></p>
+        </div>
+                <div style=" padding-left: 28px;  clear: unset;">
+            <b style="line-height: 2;"><code>to_date</code></b>&nbsp;&nbsp;
+<small>date</small>&nbsp;
+<i>optional</i> &nbsp;
+                <input type="text" style="display: none"
+               name="to_date"                data-endpoint="POSTapi-partners-get"
+               value="2023-06-03"
+               data-component="body">
+    <br>
+<p>nullable The to date of the partner. Example: <code>2023-06-03</code></p>
         </div>
         </form>
 

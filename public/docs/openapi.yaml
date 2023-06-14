@@ -65,7 +65,7 @@ paths:
                   example: 'Tonna, metr, M3, M2'
                 amount:
                   type: integer
-                  description: 'The amount of the exchange.'
+                  description: 'nullable The amount of the exchange.'
                   example: 1
                 given_amount:
                   type: nullable
@@ -73,12 +73,16 @@ paths:
                   example: '1000'
                 other:
                   type: boolean
-                  description: 'false The other of the exchange.'
+                  description: 'The other of the exchange.'
                   example: false
+                created_at:
+                  type: date
+                  description: 'nullable The created_at of the exchange.'
+                  example: '2023-06-15 00:00:00'
               required:
                 - partner_id
-                - amount
                 - given_amount
+                - other
       security: []
   /api/exchanges/edit:
     put:
@@ -230,6 +234,14 @@ paths:
                   type: integer
                   description: 'nullable The id of the partner.'
                   example: 1
+                from_date:
+                  type: date
+                  description: 'nullable The from date of the partner.'
+                  example: '2023-06-02'
+                to_date:
+                  type: date
+                  description: 'nullable The to date of the partner.'
+                  example: '2023-06-03'
       security: []
   /api/partners/edit:
     put:
