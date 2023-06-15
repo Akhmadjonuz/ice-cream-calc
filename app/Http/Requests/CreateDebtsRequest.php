@@ -23,12 +23,13 @@ class CreateDebtsRequest extends FormRequest
     {
         return [
             'partner_id' => 'required|exists:partners,id',
-            'name' => 'required|string',
-            'value' => 'required|string',
-            'car' => 'required|string',
-            'type' => 'required|string',
-            'amount' => 'required|integer',
+            'name' => 'nullable|string',
+            'value' => 'nullable|string',
+            'type' => 'nullable|string',
+            'amount' => 'nullable|integer',
             'given_amount' => 'required|integer',
+            'other' => 'required|boolean',
+            'created_at' => 'nullable|date_format:Y-m-d H:i:s',
         ];
     }
 }
