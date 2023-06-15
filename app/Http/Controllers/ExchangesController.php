@@ -2,14 +2,18 @@
 
 namespace App\Http\Controllers;
 
+use App\Exports\ExportExchanges;
 use App\Http\Requests\CreateExchangesRequest;
 use App\Http\Requests\DeleteExchangesRequest;
 use App\Http\Requests\EditExchangesRequest;
 use App\Models\Exchange;
 use App\Models\Partner;
 use App\Traits\HttpResponses;
+use Illuminate\Http\Request;
 use Illuminate\Http\JsonResponse;
 use Illuminate\Support\Facades\DB;
+use Maatwebsite\Excel\Facades\Excel;
+use Maatwebsite\Excel\Concerns\FromCollection;
 
 class ExchangesController extends Controller
 {
@@ -150,6 +154,34 @@ class ExchangesController extends Controller
 
             // return success response
             return $this->success('Exchange deleted successfully', 200);
+        } catch (\Exception $e) {
+            return $this->log($e);
+        }
+    }
+
+    /**
+     * @group Exchanges
+     * 
+     * download exchanges
+     * 
+     * @bodyParam id integer required The id of the partner. Example: 1
+     * @bodyParam from_date string required The from_date of the exchange. Example: 2023-06-15 00:00
+     * @bodyParam to_date string required The to_date of the exchange. Example: 2023-06-15 00:00
+     * 
+     * 
+     */
+
+    public function downpdf(Request $request)
+    {
+        try {
+            // save to pdf
+            // $pdf = PDF::loadView('pdf.exchanges', compact('exchanges'));
+            // $pdf->save(storage_path() . '/app/public/exchanges.pdf');
+
+
+            //save to excel use from_date and to_date and use Maatwebsite\Excel\Concerns\FromCollection
+
+            return Excel::download(new ExportExchanges($request), $request['from_date'] . 'exchanges.xlsx');
         } catch (\Exception $e) {
             return $this->log($e);
         }
