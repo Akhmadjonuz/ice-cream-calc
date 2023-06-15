@@ -18,6 +18,7 @@ return new class extends Migration
             $table->foreign('partner_id')->references('id')->on('partners');
             $table->string('value')->nullable()->default(null);
             $table->string('type')->nullable()->default(null);
+            $table->string('car')->nullable()->default(null);
             $table->integer('amount')->default(0);
             $table->integer('given_amount');
             $table->boolean('other')->nullable()->default(null);

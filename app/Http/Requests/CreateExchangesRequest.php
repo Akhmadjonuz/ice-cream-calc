@@ -25,6 +25,7 @@ class CreateExchangesRequest extends FormRequest
             'name' => 'nullable|string|max:30',
             'partner_id' => 'required|integer|exists:partners,id',
             'value' => 'nullable|string|max:255',
+            'car' => 'nullable|string|max:255',
             'type' => 'nullable|string|max:255|exists:settings,value',
             'amount' => 'nullable|integer',
             'given_amount' => 'nullable|integer',
