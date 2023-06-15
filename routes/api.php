@@ -20,10 +20,6 @@ use Illuminate\Support\Facades\Route;
 //     return $request->user();
 // });
 
-// if route hello return hello world
-Route::get('hello', function () {
-    return 'Hello World';
-});
 
 // partners manipulation
 Route::prefix('partners')->controller(PartnersController::class)->group(function () {
@@ -39,4 +35,5 @@ Route::prefix('exchanges')->controller(ExchangesController::class)->group(functi
     Route::post('new', 'create')->name('create');
     Route::put('edit', 'update')->name('update');
     Route::delete('delete', 'delete')->name('delete');
+    Route::get('downpdf', 'downpdf')->name('downpdf');
 });
