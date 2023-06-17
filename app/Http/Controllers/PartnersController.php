@@ -100,8 +100,9 @@ class PartnersController extends Controller
 
             // check if id is set
             if (isset($data['id'])) {
-                $from_date = $data['from_date'] ?? date('Y-m-d H:i');
-                $to_date = $data['to_date'] ?? date('Y-m-d H:i');
+                // default values for form_date Y-m-d 00:00:00 and to_date Y-m-d 23:59:59
+                $from_date = $data['from_date'] ?? date('Y-m-d 00:00');
+                $to_date = $data['to_date'] ?? date('Y-m-d 23:59:59');
                 $debt = 0;
                 $right =  0;
 
@@ -112,32 +113,38 @@ class PartnersController extends Controller
                                 ->orderBy('id', 'desc');
                         }
                     ],
-                    [
-                        'debts' => function ($query) use ($from_date, $to_date) {
-                            $query->whereBetween('created_at', [$from_date, $to_date])
-                                ->orderBy('id', 'desc');
-                        }
-                    ]
+                    // [
+                    //     'debts' => function ($query) use ($from_date, $to_date) {
+                    //         $query->whereBetween('created_at', [$from_date, $to_date])
+                    //             ->orderBy('id', 'desc');
+                    //     }
+                    // ]
                 );
 
-
+                $exchanges = '';
                 if ($data['type'] == 'partner') {
-                    // if given_amount is == amount then we have $debt = 0;
-                    $exchanges = Exchange::where('partner_id', $data['id'])->whereBetween('created_at', [$from_date, $to_date])->get();
-
-                    foreach ($exchanges as $exchange) {
-                        if ($exchange->amount > $exchange->given_amount && $exchange->other == false)
-                            $debt += $exchange->amount - $exchange->given_amount;
-                        elseif ($exchange->amount < $exchange->given_amount && $exchange->other == false)
-                            $right += $exchange->given_amount - $exchange->amount;
-                        elseif ($exchange->other == true)
-                            $debt -= $exchange->given_amount;
-                    }
-
-                    // come back to this later. get me the value of the other true get me amount
-                    $exchanges = $exchanges->where('other', true)->sum('amount');
-                    $debt -= $exchanges;
+                    $exchanges = Exchange::where(['partner_id' => $data['id'], 'p_type' => 'p'])
+                        ->whereBetween('created_at', [$from_date, $to_date])
+                        ->get();
+                } elseif ($data['type'] == 'debtor') {
+                    $exchanges = Exchange::where(['partner_id' => $data['id'], 'p_type' => 'd'])
+                        ->whereBetween('created_at', [$from_date, $to_date])
+                        ->get();
                 }
+
+                foreach ($exchanges as $exchange) {
+                    if ($exchange->amount > $exchange->given_amount && $exchange->other == false)
+                        $debt += $exchange->amount - $exchange->given_amount;
+                    elseif ($exchange->amount < $exchange->given_amount && $exchange->other == false)
+                        $right += $exchange->given_amount - $exchange->amount;
+                    elseif ($exchange->other == true)
+                        $debt -= $exchange->given_amount;
+                }
+
+                // come back to this later. get me the value of the other true get me amount
+                $exchanges = $exchanges->where('other', true)->sum('amount');
+                $debt -= $exchanges;
+
 
                 if ($right > $debt) {
                     $right -= $debt;

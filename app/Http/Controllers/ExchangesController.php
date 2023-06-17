@@ -50,10 +50,6 @@ class ExchangesController extends Controller
 
             DB::beginTransaction();
 
-            $partner = Partner::where('id', $data['partner_id'])->first();
-            if ($partner->type !== 'partner')
-                return $this->error('Partner type not partner', 400);
-
             $exchange = new Exchange();
             $exchange->name = $data['name'] ?? null;
             $exchange->partner_id = $data['partner_id'];
@@ -77,9 +73,15 @@ class ExchangesController extends Controller
                 if ($summ == 0)
                     return $this->error('Exchange other is true but not debts in db', 400);
             }
-
-
             $exchange->other = $data['other'];
+
+            $partner = Partner::where('id', $data['partner_id'])->first();
+
+            if ($partner->type == 'partner')
+                $exchange->p_type = 'p';
+            else
+                $exchange->p_type = 'd';
+
             $exchange->save();
 
             DB::commit();

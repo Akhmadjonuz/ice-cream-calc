@@ -22,6 +22,7 @@ return new class extends Migration
             $table->integer('amount')->default(0);
             $table->integer('given_amount');
             $table->boolean('other')->nullable()->default(null);
+            $table->string('p_type')->nullable()->default(null);
             $table->timestamps();
         });
     }
