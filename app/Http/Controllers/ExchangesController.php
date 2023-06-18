@@ -26,7 +26,7 @@ class ExchangesController extends Controller
      * 
      * @bodyParam name string nullable The name of the exchange. Example: John Doe
      * @bodyParam partner_id integer required The id of the partner. Example: 1
-     * @bodyParam value string nullable The value of the exchange. Example: 1000
+     * @bodyParam value integer nullable The value of the exchange. Example: 1000
      * @bodyParam type string nullable The type of the exchange. Example: Tonna, metr, M3, M2
      * @bodyParam car string nullable The car of the exchange. Example: 50A777AA
      * @bodyParam amount integer nullable The amount of the exchange. Example: 1
@@ -51,13 +51,14 @@ class ExchangesController extends Controller
             DB::beginTransaction();
 
             $exchange = new Exchange();
-            $exchange->name = $data['name'] ?? null;
+            $exchange->name = $data['name'] ?? 'Pul';
             $exchange->partner_id = $data['partner_id'];
             $exchange->value = $data['value'] ?? null;
             $exchange->type = $data['type'] ?? null;
             $exchange->car = $data['car'] ?? null;
             $exchange->amount = $data['amount'] ?? 0;
             $exchange->given_amount = $data['given_amount'] ?? 0;
+            $exchange->all_amount = $data['value'] * $data['amount'] ?? 0;
 
             if (!empty($data['created_at']))
                 $exchange->created_at = $data['created_at'];
@@ -67,8 +68,8 @@ class ExchangesController extends Controller
                 $exchanges = Exchange::where('partner_id', $data['partner_id'])->get();
                 $summ = 0;
                 foreach ($exchanges as $item) {
-                    if ($item->amount !== $item->given_amount && $item->other == false)
-                        $summ += $item->amount - $item->given_amount;
+                    if ($item->all_amount !== $item->given_amount && $item->other == false)
+                        $summ += $item->all_amount - $item->given_amount;
                 }
                 if ($summ == 0)
                     return $this->error('Exchange other is true but not debts in db', 400);
