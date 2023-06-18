@@ -16,12 +16,13 @@ return new class extends Migration
             $table->string('name')->nullable()->default(null);
             $table->unsignedBigInteger('partner_id');
             $table->foreign('partner_id')->references('id')->on('partners');
-            $table->string('value')->nullable()->default(null);
+            $table->integer('value')->default(0);
             $table->string('type')->nullable()->default(null);
             $table->string('car')->nullable()->default(null);
             $table->integer('amount')->default(0);
-            $table->integer('given_amount');
-            $table->boolean('other')->nullable()->default(null);
+            $table->integer('all_amount')->default(0);
+            $table->integer('given_amount')->default(0);
+            $table->boolean('other')->nullable()->default(false);
             $table->string('p_type')->nullable()->default(null);
             $table->timestamps();
         });

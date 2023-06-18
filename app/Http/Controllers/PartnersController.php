@@ -132,19 +132,25 @@ class PartnersController extends Controller
                         ->get();
                 }
 
+                $all_amount = $all_given_amount = $all_value = $all_price = 0;
+
                 foreach ($exchanges as $exchange) {
-                    if ($exchange->amount > $exchange->given_amount && $exchange->other == false)
-                        $debt += $exchange->amount - $exchange->given_amount;
-                    elseif ($exchange->amount < $exchange->given_amount && $exchange->other == false)
-                        $right += $exchange->given_amount - $exchange->amount;
+                    if ($exchange->all_amount > $exchange->given_amount && $exchange->other == false)
+                        $debt += $exchange->all_amount - $exchange->given_amount;
+                    elseif ($exchange->all_amount < $exchange->given_amount && $exchange->other == false)
+                        $right += $exchange->given_amount - $exchange->all_amount;
                     elseif ($exchange->other == true)
                         $debt -= $exchange->given_amount;
+
+                    $all_value += $exchange->value;
+                    $all_amount += $exchange->all_amount;
+                    $all_given_amount += $exchange->given_amount;
+                    $all_price += $exchange->amount;
                 }
 
                 // come back to this later. get me the value of the other true get me amount
                 $exchanges = $exchanges->where('other', true)->sum('amount');
                 $debt -= $exchanges;
-
 
                 if ($right > $debt) {
                     $right -= $debt;
@@ -155,8 +161,14 @@ class PartnersController extends Controller
                 } elseif ($right == $debt)
                     $right = $debt = 0;
 
+                $more = [
+                    'all_value' => $all_value,
+                    'all_amount' => $all_amount,
+                    'all_given_amount' => $all_given_amount,
+                    'all_price' => $all_price,
+                ];
 
-                return $this->success(['partner' => $query->first(), 'debt' => $debt, 'right' => $right], 200);
+                return $this->success(['partner' => $query->first(), 'debt' => $debt, 'right' => $right, 'more_data' => $more], 200);
             }
 
             // check if type is set
@@ -219,19 +231,19 @@ class PartnersController extends Controller
     public function delete(DeletePartnersRequest $request): JsonResponse
     {
         try {
-            $data = $request->validated();
+            // $data = $request->validated();
 
-            // delete partner from exchange table
-            Exchange::where('partner_id', $data['id'])->delete();
+            // // delete partner from exchange table
+            // Exchange::where('partner_id', $data['id'])->delete();
 
-            // delete partner from debt table
-            Debt::where('partner_id', $data['id'])->delete();
+            // // delete partner from debt table
+            // Debt::where('partner_id', $data['id'])->delete();
 
-            // delete partner from partner table
-            Partner::where('id', $data['id'])->delete();
+            // // delete partner from partner table
+            // Partner::where('id', $data['id'])->delete();
 
             // return success response
-            return $this->success('Partner deleted successfully', 200);
+            return $this->success('Partner does not deleted', 200);
         } catch (\Exception $e) {
             return $this->log($e);
         }
