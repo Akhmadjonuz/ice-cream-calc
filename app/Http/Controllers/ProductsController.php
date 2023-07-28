@@ -90,6 +90,7 @@ class ProductsController extends Controller
             $product->caterogy_id = $data['caterogy_id'];
             $product->name = $data['name'];
             $product->price = $data['price'];
+            $product->count = $product->count + $data['count'];
             $product->type_id = $data['type_id'];
 
             if (isset($data['is_active']))
