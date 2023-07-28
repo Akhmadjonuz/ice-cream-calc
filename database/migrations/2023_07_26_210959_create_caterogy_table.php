@@ -14,7 +14,7 @@ return new class extends Migration
         Schema::create('caterogy', function (Blueprint $table) {
             $table->id();
             $table->string('name');
-            $table->integer('type')->default(1);
+            $table->integer('type')->default(1); // 1 - icecream 2 - product
             $table->timestamps();
         });
     }

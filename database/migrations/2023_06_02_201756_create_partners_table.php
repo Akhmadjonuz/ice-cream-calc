@@ -14,9 +14,8 @@ return new class extends Migration
         Schema::create('partners', function (Blueprint $table) {
             $table->id();
             $table->string('name');
-            $table->string('phone_number', 20);
+            $table->string('phone_number')->nullable()->default(null);
             $table->string('address')->nullable()->default(null);
-            $table->string('type');
             $table->timestamps();
         });
     }

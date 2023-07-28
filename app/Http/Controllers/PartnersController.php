@@ -23,10 +23,8 @@ class PartnersController extends Controller
      * create partner
      * 
      * @bodyParam name string required The name of the partner. Example: John Doe
-     * @bodyParam phone_number string required The phone number of the partner. Example: 998901234567
+     * @bodyParam phone_number string nullable The phone number of the partner. Example: 998901234567
      * @bodyParam address string nullable The address of the partner. Example: 123, Main Street, New York
-     * @bodyParam type string required The type of the partner. Example: debtor or partner
-     * 
      * 
      * @param CreatePartnersRequest $request
      * @return JsonResponse
@@ -47,7 +45,6 @@ class PartnersController extends Controller
             $partner->name = $data['name'];
             $partner->phone_number = $data['phone_number'];
             $partner->address = $data['address'];
-            $partner->type = $data['type'];
             $partner->save();
 
             // return success response

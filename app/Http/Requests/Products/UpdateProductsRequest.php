@@ -1,10 +1,10 @@
 <?php
 
-namespace App\Http\Requests;
+namespace App\Http\Requests\Products;
 
 use Illuminate\Foundation\Http\FormRequest;
 
-class CreatePartnersRequest extends FormRequest
+class UpdateProductsRequest extends FormRequest
 {
     /**
      * Determine if the user is authorized to make this request.
@@ -22,9 +22,11 @@ class CreatePartnersRequest extends FormRequest
     public function rules(): array
     {
         return [
+            'caterogy_id' => 'required|integer|exists:caterogy,id',
             'name' => 'required|string|max:255',
-            'phone_number' => 'nullable|string|regex:/^998[0-9]{9}$/',
-            'address' => 'nullable|string|max:255',
+            'price' => 'required|integer',
+            'type_id' => 'required|integer|exists:settings,id',
+            'is_active' => 'nullable|boolean',
         ];
     }
 }

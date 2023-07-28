@@ -1,10 +1,10 @@
 <?php
 
-namespace App\Http\Requests;
+namespace App\Http\Requests\Caterogy;
 
 use Illuminate\Foundation\Http\FormRequest;
 
-class CreatePartnersRequest extends FormRequest
+class CreateCaterogyRequest extends FormRequest
 {
     /**
      * Determine if the user is authorized to make this request.
@@ -23,8 +23,7 @@ class CreatePartnersRequest extends FormRequest
     {
         return [
             'name' => 'required|string|max:255',
-            'phone_number' => 'nullable|string|regex:/^998[0-9]{9}$/',
-            'address' => 'nullable|string|max:255',
+            'type' => 'nullable|integer',
         ];
     }
 }

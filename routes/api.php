@@ -1,9 +1,10 @@
 <?php
 
+use App\Http\Controllers\CaterogyController;
 use App\Http\Controllers\ExchangesController;
 use App\Http\Controllers\NbuController;
 use App\Http\Controllers\PartnersController;
-use Illuminate\Http\Request;
+use App\Http\Controllers\ProductsController;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -24,6 +25,19 @@ use Illuminate\Support\Facades\Route;
 // nbu manipulation
 Route::get('nbu/save', [NbuController::class, 'save']);
 
+// products manipulation
+Route::prefix('products')->controller(ProductsController::class)->group(function () {
+    Route::post('new', 'createCaterogy')->name('createCaterogy');
+    Route::post('get{id?}', 'getProducts')->name('getProducts');
+    Route::put('edit', 'updateProduct')->name('updateProduct');
+});
+
+// caterogies manipulation
+Route::prefix('caterogies')->controller(CaterogyController::class)->group(function () {
+    Route::post('new', 'createCaterogy')->name('createCaterogy');
+    Route::get('get', 'getCaterogies')->name('getCaterogies');
+    Route::put('edit', 'updateCaterogy')->name('updateCaterogy');
+});
 
 // partners manipulation
 Route::prefix('partners')->controller(PartnersController::class)->group(function () {

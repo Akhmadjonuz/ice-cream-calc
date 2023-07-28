@@ -179,11 +179,6 @@ class ExchangesController extends Controller
     public function downpdf(Request $request)
     {
         try {
-            // save to pdf
-            // $pdf = PDF::loadView('pdf.exchanges', compact('exchanges'));
-            // $pdf->save(storage_path() . '/app/public/exchanges.pdf');
-
-
             //save to excel use from_date and to_date and use Maatwebsite\Excel\Concerns\FromCollection
 
             return Excel::download(new ExportExchanges($request), $request['from_date'] . 'exchanges.xlsx');

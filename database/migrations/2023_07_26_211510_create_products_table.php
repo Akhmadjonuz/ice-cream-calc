@@ -17,11 +17,11 @@ return new class extends Migration
             $table->foreign('caterogy_id')->references('id')->on('caterogy');
             $table->string('name');
             $table->integer('price');
-            $table->integer('quantity');
             $table->integer('count')->default(0);
             $table->unsignedBigInteger('type_id');
             $table->foreign('type_id')->references('id')->on('settings');
             $table->boolean('cyrrency')->default(0); // 0 - UZS 1 - USD
+            $table->boolean('is_active')->default(true);
             $table->timestamps();
         });
     }
