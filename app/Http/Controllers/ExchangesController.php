@@ -24,15 +24,9 @@ class ExchangesController extends Controller
      * 
      * create exchange
      * 
-     * @bodyParam name string nullable The name of the exchange. Example: John Doe
+     * @bodyParam product_id integer required The id of the product. Example: 1
      * @bodyParam partner_id integer required The id of the partner. Example: 1
-     * @bodyParam value integer nullable The value of the exchange. Example: 1000
-     * @bodyParam type string nullable The type of the exchange. Example: Tonna, metr, M3, M2
-     * @bodyParam car string nullable The car of the exchange. Example: 50A777AA
-     * @bodyParam amount integer nullable The amount of the exchange. Example: 1
-     * @bodyParam given_amount nullable required The given amount of the exchange. Example: 1000
-     * @bodyParam other boolean required The other of the exchange. Example: false
-     * @bodyParam created_at date nullable The created_at of the exchange. Example: 2023-06-15 00:00:00
+     * @bodyParam value integer required The value of the exchange. Example: 1000
      * 
      * @response {
      * "result": "Exchange created successfully",
@@ -100,11 +94,9 @@ class ExchangesController extends Controller
      * update exchange
      * 
      * @bodyParam id integer required The id of the exchange. Example: 1
-     * @bodyParam name string nullable The name of the exchange. Example: John Doe
-     * @bodyParam value string nullable The value of the exchange. Example: 1000
-     * @bodyParam type string nullable The type of the exchange. Example: Tonna, metr, M3, M2
-     * @bodyParam amount integer required The amount of the exchange. Example: 1
-     * @bodyParam given_amount nullable required The given amount of the exchange. Example: 1000
+     * @bodyParam product_id integer nullable The id of the product. Example: 1
+     * @bodyParam partner_id integer nullable The id of the partner. Example: 1
+     * @bodyParam value integer nullable The value of the exchange. Example: 1000
      * 
      * @response {
      * "result": "Exchange updated successfully",

@@ -5,6 +5,7 @@ use App\Http\Controllers\ExchangesController;
 use App\Http\Controllers\NbuController;
 use App\Http\Controllers\PartnersController;
 use App\Http\Controllers\ProductsController;
+use App\Http\Controllers\SettingController;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -21,6 +22,11 @@ use Illuminate\Support\Facades\Route;
 // Route::middleware('auth:sanctum')->get('/user', function (Request $request) {
 //     return $request->user();
 // });
+
+// setting manipulation
+Route::prefix('settings')->controller(SettingController::class)->group(function () {
+    Route::get('get', 'getSettings')->name('getSettings'); 
+});
 
 // nbu manipulation
 Route::get('nbu/save', [NbuController::class, 'save']);

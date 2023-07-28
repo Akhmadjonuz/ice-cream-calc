@@ -23,11 +23,9 @@ class EditExchangesRequest extends FormRequest
     {
         return [
             'id' => 'required|integer|exists:exchanges,id',
-            'name' => 'nullable|string|max:30',
-            'value' => 'nullable|string|max:255',
-            'type' => 'nullable|string|max:255|exists:settings,value',
-            'amount' => 'required|integer',
-            'given_amount' => 'nullable|integer',
+            'product_id' => 'nullable|integer|exists:products,id',
+            'partner_id' => 'nullable|integer|exists:partners,id',
+            'value' => 'nullable|integer',
         ];
     }
 }

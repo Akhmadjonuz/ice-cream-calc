@@ -89,91 +89,93 @@ class PartnersController extends Controller
     public function get(GetPartnersRequest $request): JsonResponse
     {
         try {
-            $data = $request->validated();
+            // $data = $request->validated();
 
 
-            // create query builder
-            $query = Partner::query()->orderBy('id', 'desc');
+            // // create query builder
+            // $query = Partner::query()->orderBy('id', 'desc');
 
-            // check if id is set
-            if (isset($data['id'])) {
-                // default values for form_date Y-m-d 00:00:00 and to_date Y-m-d 23:59:59
-                $from_date = $data['from_date'] ?? date('Y-m-d 00:00');
-                $to_date = $data['to_date'] ?? date('Y-m-d 23:59:59');
-                $debt = 0;
-                $right =  0;
+            // // check if id is set
+            // if (isset($data['id'])) {
+            //     // default values for form_date Y-m-d 00:00:00 and to_date Y-m-d 23:59:59
+            //     $from_date = $data['from_date'] ?? date('Y-m-d 00:00');
+            //     $to_date = $data['to_date'] ?? date('Y-m-d 23:59:59');
+            //     $debt = 0;
+            //     $right =  0;
 
-                $query->where('id', $data['id'])->with(
-                    [
-                        'exchanges' => function ($query) use ($from_date, $to_date) {
-                            $query->whereBetween('created_at', [$from_date, $to_date])
-                                ->orderBy('id', 'desc');
-                        }
-                    ],
-                    // [
-                    //     'debts' => function ($query) use ($from_date, $to_date) {
-                    //         $query->whereBetween('created_at', [$from_date, $to_date])
-                    //             ->orderBy('id', 'desc');
-                    //     }
-                    // ]
-                );
+            //     $query->where('id', $data['id'])->with(
+            //         [
+            //             'exchanges' => function ($query) use ($from_date, $to_date) {
+            //                 $query->whereBetween('created_at', [$from_date, $to_date])
+            //                     ->orderBy('id', 'desc');
+            //             }
+            //         ],
+            //         // [
+            //         //     'debts' => function ($query) use ($from_date, $to_date) {
+            //         //         $query->whereBetween('created_at', [$from_date, $to_date])
+            //         //             ->orderBy('id', 'desc');
+            //         //     }
+            //         // ]
+            //     );
 
-                $exchanges = '';
-                if ($data['type'] == 'partner') {
-                    $exchanges = Exchange::where(['partner_id' => $data['id'], 'p_type' => 'p'])
-                        ->whereBetween('created_at', [$from_date, $to_date])
-                        ->get();
-                } elseif ($data['type'] == 'debtor') {
-                    $exchanges = Exchange::where(['partner_id' => $data['id'], 'p_type' => 'd'])
-                        ->whereBetween('created_at', [$from_date, $to_date])
-                        ->get();
-                }
+            //     $exchanges = '';
+            //     if ($data['type'] == 'partner') {
+            //         $exchanges = Exchange::where(['partner_id' => $data['id'], 'p_type' => 'p'])
+            //             ->whereBetween('created_at', [$from_date, $to_date])
+            //             ->get();
+            //     } elseif ($data['type'] == 'debtor') {
+            //         $exchanges = Exchange::where(['partner_id' => $data['id'], 'p_type' => 'd'])
+            //             ->whereBetween('created_at', [$from_date, $to_date])
+            //             ->get();
+            //     }
 
-                $all_amount = $all_given_amount = $all_value = $all_price = 0;
+            //     $all_amount = $all_given_amount = $all_value = $all_price = 0;
 
-                foreach ($exchanges as $exchange) {
-                    if ($exchange->all_amount > $exchange->given_amount && $exchange->other == false)
-                        $debt += $exchange->all_amount - $exchange->given_amount;
-                    elseif ($exchange->all_amount < $exchange->given_amount && $exchange->other == false)
-                        $right += $exchange->given_amount - $exchange->all_amount;
-                    elseif ($exchange->other == true)
-                        $debt -= $exchange->given_amount;
+            //     foreach ($exchanges as $exchange) {
+            //         if ($exchange->all_amount > $exchange->given_amount && $exchange->other == false)
+            //             $debt += $exchange->all_amount - $exchange->given_amount;
+            //         elseif ($exchange->all_amount < $exchange->given_amount && $exchange->other == false)
+            //             $right += $exchange->given_amount - $exchange->all_amount;
+            //         elseif ($exchange->other == true)
+            //             $debt -= $exchange->given_amount;
 
-                    $all_value += $exchange->value;
-                    $all_amount += $exchange->all_amount;
-                    $all_given_amount += $exchange->given_amount;
-                    $all_price += $exchange->amount;
-                }
+            //         $all_value += $exchange->value;
+            //         $all_amount += $exchange->all_amount;
+            //         $all_given_amount += $exchange->given_amount;
+            //         $all_price += $exchange->amount;
+            //     }
 
-                // come back to this later. get me the value of the other true get me amount
-                $exchanges = $exchanges->where('other', true)->sum('amount');
-                $debt -= $exchanges;
+            //     // come back to this later. get me the value of the other true get me amount
+            //     $exchanges = $exchanges->where('other', true)->sum('amount');
+            //     $debt -= $exchanges;
 
-                if ($right > $debt) {
-                    $right -= $debt;
-                    $debt = 0;
-                } elseif ($right < $debt) {
-                    $debt -= $right;
-                    $right = 0;
-                } elseif ($right == $debt)
-                    $right = $debt = 0;
+            //     if ($right > $debt) {
+            //         $right -= $debt;
+            //         $debt = 0;
+            //     } elseif ($right < $debt) {
+            //         $debt -= $right;
+            //         $right = 0;
+            //     } elseif ($right == $debt)
+            //         $right = $debt = 0;
 
-                $more = [
-                    'all_value' => $all_value,
-                    'all_amount' => $all_amount,
-                    'all_given_amount' => $all_given_amount,
-                    'all_price' => $all_price,
-                ];
+            //     $more = [
+            //         'all_value' => $all_value,
+            //         'all_amount' => $all_amount,
+            //         'all_given_amount' => $all_given_amount,
+            //         'all_price' => $all_price,
+            //     ];
 
-                return $this->success(['partner' => $query->first(), 'debt' => $debt, 'right' => $right, 'more_data' => $more], 200);
-            }
+            //     return $this->success(['partner' => $query->first(), 'debt' => $debt, 'right' => $right, 'more_data' => $more], 200);
+            // }
 
-            // check if type is set
-            if (isset($data['type']))
-                $query->where('type', $data['type']);
+            // // check if type is set
+            // if (isset($data['type']))
+            //     $query->where('type', $data['type']);
 
-            // Return success response
-            return $this->success($query->get(), 200);
+            // // Return success response
+            // return $this->success($query->get(), 200);
+
+            return $this->success(Partner::all(), 200);
         } catch (\Exception $e) {
             return $this->log($e);
         }

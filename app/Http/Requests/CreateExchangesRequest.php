@@ -22,15 +22,9 @@ class CreateExchangesRequest extends FormRequest
     public function rules(): array
     {
         return [
-            'name' => 'nullable|string|max:30',
+            'product_id' => 'required|integer|exists:products,id',
             'partner_id' => 'required|integer|exists:partners,id',
-            'value' => 'nullable|string|max:255',
-            'car' => 'nullable|string|max:255',
-            'type' => 'nullable|string|max:255|exists:settings,value',
-            'amount' => 'nullable|integer',
-            'given_amount' => 'nullable|integer',
-            'other' => 'required|boolean|max:255',
-            'created_at' => 'nullable|date_format:Y-m-d H:i:s',
+            'value' => 'required|integer',
         ];
     }
 }

@@ -52,7 +52,7 @@ class CaterogyController extends Controller
 
             $caterogy = new Caterogy();
             $caterogy->name = $data['name'];
-            $caterogy->type = $data['type'] ?? 1;
+            $caterogy->type = 1;
             $caterogy->save();
 
             DB::commit();
