@@ -37,7 +37,6 @@ class CaterogyController extends Controller
      * create caterogy
      * 
      * @bodyParam name string required
-     * @bodyParam type integer nullable
      * 
      * @param CreateCaterogyRequest $request
      * @return JsonResponse
@@ -52,7 +51,6 @@ class CaterogyController extends Controller
 
             $caterogy = new Caterogy();
             $caterogy->name = $data['name'];
-            $caterogy->type = 1;
             $caterogy->save();
 
             DB::commit();
@@ -85,7 +83,7 @@ class CaterogyController extends Controller
             DB::beginTransaction();
 
             $caterogy = Caterogy::find($data['id']);
-            $caterogy->name = $data['name'];
+            $caterogy->name = $data['name'] ?? $caterogy->name;
             $caterogy->save();
 
             DB::commit();

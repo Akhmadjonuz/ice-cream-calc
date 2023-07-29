@@ -10,4 +10,11 @@ class Product extends Model
     use HasFactory;
 
     protected $table = 'products';
+
+    // relations
+
+    public function Nbu()
+    {
+        return $this->hasMany(Nbu::class, 'product_id', 'id')->latest();
+    }
 }

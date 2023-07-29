@@ -48,6 +48,7 @@ class ProductsController extends Controller
      * @bodyParam price integer required The price of the product. Example: 100
      * @bodyParam type_id integer required The id of the type. Example: 1
      * @bodyParam cyrrency string required The cyrrency of the product. Example: UZS or USD
+     * @bodyParam type integer nullable The type of the product. Example: 0 or 1
      * 
      * @param CreateProductsRequest $request
      * @return JsonResponse
@@ -63,7 +64,18 @@ class ProductsController extends Controller
             $product = new Product();
             $product->caterogy_id = $data['caterogy_id'];
             $product->name = $data['name'];
-            $product->price = $data['price'];
+
+            $usd = $product->Nbu()->latest()->first();
+
+            if ($product->currency == 1)
+                $product->price = $data['price'] * $usd->nbu_cell_price;
+            else
+                $product->price = $data['price'];
+            
+            $product->nbu_id = $usd->id;
+
+            $product->type = $data['type'] ?? 0;
+
             $product->type_id = $data['type_id'];
             $product->cyrrency = $data['cyrrency'];
             $product->save();
@@ -102,11 +114,11 @@ class ProductsController extends Controller
             DB::beginTransaction();
 
             $product = Product::find($data['id']);
-            $product->caterogy_id = $data['caterogy_id'];
-            $product->name = $data['name'];
-            $product->price = $data['price'];
-            $product->count = $product->count + $data['count'];
-            $product->type_id = $data['type_id'];
+            $product->caterogy_id = $data['caterogy_id'] ?? $product->caterogy_id;
+            $product->name = $data['name'] ?? $product->name;
+            $product->price = $data['price'] ?? $product->price;
+            $product->count = $product->count + $data['count'] ?? $product->count;
+            $product->type_id = $data['type_id'] ?? $product->type_id;
 
             if (isset($data['is_active']))
                 $product->is_active = $product->is_active ? false : true;

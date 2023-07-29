@@ -1,12 +1,102 @@
 openapi: 3.0.3
 info:
-  title: Laravel
+  title: IceCream
   description: ''
   version: 1.0.0
 servers:
   -
-    url: 'http://kassa.test'
+    url: 'https://ice.dadabayev.uz'
 paths:
+  /api/caterogies/new:
+    post:
+      summary: 'create caterogy'
+      operationId: createCaterogy
+      description: ''
+      parameters: []
+      responses: {  }
+      tags:
+        - Caterogies
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                name:
+                  type: string
+                  description: ''
+                  example: est
+              required:
+                - name
+      security: []
+  /api/caterogies/get:
+    get:
+      summary: 'get caterogies'
+      operationId: getCaterogies
+      description: ''
+      parameters: []
+      responses:
+        200:
+          description: ''
+          content:
+            application/json:
+              schema:
+                type: object
+                example:
+                  result: []
+                properties:
+                  result:
+                    type: array
+                    example: []
+      tags:
+        - Caterogies
+      security: []
+  /api/caterogies/edit:
+    put:
+      summary: 'update caterogy'
+      operationId: updateCaterogy
+      description: ''
+      parameters: []
+      responses: {  }
+      tags:
+        - Caterogies
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                name:
+                  type: string
+                  description: ''
+                  example: ea
+              required:
+                - name
+      security: []
+  /api/nbu/save:
+    get:
+      summary: ''
+      operationId: getApiNbuSave
+      description: ''
+      parameters: []
+      responses:
+        200:
+          description: ''
+          content:
+            application/json:
+              schema:
+                type: object
+                example:
+                  result: 'NBU saved successfully'
+                properties:
+                  result:
+                    type: string
+                    example: 'NBU saved successfully'
+      tags:
+        - Endpoints
+      security: []
   /api/exchanges/new:
     post:
       summary: 'create exchange'
@@ -30,46 +120,22 @@ paths:
             schema:
               type: object
               properties:
-                name:
-                  type: string
-                  description: 'nullable The name of the exchange.'
-                  example: 'John Doe'
+                product_id:
+                  type: integer
+                  description: 'The id of the product.'
+                  example: 1
                 partner_id:
                   type: integer
                   description: 'The id of the partner.'
                   example: 1
                 value:
-                  type: string
-                  description: 'nullable The value of the exchange.'
-                  example: '1000'
-                car:
-                  type: string
-                  description: 'nullable The car of the exchange.'
-                  example: 50A777AA
-                type:
-                  type: string
-                  description: 'nullable The type of the exchange.'
-                  example: 'Tonna, metr, M3, M2'
-                amount:
                   type: integer
-                  description: 'nullable The amount of the exchange.'
-                  example: 1
-                given_amount:
-                  type: nullable
-                  description: 'The given amount of the exchange.'
-                  example: '1000'
-                other:
-                  type: boolean
-                  description: 'The other of the exchange.'
-                  example: false
-                created_at:
-                  type: date
-                  description: 'nullable The created_at of the exchange.'
-                  example: '2023-06-15 00:00:00'
+                  description: 'The value of the exchange.'
+                  example: 1000
               required:
+                - product_id
                 - partner_id
-                - given_amount
-                - other
+                - value
       security: []
   /api/exchanges/edit:
     put:
@@ -98,30 +164,20 @@ paths:
                   type: integer
                   description: 'The id of the exchange.'
                   example: 1
-                name:
-                  type: string
-                  description: 'nullable The name of the exchange.'
-                  example: 'John Doe'
-                value:
-                  type: string
-                  description: 'nullable The value of the exchange.'
-                  example: '1000'
-                type:
-                  type: string
-                  description: 'nullable The type of the exchange.'
-                  example: 'Tonna, metr, M3, M2'
-                amount:
+                product_id:
                   type: integer
-                  description: 'The amount of the exchange.'
+                  description: 'nullable The id of the product.'
                   example: 1
-                given_amount:
-                  type: nullable
-                  description: 'The given amount of the exchange.'
-                  example: '1000'
+                partner_id:
+                  type: integer
+                  description: 'nullable The id of the partner.'
+                  example: 1
+                value:
+                  type: integer
+                  description: 'nullable The value of the exchange.'
+                  example: 1000
               required:
                 - id
-                - amount
-                - given_amount
       security: []
   /api/exchanges/delete:
     delete:
@@ -160,13 +216,18 @@ paths:
       description: ''
       parameters: []
       responses:
-        200:
+        500:
           description: ''
           content:
-            text/plain:
+            application/json:
               schema:
-                type: string
-                example: ''
+                type: object
+                example:
+                  data: '500 Error Server'
+                properties:
+                  data:
+                    type: string
+                    example: '500 Error Server'
       tags:
         - Exchanges
       requestBody:
@@ -215,20 +276,14 @@ paths:
                   example: 'John Doe'
                 phone_number:
                   type: string
-                  description: 'The phone number of the partner.'
+                  description: 'nullable The phone number of the partner.'
                   example: '998901234567'
                 address:
                   type: string
                   description: 'nullable The address of the partner.'
                   example: '123, Main Street, New York'
-                type:
-                  type: string
-                  description: 'The type of the partner.'
-                  example: 'debtor or partner'
               required:
                 - name
-                - phone_number
-                - type
       security: []
   /api/partners/get:
     post:
@@ -329,10 +384,116 @@ paths:
               required:
                 - id
       security: []
+  '/api/products/get{id}':
+    post:
+      summary: 'Get all products'
+      operationId: getAllProducts
+      description: ''
+      parameters: []
+      responses: {  }
+      tags:
+        - Products
+      security: []
+    parameters:
+      -
+        in: path
+        name: id
+        description: 'Optional parameter. The ID of the .'
+        required: true
+        schema:
+          type: string
+        examples:
+          omitted:
+            summary: 'When the value is omitted'
+            value: ''
+          present:
+            summary: 'When the value is present'
+            value: eaque
+  /api/products/edit:
+    put:
+      summary: 'Update product'
+      operationId: updateProduct
+      description: ''
+      parameters: []
+      responses: {  }
+      tags:
+        - Products
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                id:
+                  type: integer
+                  description: 'The id of the product.'
+                  example: 1
+                caterogy_id:
+                  type: integer
+                  description: 'nullable The id of the caterogy.'
+                  example: 1
+                name:
+                  type: string
+                  description: 'nullable The name of the product.'
+                  example: 'Product 1'
+                price:
+                  type: integer
+                  description: 'nullable The price of the product.'
+                  example: 100
+                count:
+                  type: integer
+                  description: 'nullable The count of the product.'
+                  example: 100
+                type_id:
+                  type: integer
+                  description: 'nullable The id of the type.'
+                  example: 1
+                is_active:
+                  type: boolean
+                  description: 'nullable The status of the product.'
+                  example: true
+              required:
+                - id
+      security: []
+  /api/settings/get:
+    get:
+      summary: 'Get all settings'
+      operationId: getAllSettings
+      description: ''
+      parameters: []
+      responses:
+        200:
+          description: ''
+          content:
+            application/json:
+              schema:
+                type: object
+                example:
+                  result: []
+                properties:
+                  result:
+                    type: array
+                    example: []
+      tags:
+        - Settings
+      security: []
 tags:
+  -
+    name: Caterogies
+    description: ''
+  -
+    name: Endpoints
+    description: ''
   -
     name: Exchanges
     description: ''
   -
     name: Partners
+    description: ''
+  -
+    name: Products
+    description: ''
+  -
+    name: Settings
     description: ''

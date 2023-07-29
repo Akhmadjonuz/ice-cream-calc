@@ -3,7 +3,7 @@
 
 
 <aside>
-    <strong>Base URL</strong>: <code>http://kassa.test</code>
+    <strong>Base URL</strong>: <code>https://ice.dadabayev.uz</code>
 </aside>
 
 This documentation aims to provide all the information you need to work with our API.

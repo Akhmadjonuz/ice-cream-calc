@@ -7,17 +7,79 @@ use App\Http\Requests\CreateExchangesRequest;
 use App\Http\Requests\DeleteExchangesRequest;
 use App\Http\Requests\EditExchangesRequest;
 use App\Models\Exchange;
-use App\Models\Partner;
+use App\Services\NbuService;
 use App\Traits\HttpResponses;
 use Illuminate\Http\Request;
 use Illuminate\Http\JsonResponse;
 use Illuminate\Support\Facades\DB;
 use Maatwebsite\Excel\Facades\Excel;
-use Maatwebsite\Excel\Concerns\FromCollection;
 
 class ExchangesController extends Controller
 {
     use HttpResponses;
+
+    /**
+     * @group Exchanges
+     * 
+     * get all exchanges
+     * 
+     * @param Request $request
+     * @return JsonResponse
+     */
+
+    public function getExchanges(Request $request): JsonResponse
+    {
+        try {
+            $data = $request->validated();
+
+            $from_date = $data['from_date'] ?? date('Y-m-d 00:00');
+            $to_date = $data['to_date'] ?? date('Y-m-d 23:59:59');
+
+            // create query builder
+            $query = Exchange::query()->with(['products', 'partners', 'caterogies', 'settings'])->orderBy('id', 'desc');
+
+            // filter by product
+            if (isset($data['product_id']))
+                $query->where('product_id', $data['product_id']);
+
+            // filter by partner
+            if (isset($data['partner_id']))
+                $query->where('partner_id', $data['partner_id']);
+
+            // filter by cyrrency type (UZS or USD) get data from hasMany relation
+            if (isset($data['cyrrency']))
+                $query->whereHas('products', function ($q) use ($data) {
+                    $q->where('cyrrency', $data['cyrrency']);
+                });
+
+            // filter by caterogy get data from hasMany relation
+            if (isset($data['caterogy_id']))
+                $query->whereHas('products', function ($q) use ($data) {
+                    $q->where('caterogy_id', $data['caterogy_id']);
+                });
+
+            // filter by type get data from hasMany relation
+            if (isset($data['type_id']))
+                $query->whereHas('products', function ($q) use ($data) {
+                    $q->where('type_id', $data['type_id']);
+                });
+
+            // filter by from date and to date
+            $query->whereBetween('created_at', [$from_date, $to_date])->orderBy('id', 'desc');
+
+            $success = [
+                'all_count' => $query->sum('value'),
+                'price_uzs_all' => $query->sum('price_uzs'),
+                'price_usd_all' => $query->sum('price_usd'),
+                'data' => $query->get()
+            ];
+
+            // Return success response
+            return $this->success($success, 200);
+        } catch (\Exception $e) {
+            return $this->log($e);
+        }
+    }
 
     /**
      * @group Exchanges
@@ -44,39 +106,35 @@ class ExchangesController extends Controller
 
             DB::beginTransaction();
 
+            // get nbu data
+            $nbu = new NbuService;
+            $usd = $nbu->getUsd();
+
             $exchange = new Exchange();
-            $exchange->name = $data['name'] ?? 'Pul';
+            $exchange->product_id = $data['product_id'];
             $exchange->partner_id = $data['partner_id'];
-            $exchange->value = $data['value'] ?? null;
-            $exchange->type = $data['type'] ?? null;
-            $exchange->car = $data['car'] ?? null;
-            $exchange->amount = $data['amount'] ?? 0;
-            $exchange->given_amount = $data['given_amount'] ?? 0;
-            $exchange->all_amount = $data['value'] * $data['amount'] ?? 0;
+            $exchange->value = $data['value'];
 
-            if (!empty($data['created_at']))
-                $exchange->created_at = $data['created_at'];
+            // product
+            $product = $exchange->products;
 
-            // if other is true and not debts in db then return error
-            if ($data['other'] == true) {
-                $exchanges = Exchange::where('partner_id', $data['partner_id'])->get();
-                $summ = 0;
-                foreach ($exchanges as $item) {
-                    if ($item->all_amount !== $item->given_amount && $item->other == false)
-                        $summ += $item->all_amount - $item->given_amount;
-                }
-                if ($summ == 0)
-                    return $this->error('Exchange other is true but not debts in db', 400);
+            if ($product->cyrrency == 0) {
+                $exchange->price_uzs = $data['value'] * $product->price;
+                $exchange->price_usd = ($data['value'] * $product->price) / $usd;
+            } elseif ($product->cyrrency == 1) {
+                $exchange->price_uzs = $data['value'] * ($product->price * $usd);
+                $exchange->price_usd = $data['value'] * $product->price;
             }
-            $exchange->other = $data['other'];
 
-            $partner = Partner::where('id', $data['partner_id'])->first();
+            // update product quantity
+            $result = $product->quantity - $data['value'];
 
-            if ($partner->type == 'partner')
-                $exchange->p_type = 'p';
-            else
-                $exchange->p_type = 'd';
+            if ($result < 0)
+                return $this->error('Insufficient stock!', 400);
 
+            $product->quantity = $result;
+
+            $product->save();
             $exchange->save();
 
             DB::commit();
@@ -111,13 +169,44 @@ class ExchangesController extends Controller
         try {
             $data = $request->validated();
 
+            DB::beginTransaction();
+
+            // get exchange data and update
             $exchange = Exchange::find($data['id']);
-            $exchange->name = $data['name'];
-            $exchange->value = $data['value'];
-            $exchange->type = $data['type'];
-            $exchange->amount = $data['amount'];
-            $exchange->given_amount = $data['given_amount'];
+            $exchange->product_id = $data['product_id'] ?? $exchange->product_id;
+            $exchange->partner_id = $data['partner_id'] ?? $exchange->partner_id;
+            $exchange->value = $data['value'] ?? $exchange->value;
+
+            if (isset($data['value'])) {
+                // get nbu data
+                $nbu = new NbuService;
+                $usd = $nbu->getUsd();
+
+                // product
+                $product = $exchange->products;
+
+                if ($product->cyrrency == 0) {
+                    $exchange->price_uzs = $data['value'] * $product->price;
+                    $exchange->price_usd = ($data['value'] * $product->price) / $usd;
+                } elseif ($product->cyrrency == 1) {
+                    $exchange->price_uzs = $data['value'] * ($product->price * $usd);
+                    $exchange->price_usd = $data['value'] * $product->price;
+                }
+
+                // update product quantity
+                $result = $product->quantity - $data['value'];
+
+                if ($result < 0)
+                    return $this->error('Insufficient stock!', 400);
+
+                $product->quantity = $result;
+
+                $product->save();
+            }
+
             $exchange->save();
+
+            DB::commit();
 
             // return success response
             return $this->success('Exchange updated successfully', 200);

@@ -1,6 +1,6 @@
 <?php
 
-namespace App\Services\NbuService;
+namespace App\Services;
 
 use Illuminate\Support\Facades\Http;
 
@@ -15,7 +15,7 @@ class NbuService
      */
     private function getNbu(): array
     {
-        $response = Http::get('https://bank.gov.ua/NBUStatService/v1/statdirectory/exchange?json');
+        $response = Http::get('https://nbu.uz/uz/exchange-rates/json/');
 
         if ($response->successful())
             return $response->json();

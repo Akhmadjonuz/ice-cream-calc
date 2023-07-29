@@ -1,0 +1,127 @@
+name: Products
+description: ''
+endpoints:
+  -
+    httpMethods:
+      - POST
+    uri: 'api/products/get{id?}'
+    metadata:
+      groupName: Products
+      groupDescription: ''
+      subgroup: ''
+      subgroupDescription: ''
+      title: 'Get all products'
+      description: ''
+      authenticated: false
+      custom: []
+    headers:
+      Content-Type: application/json
+      Accept: application/json
+    urlParameters:
+      id:
+        name: id
+        description: 'The ID of the .'
+        required: false
+        example: eaque
+        type: string
+        custom: []
+    cleanUrlParameters:
+      id: eaque
+    queryParameters: []
+    cleanQueryParameters: []
+    bodyParameters: []
+    cleanBodyParameters: []
+    fileParameters: []
+    responses: []
+    responseFields: []
+    auth: []
+    controller: null
+    method: null
+    route: null
+    custom: []
+  -
+    httpMethods:
+      - PUT
+    uri: api/products/edit
+    metadata:
+      groupName: Products
+      groupDescription: ''
+      subgroup: ''
+      subgroupDescription: ''
+      title: 'Update product'
+      description: ''
+      authenticated: false
+      custom: []
+    headers:
+      Content-Type: application/json
+      Accept: application/json
+    urlParameters: []
+    cleanUrlParameters: []
+    queryParameters: []
+    cleanQueryParameters: []
+    bodyParameters:
+      id:
+        name: id
+        description: 'The id of the product.'
+        required: true
+        example: 1
+        type: integer
+        custom: []
+      caterogy_id:
+        name: caterogy_id
+        description: 'nullable The id of the caterogy.'
+        required: false
+        example: 1
+        type: integer
+        custom: []
+      name:
+        name: name
+        description: 'nullable The name of the product.'
+        required: false
+        example: 'Product 1'
+        type: string
+        custom: []
+      price:
+        name: price
+        description: 'nullable The price of the product.'
+        required: false
+        example: 100
+        type: integer
+        custom: []
+      count:
+        name: count
+        description: 'nullable The count of the product.'
+        required: false
+        example: 100
+        type: integer
+        custom: []
+      type_id:
+        name: type_id
+        description: 'nullable The id of the type.'
+        required: false
+        example: 1
+        type: integer
+        custom: []
+      is_active:
+        name: is_active
+        description: 'nullable The status of the product.'
+        required: false
+        example: true
+        type: boolean
+        custom: []
+    cleanBodyParameters:
+      id: 1
+      caterogy_id: 1
+      name: 'Product 1'
+      price: 100
+      count: 100
+      type_id: 1
+      is_active: true
+    fileParameters: []
+    responses: []
+    responseFields: []
+    auth: []
+    controller: null
+    method: null
+    route: null
+    custom: []

@@ -27,6 +27,7 @@ class CreateProductsRequest extends FormRequest
             'price' => 'required|integer',
             'type_id' => 'required|integer|exists:settings,id',
             'cyrrency' => 'required|boolean', // 0 - UZS 1 - USD
+            'type' => 'nullable|boolean', // 0 - icecream 1 - other
         ];
     }
 }

@@ -11,13 +11,24 @@ class Exchange extends Model
 
     protected $table = 'exchanges';
 
-    protected $fillable = [
-        'name',
-        'partner_id',
-        'value',
-        'type',
-        'amount',
-        'given_amount',
-        'other',
-    ];
+    // Has Many Relations
+    public function products()
+    {
+        return $this->hasMany(Product::class, 'id', 'product_id');
+    }
+
+    public function partners()
+    {
+        return $this->hasMany(Partner::class, 'id', 'partner_id');
+    }
+
+    public function caterogies()
+    {
+        return $this->hasMany(Caterogy::class, 'id', 'caterogy_id');
+    }
+
+    public function settings()
+    {
+        return $this->hasMany(Setting::class, 'id', 'type_id');
+    }
 }

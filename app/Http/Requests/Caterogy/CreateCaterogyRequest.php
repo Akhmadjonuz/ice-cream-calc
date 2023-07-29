@@ -23,7 +23,7 @@ class CreateCaterogyRequest extends FormRequest
     {
         return [
             'name' => 'required|string|max:255',
-            'type' => 'nullable|integer',
+            // 'type' => 'nullable|integer',
         ];
     }
 }

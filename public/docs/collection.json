@@ -5,16 +5,202 @@
             "key": "baseUrl",
             "type": "string",
             "name": "string",
-            "value": "http:\/\/kassa.test"
+            "value": "https:\/\/ice.dadabayev.uz"
         }
     ],
     "info": {
-        "name": "Laravel",
-        "_postman_id": "41dd6942-2a77-40f3-b2b0-97c134126697",
+        "name": "IceCream",
+        "_postman_id": "eb52aa2f-d2e6-4ea2-9546-1da777354c44",
         "description": "",
         "schema": "https:\/\/schema.getpostman.com\/json\/collection\/v2.1.0\/collection.json"
     },
     "item": [
+        {
+            "name": "Caterogies",
+            "description": "",
+            "item": [
+                {
+                    "name": "create caterogy",
+                    "request": {
+                        "url": {
+                            "host": "{{baseUrl}}",
+                            "path": "api\/caterogies\/new",
+                            "query": [],
+                            "raw": "{{baseUrl}}\/api\/caterogies\/new"
+                        },
+                        "method": "POST",
+                        "header": [
+                            {
+                                "key": "Content-Type",
+                                "value": "application\/json"
+                            },
+                            {
+                                "key": "Accept",
+                                "value": "application\/json"
+                            }
+                        ],
+                        "body": {
+                            "mode": "raw",
+                            "raw": "{\"name\":\"est\"}"
+                        },
+                        "description": "",
+                        "auth": {
+                            "type": "noauth"
+                        }
+                    },
+                    "response": []
+                },
+                {
+                    "name": "get caterogies",
+                    "request": {
+                        "url": {
+                            "host": "{{baseUrl}}",
+                            "path": "api\/caterogies\/get",
+                            "query": [],
+                            "raw": "{{baseUrl}}\/api\/caterogies\/get"
+                        },
+                        "method": "GET",
+                        "header": [
+                            {
+                                "key": "Content-Type",
+                                "value": "application\/json"
+                            },
+                            {
+                                "key": "Accept",
+                                "value": "application\/json"
+                            }
+                        ],
+                        "body": null,
+                        "description": "",
+                        "auth": {
+                            "type": "noauth"
+                        }
+                    },
+                    "response": [
+                        {
+                            "header": [
+                                {
+                                    "key": "cache-control",
+                                    "value": "no-cache, private"
+                                },
+                                {
+                                    "key": "content-type",
+                                    "value": "application\/json"
+                                },
+                                {
+                                    "key": "x-ratelimit-limit",
+                                    "value": "60"
+                                },
+                                {
+                                    "key": "x-ratelimit-remaining",
+                                    "value": "57"
+                                },
+                                {
+                                    "key": "access-control-allow-origin",
+                                    "value": "*"
+                                }
+                            ],
+                            "code": 200,
+                            "body": "{\"result\":[]}",
+                            "name": ""
+                        }
+                    ]
+                },
+                {
+                    "name": "update caterogy",
+                    "request": {
+                        "url": {
+                            "host": "{{baseUrl}}",
+                            "path": "api\/caterogies\/edit",
+                            "query": [],
+                            "raw": "{{baseUrl}}\/api\/caterogies\/edit"
+                        },
+                        "method": "PUT",
+                        "header": [
+                            {
+                                "key": "Content-Type",
+                                "value": "application\/json"
+                            },
+                            {
+                                "key": "Accept",
+                                "value": "application\/json"
+                            }
+                        ],
+                        "body": {
+                            "mode": "raw",
+                            "raw": "{\"name\":\"ea\"}"
+                        },
+                        "description": "",
+                        "auth": {
+                            "type": "noauth"
+                        }
+                    },
+                    "response": []
+                }
+            ]
+        },
+        {
+            "name": "Endpoints",
+            "description": "",
+            "item": [
+                {
+                    "name": "GET api\/nbu\/save",
+                    "request": {
+                        "url": {
+                            "host": "{{baseUrl}}",
+                            "path": "api\/nbu\/save",
+                            "query": [],
+                            "raw": "{{baseUrl}}\/api\/nbu\/save"
+                        },
+                        "method": "GET",
+                        "header": [
+                            {
+                                "key": "Content-Type",
+                                "value": "application\/json"
+                            },
+                            {
+                                "key": "Accept",
+                                "value": "application\/json"
+                            }
+                        ],
+                        "body": null,
+                        "description": "",
+                        "auth": {
+                            "type": "noauth"
+                        }
+                    },
+                    "response": [
+                        {
+                            "header": [
+                                {
+                                    "key": "cache-control",
+                                    "value": "no-cache, private"
+                                },
+                                {
+                                    "key": "content-type",
+                                    "value": "application\/json"
+                                },
+                                {
+                                    "key": "x-ratelimit-limit",
+                                    "value": "60"
+                                },
+                                {
+                                    "key": "x-ratelimit-remaining",
+                                    "value": "58"
+                                },
+                                {
+                                    "key": "access-control-allow-origin",
+                                    "value": "*"
+                                }
+                            ],
+                            "code": 200,
+                            "body": "{\"result\":\"NBU saved successfully\"}",
+                            "name": ""
+                        }
+                    ]
+                }
+            ]
+        },
         {
             "name": "Exchanges",
             "description": "",
@@ -41,7 +227,7 @@
                         ],
                         "body": {
                             "mode": "raw",
-                            "raw": "{\"name\":\"John Doe\",\"partner_id\":1,\"value\":\"1000\",\"car\":\"50A777AA\",\"type\":\"Tonna, metr, M3, M2\",\"amount\":1,\"given_amount\":\"1000\",\"other\":false,\"created_at\":\"2023-06-15 00:00:00\"}"
+                            "raw": "{\"product_id\":1,\"partner_id\":1,\"value\":1000}"
                         },
                         "description": "",
                         "auth": {
@@ -79,7 +265,7 @@
                         ],
                         "body": {
                             "mode": "raw",
-                            "raw": "{\"id\":1,\"name\":\"John Doe\",\"value\":\"1000\",\"type\":\"Tonna, metr, M3, M2\",\"amount\":1,\"given_amount\":\"1000\"}"
+                            "raw": "{\"id\":1,\"product_id\":1,\"partner_id\":1,\"value\":1000}"
                         },
                         "description": "",
                         "auth": {
@@ -167,19 +353,11 @@
                             "header": [
                                 {
                                     "key": "cache-control",
-                                    "value": "public"
-                                },
-                                {
-                                    "key": "content-disposition",
-                                    "value": "attachment; filename=\"2023-06-15 00:00exchanges.xlsx\""
+                                    "value": "no-cache, private"
                                 },
                                 {
                                     "key": "content-type",
-                                    "value": "application\/vnd.openxmlformats-officedocument.spreadsheetml.sheet"
-                                },
-                                {
-                                    "key": "accept-ranges",
-                                    "value": "bytes"
+                                    "value": "application\/json"
                                 },
                                 {
                                     "key": "x-ratelimit-limit",
@@ -187,15 +365,15 @@
                                 },
                                 {
                                     "key": "x-ratelimit-remaining",
-                                    "value": "59"
+                                    "value": "56"
                                 },
                                 {
                                     "key": "access-control-allow-origin",
                                     "value": "*"
                                 }
                             ],
-                            "code": 200,
-                            "body": "",
+                            "code": 500,
+                            "body": "{\"data\":\"500 Error Server\"}",
                             "name": ""
                         }
                     ]
@@ -228,7 +406,7 @@
                         ],
                         "body": {
                             "mode": "raw",
-                            "raw": "{\"name\":\"John Doe\",\"phone_number\":\"998901234567\",\"address\":\"123, Main Street, New York\",\"type\":\"debtor or partner\"}"
+                            "raw": "{\"name\":\"John Doe\",\"phone_number\":\"998901234567\",\"address\":\"123, Main Street, New York\"}"
                         },
                         "description": "",
                         "auth": {
@@ -336,6 +514,141 @@
                         }
                     },
                     "response": []
+                }
+            ]
+        },
+        {
+            "name": "Products",
+            "description": "",
+            "item": [
+                {
+                    "name": "Get all products",
+                    "request": {
+                        "url": {
+                            "host": "{{baseUrl}}",
+                            "path": "api\/products\/get:id",
+                            "query": [],
+                            "raw": "{{baseUrl}}\/api\/products\/get:id",
+                            "variable": [
+                                {
+                                    "id": "id",
+                                    "key": "id",
+                                    "value": "eaque",
+                                    "description": "The ID of the ."
+                                }
+                            ]
+                        },
+                        "method": "POST",
+                        "header": [
+                            {
+                                "key": "Content-Type",
+                                "value": "application\/json"
+                            },
+                            {
+                                "key": "Accept",
+                                "value": "application\/json"
+                            }
+                        ],
+                        "body": null,
+                        "description": "",
+                        "auth": {
+                            "type": "noauth"
+                        }
+                    },
+                    "response": []
+                },
+                {
+                    "name": "Update product",
+                    "request": {
+                        "url": {
+                            "host": "{{baseUrl}}",
+                            "path": "api\/products\/edit",
+                            "query": [],
+                            "raw": "{{baseUrl}}\/api\/products\/edit"
+                        },
+                        "method": "PUT",
+                        "header": [
+                            {
+                                "key": "Content-Type",
+                                "value": "application\/json"
+                            },
+                            {
+                                "key": "Accept",
+                                "value": "application\/json"
+                            }
+                        ],
+                        "body": {
+                            "mode": "raw",
+                            "raw": "{\"id\":1,\"caterogy_id\":1,\"name\":\"Product 1\",\"price\":100,\"count\":100,\"type_id\":1,\"is_active\":true}"
+                        },
+                        "description": "",
+                        "auth": {
+                            "type": "noauth"
+                        }
+                    },
+                    "response": []
+                }
+            ]
+        },
+        {
+            "name": "Settings",
+            "description": "",
+            "item": [
+                {
+                    "name": "Get all settings",
+                    "request": {
+                        "url": {
+                            "host": "{{baseUrl}}",
+                            "path": "api\/settings\/get",
+                            "query": [],
+                            "raw": "{{baseUrl}}\/api\/settings\/get"
+                        },
+                        "method": "GET",
+                        "header": [
+                            {
+                                "key": "Content-Type",
+                                "value": "application\/json"
+                            },
+                            {
+                                "key": "Accept",
+                                "value": "application\/json"
+                            }
+                        ],
+                        "body": null,
+                        "description": "",
+                        "auth": {
+                            "type": "noauth"
+                        }
+                    },
+                    "response": [
+                        {
+                            "header": [
+                                {
+                                    "key": "cache-control",
+                                    "value": "no-cache, private"
+                                },
+                                {
+                                    "key": "content-type",
+                                    "value": "application\/json"
+                                },
+                                {
+                                    "key": "x-ratelimit-limit",
+                                    "value": "60"
+                                },
+                                {
+                                    "key": "x-ratelimit-remaining",
+                                    "value": "59"
+                                },
+                                {
+                                    "key": "access-control-allow-origin",
+                                    "value": "*"
+                                }
+                            ],
+                            "code": 200,
+                            "body": "{\"result\":[]}",
+                            "name": ""
+                        }
+                    ]
                 }
             ]
         }
