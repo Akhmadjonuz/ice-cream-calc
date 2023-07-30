@@ -16,7 +16,7 @@ return new class extends Migration
             $table->unsignedBigInteger('caterogy_id');
             $table->foreign('caterogy_id')->references('id')->on('caterogy');
             $table->string('name');
-            $table->integer('price');
+            $table->float('price');
             $table->integer('count')->default(0);
             $table->unsignedBigInteger('type_id');
             $table->foreign('type_id')->references('id')->on('settings');

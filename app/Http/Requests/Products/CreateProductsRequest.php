@@ -24,7 +24,7 @@ class CreateProductsRequest extends FormRequest
         return [
             'caterogy_id' => 'required|integer|exists:caterogy,id',
             'name' => 'required|string|max:255',
-            'price' => 'required|integer',
+            'price' => 'required|float',
             'type_id' => 'required|integer|exists:settings,id',
             'cyrrency' => 'required|boolean', // 0 - UZS 1 - USD
             'type' => 'required|boolean', // 0 - icecream 1 - other

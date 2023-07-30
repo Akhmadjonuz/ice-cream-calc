@@ -28,11 +28,11 @@ endpoints:
         name: name
         description: ''
         required: true
-        example: est
+        example: maxime
         type: string
         custom: []
     cleanBodyParameters:
-      name: est
+      name: maxime
     fileParameters: []
     responses: []
     responseFields: []
@@ -107,19 +107,19 @@ endpoints:
         name: id
         description: ''
         required: true
-        example: 3
+        example: 5
         type: integer
         custom: []
       name:
         name: name
         description: nullable
         required: false
-        example: tempora
+        example: aut
         type: string
         custom: []
     cleanBodyParameters:
-      id: 3
-      name: tempora
+      id: 5
+      name: aut
     fileParameters: []
     responses: []
     responseFields: []

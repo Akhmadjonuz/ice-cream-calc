@@ -10,7 +10,7 @@
     ],
     "info": {
         "name": "IceCream",
-        "_postman_id": "1021e239-6d2b-4123-8419-08b66e7d9176",
+        "_postman_id": "0fcea66f-3e49-4574-8558-a984fe55ad05",
         "description": "",
         "schema": "https:\/\/schema.getpostman.com\/json\/collection\/v2.1.0\/collection.json"
     },
@@ -41,7 +41,7 @@
                         ],
                         "body": {
                             "mode": "raw",
-                            "raw": "{\"name\":\"est\"}"
+                            "raw": "{\"name\":\"maxime\"}"
                         },
                         "description": "",
                         "auth": {
@@ -128,7 +128,7 @@
                         ],
                         "body": {
                             "mode": "raw",
-                            "raw": "{\"id\":3,\"name\":\"tempora\"}"
+                            "raw": "{\"id\":5,\"name\":\"aut\"}"
                         },
                         "description": "",
                         "auth": {
@@ -265,7 +265,7 @@
                         ],
                         "body": {
                             "mode": "raw",
-                            "raw": "{\"caterogy_id\":13,\"partner_id\":6,\"type_id\":12,\"product_id\":2,\"cyrrency\":false,\"from_date\":\"qui\",\"to_date\":\"ut\"}"
+                            "raw": "{\"caterogy_id\":17,\"partner_id\":3,\"type_id\":15,\"product_id\":19,\"cyrrency\":true,\"from_date\":\"porro\",\"to_date\":\"enim\"}"
                         },
                         "description": "",
                         "auth": {
@@ -582,7 +582,7 @@
                                 {
                                     "id": "caterogy_id",
                                     "key": "caterogy_id",
-                                    "value": "officia",
+                                    "value": "odio",
                                     "description": "The ID of the caterogy."
                                 }
                             ]

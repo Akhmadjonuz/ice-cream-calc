@@ -45,7 +45,7 @@ class ProductsController extends Controller
      * 
      * @bodyParam caterogy_id integer required The id of the caterogy. Example: 1
      * @bodyParam name string required The name of the product. Example: Product 1
-     * @bodyParam price integer required The price of the product. Example: 100
+     * @bodyParam price integer float The price of the product. Example: 100
      * @bodyParam type_id integer required The id of the type. Example: 1
      * @bodyParam cyrrency boolean required The cyrrency of the product. Example: 0 or 1
      * @bodyParam type boolean nullable The type of the product. Example: 0 or 1
@@ -97,7 +97,7 @@ class ProductsController extends Controller
      * @bodyParam id integer required The id of the product. Example: 1
      * @bodyParam caterogy_id integer nullable The id of the caterogy. Example: 1
      * @bodyParam name string nullable The name of the product. Example: Product 1
-     * @bodyParam price integer nullable The price of the product. Example: 100
+     * @bodyParam price float nullable The price of the product. Example: 100
      * @bodyParam count integer nullable The count of the product. Example: 100
      * @bodyParam type_id integer nullable The id of the type. Example: 1
      * @bodyParam is_active boolean nullable The status of the product. Example: true

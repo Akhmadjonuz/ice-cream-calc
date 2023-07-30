@@ -17,8 +17,8 @@ return new class extends Migration {
             $table->unsignedBigInteger('partner_id');
             $table->foreign('partner_id')->references('id')->on('partners');
             $table->integer('value')->default(0);
-            $table->integer('price_uzs')->default(0);
-            $table->integer('price_usd')->default(0);
+            $table->float('price_uzs')->default(0);
+            $table->float('price_usd')->default(0);
             $table->timestamps();
         });
     }

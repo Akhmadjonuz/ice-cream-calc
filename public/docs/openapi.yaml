@@ -26,7 +26,7 @@ paths:
                 name:
                   type: string
                   description: ''
-                  example: est
+                  example: maxime
               required:
                 - name
       security: []
@@ -101,11 +101,11 @@ paths:
                 id:
                   type: integer
                   description: ''
-                  example: 3
+                  example: 5
                 name:
                   type: string
                   description: nullable
-                  example: tempora
+                  example: aut
               required:
                 - id
       security: []
@@ -218,31 +218,31 @@ paths:
                 caterogy_id:
                   type: integer
                   description: nullable
-                  example: 13
+                  example: 17
                 partner_id:
                   type: integer
                   description: nullable
-                  example: 6
+                  example: 3
                 type_id:
                   type: integer
                   description: nullable
-                  example: 12
+                  example: 15
                 product_id:
                   type: integer
                   description: nullable
-                  example: 2
+                  example: 19
                 cyrrency:
                   type: boolean
                   description: nullable
-                  example: false
+                  example: true
                 from_date:
                   type: date
                   description: nullable
-                  example: qui
+                  example: porro
                 to_date:
                   type: date
                   description: nullable
-                  example: ut
+                  example: enim
       security: []
   /api/exchanges/edit:
     put:
@@ -488,7 +488,7 @@ paths:
                   example: 'Product 1'
                 price:
                   type: integer
-                  description: 'The price of the product.'
+                  description: 'float The price of the product.'
                   example: 100
                 type_id:
                   type: integer
@@ -505,7 +505,6 @@ paths:
               required:
                 - caterogy_id
                 - name
-                - price
                 - type_id
                 - cyrrency
       security: []
@@ -533,7 +532,7 @@ paths:
             value: ''
           present:
             summary: 'When the value is present'
-            value: officia
+            value: odio
   /api/products/edit:
     put:
       summary: 'Update product'
@@ -563,9 +562,9 @@ paths:
                   description: 'nullable The name of the product.'
                   example: 'Product 1'
                 price:
-                  type: integer
+                  type: number
                   description: 'nullable The price of the product.'
-                  example: 100
+                  example: 100.0
                 count:
                   type: integer
                   description: 'nullable The count of the product.'

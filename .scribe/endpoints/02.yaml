@@ -38,8 +38,8 @@ endpoints:
         custom: []
       price:
         name: price
-        description: 'The price of the product.'
-        required: true
+        description: 'float The price of the product.'
+        required: false
         example: 100
         type: integer
         custom: []
@@ -100,11 +100,11 @@ endpoints:
         name: caterogy_id
         description: 'The ID of the caterogy.'
         required: false
-        example: officia
+        example: odio
         type: string
         custom: []
     cleanUrlParameters:
-      caterogy_id: officia
+      caterogy_id: odio
     queryParameters: []
     cleanQueryParameters: []
     bodyParameters: []
@@ -163,8 +163,8 @@ endpoints:
         name: price
         description: 'nullable The price of the product.'
         required: false
-        example: 100
-        type: integer
+        example: 100.0
+        type: number
         custom: []
       count:
         name: count
@@ -191,7 +191,7 @@ endpoints:
       id: 1
       caterogy_id: 1
       name: 'Product 1'
-      price: 100
+      price: 100.0
       count: 100
       type_id: 1
       is_active: true

@@ -197,19 +197,19 @@ class ExchangesController extends Controller
 
                 if ($product->cyrrency == 0) {
                     $exchange->price_uzs = $data['value'] * $product->price;
-                    $exchange->price_usd = ($data['value'] * $product->price) / $usd;
+                    $exchange->price_usd = round(($data['value'] * $product->price) / $usd, 2);
                 } elseif ($product->cyrrency == 1) {
                     $exchange->price_uzs = $data['value'] * ($product->price * $usd);
                     $exchange->price_usd = $data['value'] * $product->price;
                 }
 
-                // update product quantity
-                $result = $product->quantity - $data['value'];
+                // update product count
+                $result = $product->count - $data['value'];
 
                 if ($result < 0)
                     return $this->error('Insufficient stock!', 400);
 
-                $product->quantity = $result;
+                $product->count = $result;
 
                 $product->save();
             }
