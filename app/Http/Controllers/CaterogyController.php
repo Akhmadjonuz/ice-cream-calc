@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Http\Requests\Caterogy\CreateCaterogyRequest;
+use App\Http\Requests\Caterogy\UpdateCaterogyRequest;
 use App\Models\Caterogy;
 use App\Traits\HttpResponses;
 use Illuminate\Http\JsonResponse;
@@ -66,13 +67,14 @@ class CaterogyController extends Controller
      *
      * update caterogy
      * 
-     * @bodyParam name string required
+     * @bodyParam id int required
+     * @bodyParam name string nullable
      * 
-     * @param CreateCaterogyRequest $request
+     * @param UpdateCaterogyRequest $request
      * @return JsonResponse
      */
 
-    public function updateCaterogy(CreateCaterogyRequest $request): JsonResponse
+    public function updateCaterogy(UpdateCaterogyRequest $request): JsonResponse
     {
         try {
             $data = $request->validated();

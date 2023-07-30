@@ -6,12 +6,14 @@ use App\Exports\ExportExchanges;
 use App\Http\Requests\CreateExchangesRequest;
 use App\Http\Requests\DeleteExchangesRequest;
 use App\Http\Requests\EditExchangesRequest;
+use App\Http\Requests\GetExchangesRequest;
 use App\Models\Exchange;
-use App\Services\NbuService;
+use App\Models\Nbu;
 use App\Traits\HttpResponses;
 use Illuminate\Http\Request;
 use Illuminate\Http\JsonResponse;
 use Illuminate\Support\Facades\DB;
+use Illuminate\Support\Facades\Log;
 use Maatwebsite\Excel\Facades\Excel;
 
 class ExchangesController extends Controller
@@ -23,11 +25,19 @@ class ExchangesController extends Controller
      * 
      * get all exchanges
      * 
-     * @param Request $request
+     * @bodyParam product_id integer nullable
+     * @bodyParam partner_id integer nullable  
+     * @bodyParam caterogy_id integer nullable  
+     * @bodyParam type_id integer nullable 
+     * @bodyParam cyrrency boolean nullable 
+     * @bodyParam from_date date nullable 
+     * @bodyParam to_date date nullable 
+     * 
+     * @param GetExchangesRequest $request
      * @return JsonResponse
      */
 
-    public function getExchanges(Request $request): JsonResponse
+    public function getExchanges(GetExchangesRequest $request): JsonResponse
     {
         try {
             $data = $request->validated();
@@ -36,7 +46,7 @@ class ExchangesController extends Controller
             $to_date = $data['to_date'] ?? date('Y-m-d 23:59:59');
 
             // create query builder
-            $query = Exchange::query()->with(['products', 'partners', 'caterogies', 'settings'])->orderBy('id', 'desc');
+            $query = Exchange::query()->with(['products', 'partners', 'products.caterogies', 'products.settings'])->orderBy('id', 'desc');
 
             // filter by product
             if (isset($data['product_id']))
@@ -106,17 +116,18 @@ class ExchangesController extends Controller
 
             DB::beginTransaction();
 
-            // get nbu data
-            $nbu = new NbuService;
-            $usd = $nbu->getUsd();
-
             $exchange = new Exchange();
             $exchange->product_id = $data['product_id'];
             $exchange->partner_id = $data['partner_id'];
             $exchange->value = $data['value'];
 
             // product
-            $product = $exchange->products;
+            $product = $exchange->products->first();
+
+            // save to storage->laravel.log file $product
+            // Log::info($exchange->products);
+            
+            $usd = Nbu::orderBy('id', 'desc')->first()->nbu_cell_price;
 
             if ($product->cyrrency == 0) {
                 $exchange->price_uzs = $data['value'] * $product->price;
@@ -127,12 +138,12 @@ class ExchangesController extends Controller
             }
 
             // update product quantity
-            $result = $product->quantity - $data['value'];
+            $result = $product->count - $data['value'];
 
             if ($result < 0)
                 return $this->error('Insufficient stock!', 400);
 
-            $product->quantity = $result;
+            $product->count = $result;
 
             $product->save();
             $exchange->save();
@@ -178,12 +189,11 @@ class ExchangesController extends Controller
             $exchange->value = $data['value'] ?? $exchange->value;
 
             if (isset($data['value'])) {
-                // get nbu data
-                $nbu = new NbuService;
-                $usd = $nbu->getUsd();
 
                 // product
                 $product = $exchange->products;
+
+                $usd = Nbu::orderBy('id', 'desc')->first()->nbu_cell_price;
 
                 if ($product->cyrrency == 0) {
                     $exchange->price_uzs = $data['value'] * $product->price;
@@ -257,14 +267,14 @@ class ExchangesController extends Controller
      * 
      */
 
-    public function downpdf(Request $request)
-    {
-        try {
-            //save to excel use from_date and to_date and use Maatwebsite\Excel\Concerns\FromCollection
+    // public function downpdf(Request $request)
+    // {
+    //     try {
+    //         //save to excel use from_date and to_date and use Maatwebsite\Excel\Concerns\FromCollection
 
-            return Excel::download(new ExportExchanges($request), $request['from_date'] . 'exchanges.xlsx');
-        } catch (\Exception $e) {
-            return $this->log($e);
-        }
-    }
+    //         return Excel::download(new ExportExchanges($request), $request['from_date'] . 'exchanges.xlsx');
+    //     } catch (\Exception $e) {
+    //         return $this->log($e);
+    //     }
+    // }
 }

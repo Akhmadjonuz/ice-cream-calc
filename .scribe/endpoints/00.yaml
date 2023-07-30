@@ -27,7 +27,7 @@ endpoints:
     responses:
       -
         status: 200
-        content: '{"result":[]}'
+        content: '{"result":[{"id":1,"name":"Dona","value":"Dona","created_at":null,"updated_at":null},{"id":2,"name":"Kg","value":"Kg","created_at":null,"updated_at":null}]}'
         headers:
           cache-control: 'no-cache, private'
           content-type: application/json

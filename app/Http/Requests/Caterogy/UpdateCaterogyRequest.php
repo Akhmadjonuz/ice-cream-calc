@@ -1,10 +1,10 @@
 <?php
 
-namespace App\Http\Requests\Products;
+namespace App\Http\Requests\Caterogy;
 
 use Illuminate\Foundation\Http\FormRequest;
 
-class CreateProductsRequest extends FormRequest
+class UpdateCaterogyRequest extends FormRequest
 {
     /**
      * Determine if the user is authorized to make this request.
@@ -22,12 +22,8 @@ class CreateProductsRequest extends FormRequest
     public function rules(): array
     {
         return [
-            'caterogy_id' => 'required|integer|exists:caterogy,id',
-            'name' => 'required|string|max:255',
-            'price' => 'required|integer',
-            'type_id' => 'required|integer|exists:settings,id',
-            'cyrrency' => 'required|boolean', // 0 - UZS 1 - USD
-            'type' => 'required|boolean', // 0 - icecream 1 - other
+            'id' => 'required|integer|exists:caterogy,id',
+            'name' => 'nullable|string|max:255',
         ];
     }
 }

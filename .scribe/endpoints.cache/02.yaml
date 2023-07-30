@@ -6,7 +6,85 @@ endpoints:
   -
     httpMethods:
       - POST
-    uri: 'api/products/get{id?}'
+    uri: api/products/new
+    metadata:
+      groupName: Products
+      groupDescription: ''
+      subgroup: ''
+      subgroupDescription: ''
+      title: 'Create new product'
+      description: ''
+      authenticated: false
+      custom: []
+    headers:
+      Content-Type: application/json
+      Accept: application/json
+    urlParameters: []
+    cleanUrlParameters: []
+    queryParameters: []
+    cleanQueryParameters: []
+    bodyParameters:
+      caterogy_id:
+        name: caterogy_id
+        description: 'The id of the caterogy.'
+        required: true
+        example: 1
+        type: integer
+        custom: []
+      name:
+        name: name
+        description: 'The name of the product.'
+        required: true
+        example: 'Product 1'
+        type: string
+        custom: []
+      price:
+        name: price
+        description: 'The price of the product.'
+        required: true
+        example: 100
+        type: integer
+        custom: []
+      type_id:
+        name: type_id
+        description: 'The id of the type.'
+        required: true
+        example: 1
+        type: integer
+        custom: []
+      cyrrency:
+        name: cyrrency
+        description: 'The cyrrency of the product.'
+        required: true
+        example: true
+        type: boolean
+        custom: []
+      type:
+        name: type
+        description: 'nullable The type of the product.'
+        required: false
+        example: true
+        type: boolean
+        custom: []
+    cleanBodyParameters:
+      caterogy_id: 1
+      name: 'Product 1'
+      price: 100
+      type_id: 1
+      cyrrency: true
+      type: true
+    fileParameters: []
+    responses: []
+    responseFields: []
+    auth: []
+    controller: null
+    method: null
+    route: null
+    custom: []
+  -
+    httpMethods:
+      - POST
+    uri: 'api/products/get{caterogy_id?}'
     metadata:
       groupName: Products
       groupDescription: ''
@@ -20,15 +98,15 @@ endpoints:
       Content-Type: application/json
       Accept: application/json
     urlParameters:
-      id:
-        name: id
-        description: 'The ID of the .'
+      caterogy_id:
+        name: caterogy_id
+        description: 'The ID of the caterogy.'
         required: false
-        example: eaque
+        example: officia
         type: string
         custom: []
     cleanUrlParameters:
-      id: eaque
+      caterogy_id: officia
     queryParameters: []
     cleanQueryParameters: []
     bodyParameters: []

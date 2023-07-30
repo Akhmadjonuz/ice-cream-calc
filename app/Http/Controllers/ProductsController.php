@@ -4,10 +4,10 @@ namespace App\Http\Controllers;
 
 use App\Http\Requests\Products\CreateProductsRequest;
 use App\Http\Requests\Products\UpdateProductsRequest;
+use App\Models\Nbu;
 use App\Models\Product;
 use App\Traits\HttpResponses;
 use Illuminate\Http\JsonResponse;
-use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
 
 class ProductsController extends Controller
@@ -19,15 +19,15 @@ class ProductsController extends Controller
      * 
      * Get all products
      * 
-     * @param int $id
+     * @param int $caterogy_id
      * @return JsonResponse
      */
 
-    public function getProducts(Request $request, int $id): JsonResponse
+    public function getProducts($caterogy_id = null): JsonResponse
     {
         try {
-            if ($id)
-                $product = Product::find($id);
+            if ($caterogy_id)
+                $product = Product::find($caterogy_id);
             else
                 $product = Product::all();
 
@@ -47,8 +47,8 @@ class ProductsController extends Controller
      * @bodyParam name string required The name of the product. Example: Product 1
      * @bodyParam price integer required The price of the product. Example: 100
      * @bodyParam type_id integer required The id of the type. Example: 1
-     * @bodyParam cyrrency string required The cyrrency of the product. Example: UZS or USD
-     * @bodyParam type integer nullable The type of the product. Example: 0 or 1
+     * @bodyParam cyrrency boolean required The cyrrency of the product. Example: 0 or 1
+     * @bodyParam type boolean nullable The type of the product. Example: 0 or 1
      * 
      * @param CreateProductsRequest $request
      * @return JsonResponse
@@ -65,19 +65,20 @@ class ProductsController extends Controller
             $product->caterogy_id = $data['caterogy_id'];
             $product->name = $data['name'];
 
-            $usd = $product->Nbu()->latest()->first();
+            // select last from nbu table
+            $usd = Nbu::orderBy('id', 'desc')->first();
 
-            if ($product->currency == 1)
-                $product->price = $data['price'] * $usd->nbu_cell_price;
-            else
-                $product->price = $data['price'];
-            
+            // if ($data['cyrrency'] == true)
+            //     $product->price = $data['price'] * $usd->nbu_cell_price;
+            // else
+            //     $product->price = $data['price'];
+
+            $product->price = $data['price'];
             $product->nbu_id = $usd->id;
-
-            $product->type = $data['type'] ?? 0;
-
+            $product->type = $data['type'];
             $product->type_id = $data['type_id'];
             $product->cyrrency = $data['cyrrency'];
+
             $product->save();
 
             DB::commit();
@@ -114,10 +115,11 @@ class ProductsController extends Controller
             DB::beginTransaction();
 
             $product = Product::find($data['id']);
+            $count = $data['count'] ?? 0;
             $product->caterogy_id = $data['caterogy_id'] ?? $product->caterogy_id;
             $product->name = $data['name'] ?? $product->name;
             $product->price = $data['price'] ?? $product->price;
-            $product->count = $product->count + $data['count'] ?? $product->count;
+            $product->count = $product->count + $count;
             $product->type_id = $data['type_id'] ?? $product->type_id;
 
             if (isset($data['is_active']))

@@ -21,14 +21,4 @@ class Exchange extends Model
     {
         return $this->hasMany(Partner::class, 'id', 'partner_id');
     }
-
-    public function caterogies()
-    {
-        return $this->hasMany(Caterogy::class, 'id', 'caterogy_id');
-    }
-
-    public function settings()
-    {
-        return $this->hasMany(Setting::class, 'id', 'type_id');
-    }
 }

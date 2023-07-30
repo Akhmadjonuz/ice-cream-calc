@@ -5,12 +5,12 @@
             "key": "baseUrl",
             "type": "string",
             "name": "string",
-            "value": "https:\/\/ice.dadabayev.uz"
+            "value": "https:\/\/icecream"
         }
     ],
     "info": {
         "name": "IceCream",
-        "_postman_id": "eb52aa2f-d2e6-4ea2-9546-1da777354c44",
+        "_postman_id": "1021e239-6d2b-4123-8419-08b66e7d9176",
         "description": "",
         "schema": "https:\/\/schema.getpostman.com\/json\/collection\/v2.1.0\/collection.json"
     },
@@ -101,7 +101,7 @@
                                 }
                             ],
                             "code": 200,
-                            "body": "{\"result\":[]}",
+                            "body": "{\"result\":[{\"id\":1,\"name\":\"vazira\",\"type\":1,\"created_at\":\"2023-07-29T23:53:02.000000Z\",\"updated_at\":\"2023-07-29T23:53:02.000000Z\"}]}",
                             "name": ""
                         }
                     ]
@@ -128,7 +128,7 @@
                         ],
                         "body": {
                             "mode": "raw",
-                            "raw": "{\"name\":\"ea\"}"
+                            "raw": "{\"id\":3,\"name\":\"tempora\"}"
                         },
                         "description": "",
                         "auth": {
@@ -244,6 +244,65 @@
                     ]
                 },
                 {
+                    "name": "get all exchanges",
+                    "request": {
+                        "url": {
+                            "host": "{{baseUrl}}",
+                            "path": "api\/exchanges\/get",
+                            "query": [],
+                            "raw": "{{baseUrl}}\/api\/exchanges\/get"
+                        },
+                        "method": "GET",
+                        "header": [
+                            {
+                                "key": "Content-Type",
+                                "value": "application\/json"
+                            },
+                            {
+                                "key": "Accept",
+                                "value": "application\/json"
+                            }
+                        ],
+                        "body": {
+                            "mode": "raw",
+                            "raw": "{\"caterogy_id\":13,\"partner_id\":6,\"type_id\":12,\"product_id\":2,\"cyrrency\":false,\"from_date\":\"qui\",\"to_date\":\"ut\"}"
+                        },
+                        "description": "",
+                        "auth": {
+                            "type": "noauth"
+                        }
+                    },
+                    "response": [
+                        {
+                            "header": [
+                                {
+                                    "key": "cache-control",
+                                    "value": "no-cache, private"
+                                },
+                                {
+                                    "key": "content-type",
+                                    "value": "application\/json"
+                                },
+                                {
+                                    "key": "x-ratelimit-limit",
+                                    "value": "60"
+                                },
+                                {
+                                    "key": "x-ratelimit-remaining",
+                                    "value": "55"
+                                },
+                                {
+                                    "key": "access-control-allow-origin",
+                                    "value": "*"
+                                }
+                            ],
+                            "code": 200,
+                            "body": "{\"result\":{\"all_count\":0,\"price_uzs_all\":0,\"price_usd_all\":0,\"data\":[]}}",
+                            "name": ""
+                        }
+                    ]
+                },
+                {
                     "name": "update exchange",
                     "request": {
                         "url": {
@@ -318,65 +377,6 @@
                             "name": ""
                         }
                     ]
-                },
-                {
-                    "name": "download exchanges",
-                    "request": {
-                        "url": {
-                            "host": "{{baseUrl}}",
-                            "path": "api\/exchanges\/downpdf",
-                            "query": [],
-                            "raw": "{{baseUrl}}\/api\/exchanges\/downpdf"
-                        },
-                        "method": "GET",
-                        "header": [
-                            {
-                                "key": "Content-Type",
-                                "value": "application\/json"
-                            },
-                            {
-                                "key": "Accept",
-                                "value": "application\/json"
-                            }
-                        ],
-                        "body": {
-                            "mode": "raw",
-                            "raw": "{\"id\":1,\"from_date\":\"2023-06-15 00:00\",\"to_date\":\"2023-06-15 00:00\"}"
-                        },
-                        "description": "",
-                        "auth": {
-                            "type": "noauth"
-                        }
-                    },
-                    "response": [
-                        {
-                            "header": [
-                                {
-                                    "key": "cache-control",
-                                    "value": "no-cache, private"
-                                },
-                                {
-                                    "key": "content-type",
-                                    "value": "application\/json"
-                                },
-                                {
-                                    "key": "x-ratelimit-limit",
-                                    "value": "60"
-                                },
-                                {
-                                    "key": "x-ratelimit-remaining",
-                                    "value": "56"
-                                },
-                                {
-                                    "key": "access-control-allow-origin",
-                                    "value": "*"
-                                }
-                            ],
-                            "code": 500,
-                            "body": "{\"data\":\"500 Error Server\"}",
-                            "name": ""
-                        }
-                    ]
                 }
             ]
         },
@@ -424,7 +424,7 @@
                             "query": [],
                             "raw": "{{baseUrl}}\/api\/partners\/get"
                         },
-                        "method": "POST",
+                        "method": "GET",
                         "header": [
                             {
                                 "key": "Content-Type",
@@ -435,10 +435,7 @@
                                 "value": "application\/json"
                             }
                         ],
-                        "body": {
-                            "mode": "raw",
-                            "raw": "{\"type\":\"debtor or partner\",\"id\":1,\"from_date\":\"2023-06-02\",\"to_date\":\"2023-06-03\"}"
-                        },
+                        "body": null,
                         "description": "",
                         "auth": {
                             "type": "noauth"
@@ -446,9 +443,30 @@
                     },
                     "response": [
                         {
-                            "header": [],
+                            "header": [
+                                {
+                                    "key": "cache-control",
+                                    "value": "no-cache, private"
+                                },
+                                {
+                                    "key": "content-type",
+                                    "value": "application\/json"
+                                },
+                                {
+                                    "key": "x-ratelimit-limit",
+                                    "value": "60"
+                                },
+                                {
+                                    "key": "x-ratelimit-remaining",
+                                    "value": "56"
+                                },
+                                {
+                                    "key": "access-control-allow-origin",
+                                    "value": "*"
+                                }
+                            ],
                             "code": 200,
-                            "body": "{\n   \"result\": [\n      {\n         \"id\": 1,\n        \"name\": \"John Doe\",\n       \"phone_number\": \"998901234567\",\n      \"address\": \"123, Main Street, New York\",\n     \"type\": \"debtor\",\n    \"created_at\": \"2023-06-02T22:23:36.000000Z\",\n    \"updated_at\": \"2023-06-02T22:23:36.000000Z\"\n},\n\"debts\": 0,\n\"right\": 0,\n]\n}",
+                            "body": "{\"result\":[{\"id\":1,\"name\":\"John Doe\",\"phone_number\":\"998901234567\",\"address\":\"123, Main Street, New York\",\"created_at\":\"2023-07-30T00:06:05.000000Z\",\"updated_at\":\"2023-07-30T00:06:05.000000Z\"}]}",
                             "name": ""
                         }
                     ]
@@ -522,19 +540,50 @@
             "description": "",
             "item": [
                 {
+                    "name": "Create new product",
+                    "request": {
+                        "url": {
+                            "host": "{{baseUrl}}",
+                            "path": "api\/products\/new",
+                            "query": [],
+                            "raw": "{{baseUrl}}\/api\/products\/new"
+                        },
+                        "method": "POST",
+                        "header": [
+                            {
+                                "key": "Content-Type",
+                                "value": "application\/json"
+                            },
+                            {
+                                "key": "Accept",
+                                "value": "application\/json"
+                            }
+                        ],
+                        "body": {
+                            "mode": "raw",
+                            "raw": "{\"caterogy_id\":1,\"name\":\"Product 1\",\"price\":100,\"type_id\":1,\"cyrrency\":true,\"type\":true}"
+                        },
+                        "description": "",
+                        "auth": {
+                            "type": "noauth"
+                        }
+                    },
+                    "response": []
+                },
+                {
                     "name": "Get all products",
                     "request": {
                         "url": {
                             "host": "{{baseUrl}}",
-                            "path": "api\/products\/get:id",
+                            "path": "api\/products\/get:caterogy_id",
                             "query": [],
-                            "raw": "{{baseUrl}}\/api\/products\/get:id",
+                            "raw": "{{baseUrl}}\/api\/products\/get:caterogy_id",
                             "variable": [
                                 {
-                                    "id": "id",
-                                    "key": "id",
-                                    "value": "eaque",
-                                    "description": "The ID of the ."
+                                    "id": "caterogy_id",
+                                    "key": "caterogy_id",
+                                    "value": "officia",
+                                    "description": "The ID of the caterogy."
                                 }
                             ]
                         },
@@ -645,7 +694,7 @@
                                 }
                             ],
                             "code": 200,
-                            "body": "{\"result\":[]}",
+                            "body": "{\"result\":[{\"id\":1,\"name\":\"Dona\",\"value\":\"Dona\",\"created_at\":null,\"updated_at\":null},{\"id\":2,\"name\":\"Kg\",\"value\":\"Kg\",\"created_at\":null,\"updated_at\":null}]}",
                             "name": ""
                         }
                     ]

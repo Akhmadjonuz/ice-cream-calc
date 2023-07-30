@@ -57,7 +57,7 @@ endpoints:
     custom: []
   -
     httpMethods:
-      - POST
+      - GET
     uri: api/partners/get
     metadata:
       groupName: Partners
@@ -75,62 +75,20 @@ endpoints:
     cleanUrlParameters: []
     queryParameters: []
     cleanQueryParameters: []
-    bodyParameters:
-      type:
-        name: type
-        description: 'nullable The type of the partner.'
-        required: false
-        example: 'debtor or partner'
-        type: string
-        custom: []
-      id:
-        name: id
-        description: 'nullable The id of the partner.'
-        required: false
-        example: 1
-        type: integer
-        custom: []
-      from_date:
-        name: from_date
-        description: 'nullable The from date of the partner.'
-        required: false
-        example: '2023-06-02'
-        type: date
-        custom: []
-      to_date:
-        name: to_date
-        description: 'nullable The to date of the partner.'
-        required: false
-        example: '2023-06-03'
-        type: date
-        custom: []
-    cleanBodyParameters:
-      type: 'debtor or partner'
-      id: 1
-      from_date: '2023-06-02'
-      to_date: '2023-06-03'
+    bodyParameters: []
+    cleanBodyParameters: []
     fileParameters: []
     responses:
       -
         status: 200
-        content: |-
-          {
-             "result": [
-                {
-                   "id": 1,
-                  "name": "John Doe",
-                 "phone_number": "998901234567",
-                "address": "123, Main Street, New York",
-               "type": "debtor",
-              "created_at": "2023-06-02T22:23:36.000000Z",
-              "updated_at": "2023-06-02T22:23:36.000000Z"
-          },
-          "debts": 0,
-          "right": 0,
-          ]
-          }
-        headers: []
-        description: ''
+        content: '{"result":[{"id":1,"name":"John Doe","phone_number":"998901234567","address":"123, Main Street, New York","created_at":"2023-07-30T00:06:05.000000Z","updated_at":"2023-07-30T00:06:05.000000Z"}]}'
+        headers:
+          cache-control: 'no-cache, private'
+          content-type: application/json
+          x-ratelimit-limit: '60'
+          x-ratelimit-remaining: '56'
+          access-control-allow-origin: '*'
+        description: null
         custom: []
     responseFields: []
     auth: []
@@ -168,8 +126,8 @@ endpoints:
         custom: []
       name:
         name: name
-        description: 'The name of the partner.'
-        required: true
+        description: 'nullable The name of the partner.'
+        required: false
         example: 'John Doe'
         type: string
         custom: []

@@ -61,33 +61,11 @@ class PartnersController extends Controller
      * 
      * get all partners
      * 
-     * @bodyParam id int nullable The id of the partner. Example: 1
-     * @bodyParam type string nullable The type of the partner. Example: debtor or partner
-     * @bodyParam from_date date nullable The from date of the partner. Example: 2023-06-02
-     * @bodyParam to_date date nullable The to date of the partner. Example: 2023-06-03
-     * 
-     * 
-     * @response {
-     *    "result": [
-     *       {
-     *          "id": 1,
-     *         "name": "John Doe",
-     *        "phone_number": "998901234567",
-     *       "address": "123, Main Street, New York",
-     *      "type": "debtor",
-     *     "created_at": "2023-06-02T22:23:36.000000Z",
-     *     "updated_at": "2023-06-02T22:23:36.000000Z"
-     * },
-     * "debts": 0,
-     * "right": 0,
-     *]
-     *}
-     * 
-     * @param GetPartnersRequest $request
+     * @param Request $request
      * @return JsonResponse
      */
 
-    public function get(GetPartnersRequest $request): JsonResponse
+    public function get(Request $request): JsonResponse
     {
         try {
             return $this->success(Partner::all(), 200);
@@ -103,7 +81,7 @@ class PartnersController extends Controller
      * update partner
      * 
      * @bodyParam id int required The id of the partner. Example: 1
-     * @bodyParam name string required The name of the partner. Example: John Doe
+     * @bodyParam name string nullable The name of the partner. Example: John Doe
      * @bodyParam phone_number string nullable The phone number of the partner. Example: 998901234567
      * @bodyParam address string nullable The address of the partner. Example: 123, Main Street, New York
      * 

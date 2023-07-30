@@ -5,7 +5,7 @@ info:
   version: 1.0.0
 servers:
   -
-    url: 'https://ice.dadabayev.uz'
+    url: 'https://icecream'
 paths:
   /api/caterogies/new:
     post:
@@ -44,11 +44,41 @@ paths:
               schema:
                 type: object
                 example:
-                  result: []
+                  result:
+                    -
+                      id: 1
+                      name: vazira
+                      type: 1
+                      created_at: '2023-07-29T23:53:02.000000Z'
+                      updated_at: '2023-07-29T23:53:02.000000Z'
                 properties:
                   result:
                     type: array
-                    example: []
+                    example:
+                      -
+                        id: 1
+                        name: vazira
+                        type: 1
+                        created_at: '2023-07-29T23:53:02.000000Z'
+                        updated_at: '2023-07-29T23:53:02.000000Z'
+                    items:
+                      type: object
+                      properties:
+                        id:
+                          type: integer
+                          example: 1
+                        name:
+                          type: string
+                          example: vazira
+                        type:
+                          type: integer
+                          example: 1
+                        created_at:
+                          type: string
+                          example: '2023-07-29T23:53:02.000000Z'
+                        updated_at:
+                          type: string
+                          example: '2023-07-29T23:53:02.000000Z'
       tags:
         - Caterogies
       security: []
@@ -68,12 +98,16 @@ paths:
             schema:
               type: object
               properties:
+                id:
+                  type: integer
+                  description: ''
+                  example: 3
                 name:
                   type: string
-                  description: ''
-                  example: ea
+                  description: nullable
+                  example: tempora
               required:
-                - name
+                - id
       security: []
   /api/nbu/save:
     get:
@@ -136,6 +170,79 @@ paths:
                 - product_id
                 - partner_id
                 - value
+      security: []
+  /api/exchanges/get:
+    get:
+      summary: 'get all exchanges'
+      operationId: getAllExchanges
+      description: ''
+      parameters: []
+      responses:
+        200:
+          description: ''
+          content:
+            application/json:
+              schema:
+                type: object
+                example:
+                  result:
+                    all_count: 0
+                    price_uzs_all: 0
+                    price_usd_all: 0
+                    data: []
+                properties:
+                  result:
+                    type: object
+                    properties:
+                      all_count:
+                        type: integer
+                        example: 0
+                      price_uzs_all:
+                        type: integer
+                        example: 0
+                      price_usd_all:
+                        type: integer
+                        example: 0
+                      data:
+                        type: array
+                        example: []
+      tags:
+        - Exchanges
+      requestBody:
+        required: false
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                caterogy_id:
+                  type: integer
+                  description: nullable
+                  example: 13
+                partner_id:
+                  type: integer
+                  description: nullable
+                  example: 6
+                type_id:
+                  type: integer
+                  description: nullable
+                  example: 12
+                product_id:
+                  type: integer
+                  description: nullable
+                  example: 2
+                cyrrency:
+                  type: boolean
+                  description: nullable
+                  example: false
+                from_date:
+                  type: date
+                  description: nullable
+                  example: qui
+                to_date:
+                  type: date
+                  description: nullable
+                  example: ut
       security: []
   /api/exchanges/edit:
     put:
@@ -209,51 +316,6 @@ paths:
               required:
                 - id
       security: []
-  /api/exchanges/downpdf:
-    get:
-      summary: 'download exchanges'
-      operationId: downloadExchanges
-      description: ''
-      parameters: []
-      responses:
-        500:
-          description: ''
-          content:
-            application/json:
-              schema:
-                type: object
-                example:
-                  data: '500 Error Server'
-                properties:
-                  data:
-                    type: string
-                    example: '500 Error Server'
-      tags:
-        - Exchanges
-      requestBody:
-        required: true
-        content:
-          application/json:
-            schema:
-              type: object
-              properties:
-                id:
-                  type: integer
-                  description: 'The id of the partner.'
-                  example: 1
-                from_date:
-                  type: string
-                  description: 'The from_date of the exchange.'
-                  example: '2023-06-15 00:00'
-                to_date:
-                  type: string
-                  description: 'The to_date of the exchange.'
-                  example: '2023-06-15 00:00'
-              required:
-                - id
-                - from_date
-                - to_date
-      security: []
   /api/partners/new:
     post:
       summary: 'create partner'
@@ -286,7 +348,7 @@ paths:
                 - name
       security: []
   /api/partners/get:
-    post:
+    get:
       summary: 'get all partners'
       operationId: getAllPartners
       description: ''
@@ -295,35 +357,52 @@ paths:
         200:
           description: ''
           content:
-            text/plain:
+            application/json:
               schema:
-                type: string
-                example: "{\n   \"result\": [\n      {\n         \"id\": 1,\n        \"name\": \"John Doe\",\n       \"phone_number\": \"998901234567\",\n      \"address\": \"123, Main Street, New York\",\n     \"type\": \"debtor\",\n    \"created_at\": \"2023-06-02T22:23:36.000000Z\",\n    \"updated_at\": \"2023-06-02T22:23:36.000000Z\"\n},\n\"debts\": 0,\n\"right\": 0,\n]\n}"
+                type: object
+                example:
+                  result:
+                    -
+                      id: 1
+                      name: 'John Doe'
+                      phone_number: '998901234567'
+                      address: '123, Main Street, New York'
+                      created_at: '2023-07-30T00:06:05.000000Z'
+                      updated_at: '2023-07-30T00:06:05.000000Z'
+                properties:
+                  result:
+                    type: array
+                    example:
+                      -
+                        id: 1
+                        name: 'John Doe'
+                        phone_number: '998901234567'
+                        address: '123, Main Street, New York'
+                        created_at: '2023-07-30T00:06:05.000000Z'
+                        updated_at: '2023-07-30T00:06:05.000000Z'
+                    items:
+                      type: object
+                      properties:
+                        id:
+                          type: integer
+                          example: 1
+                        name:
+                          type: string
+                          example: 'John Doe'
+                        phone_number:
+                          type: string
+                          example: '998901234567'
+                        address:
+                          type: string
+                          example: '123, Main Street, New York'
+                        created_at:
+                          type: string
+                          example: '2023-07-30T00:06:05.000000Z'
+                        updated_at:
+                          type: string
+                          example: '2023-07-30T00:06:05.000000Z'
       tags:
         - Partners
-      requestBody:
-        required: false
-        content:
-          application/json:
-            schema:
-              type: object
-              properties:
-                type:
-                  type: string
-                  description: 'nullable The type of the partner.'
-                  example: 'debtor or partner'
-                id:
-                  type: integer
-                  description: 'nullable The id of the partner.'
-                  example: 1
-                from_date:
-                  type: date
-                  description: 'nullable The from date of the partner.'
-                  example: '2023-06-02'
-                to_date:
-                  type: date
-                  description: 'nullable The to date of the partner.'
-                  example: '2023-06-03'
       security: []
   /api/partners/edit:
     put:
@@ -347,7 +426,7 @@ paths:
                   example: 1
                 name:
                   type: string
-                  description: 'The name of the partner.'
+                  description: 'nullable The name of the partner.'
                   example: 'John Doe'
                 phone_number:
                   type: string
@@ -359,7 +438,6 @@ paths:
                   example: '123, Main Street, New York'
               required:
                 - id
-                - name
       security: []
   /api/partners/delete:
     delete:
@@ -384,7 +462,54 @@ paths:
               required:
                 - id
       security: []
-  '/api/products/get{id}':
+  /api/products/new:
+    post:
+      summary: 'Create new product'
+      operationId: createNewProduct
+      description: ''
+      parameters: []
+      responses: {  }
+      tags:
+        - Products
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                caterogy_id:
+                  type: integer
+                  description: 'The id of the caterogy.'
+                  example: 1
+                name:
+                  type: string
+                  description: 'The name of the product.'
+                  example: 'Product 1'
+                price:
+                  type: integer
+                  description: 'The price of the product.'
+                  example: 100
+                type_id:
+                  type: integer
+                  description: 'The id of the type.'
+                  example: 1
+                cyrrency:
+                  type: boolean
+                  description: 'The cyrrency of the product.'
+                  example: true
+                type:
+                  type: boolean
+                  description: 'nullable The type of the product.'
+                  example: true
+              required:
+                - caterogy_id
+                - name
+                - price
+                - type_id
+                - cyrrency
+      security: []
+  '/api/products/get{caterogy_id}':
     post:
       summary: 'Get all products'
       operationId: getAllProducts
@@ -397,8 +522,8 @@ paths:
     parameters:
       -
         in: path
-        name: id
-        description: 'Optional parameter. The ID of the .'
+        name: caterogy_id
+        description: 'Optional parameter. The ID of the caterogy.'
         required: true
         schema:
           type: string
@@ -408,7 +533,7 @@ paths:
             value: ''
           present:
             summary: 'When the value is present'
-            value: eaque
+            value: officia
   /api/products/edit:
     put:
       summary: 'Update product'
@@ -470,11 +595,53 @@ paths:
               schema:
                 type: object
                 example:
-                  result: []
+                  result:
+                    -
+                      id: 1
+                      name: Dona
+                      value: Dona
+                      created_at: null
+                      updated_at: null
+                    -
+                      id: 2
+                      name: Kg
+                      value: Kg
+                      created_at: null
+                      updated_at: null
                 properties:
                   result:
                     type: array
-                    example: []
+                    example:
+                      -
+                        id: 1
+                        name: Dona
+                        value: Dona
+                        created_at: null
+                        updated_at: null
+                      -
+                        id: 2
+                        name: Kg
+                        value: Kg
+                        created_at: null
+                        updated_at: null
+                    items:
+                      type: object
+                      properties:
+                        id:
+                          type: integer
+                          example: 1
+                        name:
+                          type: string
+                          example: Dona
+                        value:
+                          type: string
+                          example: Dona
+                        created_at:
+                          type: string
+                          example: null
+                        updated_at:
+                          type: string
+                          example: null
       tags:
         - Settings
       security: []

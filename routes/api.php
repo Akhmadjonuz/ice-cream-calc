@@ -25,7 +25,7 @@ use Illuminate\Support\Facades\Route;
 
 // setting manipulation
 Route::prefix('settings')->controller(SettingController::class)->group(function () {
-    Route::get('get', 'getSettings')->name('getSettings'); 
+    Route::get('get', 'getSettings')->name('getSettings');
 });
 
 // nbu manipulation
@@ -33,8 +33,8 @@ Route::get('nbu/save', [NbuController::class, 'save']);
 
 // products manipulation
 Route::prefix('products')->controller(ProductsController::class)->group(function () {
-    Route::post('new', 'createCaterogy')->name('createCaterogy');
-    Route::post('get{id?}', 'getProducts')->name('getProducts');
+    Route::post('new', 'createProduct')->name('createProduct');
+    Route::post('get{caterogy_id?}', 'getProducts')->name('getProducts');
     Route::put('edit', 'updateProduct')->name('updateProduct');
 });
 
@@ -48,7 +48,7 @@ Route::prefix('caterogies')->controller(CaterogyController::class)->group(functi
 // partners manipulation
 Route::prefix('partners')->controller(PartnersController::class)->group(function () {
     Route::post('new', 'create')->name('create');
-    Route::post('get', 'get')->name('get');
+    Route::get('get', 'get')->name('get');
     Route::put('edit', 'update')->name('update');
     Route::delete('delete', 'delete')->name('delete');
 });
@@ -57,6 +57,7 @@ Route::prefix('partners')->controller(PartnersController::class)->group(function
 // exchanges manipulation
 Route::prefix('exchanges')->controller(ExchangesController::class)->group(function () {
     Route::post('new', 'create')->name('create');
+    Route::get('get', 'getExchanges')->name('getExchanges');
     Route::put('edit', 'update')->name('update');
     Route::delete('delete', 'delete')->name('delete');
     Route::get('downpdf', 'downpdf')->name('downpdf');

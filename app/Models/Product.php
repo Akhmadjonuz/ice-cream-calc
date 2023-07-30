@@ -11,10 +11,13 @@ class Product extends Model
 
     protected $table = 'products';
 
-    // relations
-
-    public function Nbu()
+    public function caterogies()
     {
-        return $this->hasMany(Nbu::class, 'product_id', 'id')->latest();
+        return $this->hasMany(Caterogy::class, 'id', 'caterogy_id');
+    }
+
+    public function settings()
+    {
+        return $this->hasMany(Setting::class, 'id', 'type_id');
     }
 }
