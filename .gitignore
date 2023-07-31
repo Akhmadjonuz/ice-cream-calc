@@ -5,6 +5,8 @@
 /public/storage
 /storage/*.key
 /vendor/
+/.scribe/
+/public/docs
 /.git
 .env
 .env.backup
