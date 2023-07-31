@@ -10,6 +10,7 @@ use App\Http\Requests\GetExchangesRequest;
 use App\Models\Exchange;
 use App\Models\Nbu;
 use App\Traits\HttpResponses;
+use Carbon\Carbon;
 use Illuminate\Http\Request;
 use Illuminate\Http\JsonResponse;
 use Illuminate\Support\Facades\DB;
@@ -42,8 +43,9 @@ class ExchangesController extends Controller
         try {
             $data = $request->validated();
 
-            $from_date = $data['from_date'] ?? date('Y-m-d 00:00');
-            $to_date = $data['to_date'] ?? date('Y-m-d 23:59:59');
+            $from_date = isset($data['from_date']) ? Carbon::parse($data['from_date'])->startOfDay() : Carbon::now()->startOfDay();
+            $to_date = isset($data['to_date']) ? Carbon::parse($data['to_date'])->endOfDay() : Carbon::now()->endOfDay();            
+
 
             // create query builder
             $query = Exchange::query()->with(['products', 'partners', 'products.caterogies', 'products.settings'])->orderBy('id', 'desc');

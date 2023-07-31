@@ -24,8 +24,8 @@ class GetExpensesRequest extends FormRequest
         return [
             'product_id' => 'nullable|integer|exists:products,id',
             'material_id' => 'nullable|integer|exists:products,id',
-            'from_date' => 'nullable|string',
-            'to_date' => 'nullable|string',
+            'from_date' => 'nullable|date|YYYY-MM-DD',
+            'to_date' => 'nullable|date|YYYY-MM-DD',
         ];
     }
 }

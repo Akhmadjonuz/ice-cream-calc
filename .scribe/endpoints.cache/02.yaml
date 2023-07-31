@@ -23,8 +23,40 @@ endpoints:
     cleanUrlParameters: []
     queryParameters: []
     cleanQueryParameters: []
-    bodyParameters: []
-    cleanBodyParameters: []
+    bodyParameters:
+      product_id:
+        name: product_id
+        description: optional
+        required: false
+        example: 18
+        type: integer
+        custom: []
+      material_id:
+        name: material_id
+        description: optional
+        required: false
+        example: 4
+        type: integer
+        custom: []
+      from_date:
+        name: from_date
+        description: optional
+        required: false
+        example: id
+        type: date
+        custom: []
+      to_date:
+        name: to_date
+        description: optional
+        required: false
+        example: rerum
+        type: date
+        custom: []
+    cleanBodyParameters:
+      product_id: 18
+      material_id: 4
+      from_date: id
+      to_date: rerum
     fileParameters: []
     responses: []
     responseFields: []

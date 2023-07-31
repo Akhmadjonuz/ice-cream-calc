@@ -5,9 +5,11 @@ namespace App\Http\Controllers;
 use App\Http\Requests\Products\CreateProductsRequest;
 use App\Http\Requests\Products\MakeProductsRequest;
 use App\Http\Requests\Products\UpdateProductsRequest;
+use App\Models\Expense;
 use App\Models\Nbu;
 use App\Models\Product;
 use App\Traits\HttpResponses;
+use Carbon\Carbon;
 use Illuminate\Http\JsonResponse;
 use Illuminate\Support\Facades\DB;
 
@@ -27,12 +29,13 @@ class ProductsController extends Controller
     public function getProducts($caterogy_id = null): JsonResponse
     {
         try {
-            if ($caterogy_id)
-                $product = Product::find($caterogy_id);
-            else
-                $product = Product::all();
 
-            return $this->success($product);
+            if ($caterogy_id)
+                $product = Product::with('caterogies')->find($caterogy_id);
+            else
+                $product = Product::with('caterogies')->get();
+
+            return $this->success($product, 200);
 
         } catch (\Exception $e) {
             return $this->log($e);
@@ -46,7 +49,7 @@ class ProductsController extends Controller
      * 
      * @bodyParam caterogy_id integer required The id of the caterogy. Example: 1
      * @bodyParam name string required The name of the product. Example: Product 1
-     * @bodyParam price integer float The price of the product. Example: 100
+     * @bodyParam price string required The price of the product. Example: 100
      * @bodyParam type_id integer required The id of the type. Example: 1
      * @bodyParam cyrrency boolean required The cyrrency of the product. Example: 0 or 1
      * @bodyParam type boolean nullable The type of the product. Example: 0 or 1
@@ -98,8 +101,8 @@ class ProductsController extends Controller
      * @bodyParam id integer required The id of the product. Example: 1
      * @bodyParam caterogy_id integer nullable The id of the caterogy. Example: 1
      * @bodyParam name string nullable The name of the product. Example: Product 1
-     * @bodyParam price float nullable The price of the product. Example: 100
-     * @bodyParam count float nullable The count of the product. Example: 100
+     * @bodyParam price string nullable The price of the product. Example: 100
+     * @bodyParam count string nullable The count of the product. Example: 100
      * @bodyParam type_id integer nullable The id of the type. Example: 1
      * @bodyParam is_active boolean nullable The status of the product. Example: true
      *  
@@ -143,7 +146,7 @@ class ProductsController extends Controller
      * Make product
      * 
      * @bodyParam product_id integer required The id of the product. Example: 1
-     * @bodyParam count float required The count of the product. Example: 100
+     * @bodyParam count string required The count of the product. Example: 100
      * @bodyParam materials string required The materials of the product. Example: 1,2,3
      * @bodyParam values string required The values of the product. Example: 1,2,3
      * 
@@ -172,12 +175,12 @@ class ProductsController extends Controller
                     break;
 
                 // if not exist material
-                $check = Product::where('id', $material)->first();
-                if (!$check)
+                $is_material = Product::where('id', $material)->first();
+                if (!$is_material)
                     return $this->error('Material not found. ID: ' . $material, 404);
 
                 // if product type another material type
-                if ($check->type == false)
+                if ($is_material->type == false)
                     return $this->error('Product type another material type. ID: ' . $material, 404);
 
                 // if value null or empty
@@ -185,14 +188,41 @@ class ProductsController extends Controller
                     return $this->error('Value not found. ID: ' . $material, 404);
 
                 // if count of material less than value
-                if ($check->count < $values[$i])
+                if ($is_material->count < $values[$i])
                     return $this->error('Count of material less than value. ID: ' . $material, 404);
 
-                $check->count = $check->count - $values[$i];
-                $check->save();
+                $is_material->count = $is_material->count - $values[$i];
+
+                $expense = new Expense();
+                $expense->material_id = $material;
+
+                $usd = Nbu::orderBy('id', 'desc')->first()->nbu_cell_price;
+
+                if ($is_material->cyrrency == 0) {
+                    $expense->price_uzs = $values[$i] * $is_material->price;
+                    $expense->price_usd = ($values[$i] * $is_material->price) / $usd;
+                } elseif ($is_material->cyrrency == 1) {
+                    $expense->price_uzs = $values[$i] * ($is_material->price * $usd);
+                    $expense->price_usd = $values[$i] * $is_material->price;
+                }
+
+                $expense->type_id = $is_material->type_id;
+                $expense->value = $values[$i];
+                $expense->product_id = $data['product_id'];
+                $expense->save();
+                $is_material->save();
 
                 $i++;
             }
+
+            $exp = new Expense();
+            $exp->material_id = 1;
+            $exp->price_uzs = 0;
+            $exp->price_usd = 0;
+            $exp->type_id = 0;
+            $exp->count = $data['count'];
+            $exp->product_id = $data['product_id'];
+            $exp->save();
 
             $product->count = $product->count + $data['count'];
             $product->save();

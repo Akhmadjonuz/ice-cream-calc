@@ -38,10 +38,10 @@ endpoints:
         custom: []
       price:
         name: price
-        description: 'float The price of the product.'
-        required: false
-        example: 100
-        type: integer
+        description: 'The price of the product.'
+        required: true
+        example: '100'
+        type: string
         custom: []
       type_id:
         name: type_id
@@ -67,7 +67,7 @@ endpoints:
     cleanBodyParameters:
       caterogy_id: 1
       name: 'Product 1'
-      price: 100
+      price: '100'
       type_id: 1
       cyrrency: true
       type: true
@@ -100,11 +100,11 @@ endpoints:
         name: caterogy_id
         description: 'The ID of the caterogy.'
         required: false
-        example: culpa
+        example: ut
         type: string
         custom: []
     cleanUrlParameters:
-      caterogy_id: culpa
+      caterogy_id: ut
     queryParameters: []
     cleanQueryParameters: []
     bodyParameters: []
@@ -163,15 +163,15 @@ endpoints:
         name: price
         description: 'nullable The price of the product.'
         required: false
-        example: 100.0
-        type: number
+        example: '100'
+        type: string
         custom: []
       count:
         name: count
         description: 'nullable The count of the product.'
         required: false
-        example: 100.0
-        type: number
+        example: '100'
+        type: string
         custom: []
       type_id:
         name: type_id
@@ -191,8 +191,8 @@ endpoints:
       id: 1
       caterogy_id: 1
       name: 'Product 1'
-      price: 100.0
-      count: 100.0
+      price: '100'
+      count: '100'
       type_id: 1
       is_active: true
     fileParameters: []
@@ -235,8 +235,8 @@ endpoints:
         name: count
         description: 'The count of the product.'
         required: true
-        example: 100.0
-        type: number
+        example: '100'
+        type: string
         custom: []
       materials:
         name: materials
@@ -254,7 +254,7 @@ endpoints:
         custom: []
     cleanBodyParameters:
       product_id: 1
-      count: 100.0
+      count: '100'
       materials: '1,2,3'
       values: '1,2,3'
     fileParameters: []

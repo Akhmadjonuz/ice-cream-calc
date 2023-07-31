@@ -26,7 +26,7 @@ paths:
                 name:
                   type: string
                   description: ''
-                  example: ducimus
+                  example: nesciunt
               required:
                 - name
       security: []
@@ -49,8 +49,8 @@ paths:
                       id: 1
                       name: vazira
                       type: 1
-                      created_at: '2023-07-29T23:53:02.000000Z'
-                      updated_at: '2023-07-29T23:53:02.000000Z'
+                      created_at: '2023-07-31T22:19:18.000000Z'
+                      updated_at: '2023-07-31T22:19:34.000000Z'
                 properties:
                   result:
                     type: array
@@ -59,8 +59,8 @@ paths:
                         id: 1
                         name: vazira
                         type: 1
-                        created_at: '2023-07-29T23:53:02.000000Z'
-                        updated_at: '2023-07-29T23:53:02.000000Z'
+                        created_at: '2023-07-31T22:19:18.000000Z'
+                        updated_at: '2023-07-31T22:19:34.000000Z'
                     items:
                       type: object
                       properties:
@@ -75,10 +75,10 @@ paths:
                           example: 1
                         created_at:
                           type: string
-                          example: '2023-07-29T23:53:02.000000Z'
+                          example: '2023-07-31T22:19:18.000000Z'
                         updated_at:
                           type: string
-                          example: '2023-07-29T23:53:02.000000Z'
+                          example: '2023-07-31T22:19:34.000000Z'
       tags:
         - Caterogies
       security: []
@@ -101,11 +101,11 @@ paths:
                 id:
                   type: integer
                   description: ''
-                  example: 14
+                  example: 1
                 name:
                   type: string
                   description: nullable
-                  example: voluptatem
+                  example: sit
               required:
                 - id
       security: []
@@ -178,34 +178,964 @@ paths:
       description: ''
       parameters: []
       responses:
-        200:
+        500:
           description: ''
           content:
             application/json:
               schema:
                 type: object
                 example:
-                  result:
-                    all_count: 0
-                    price_uzs_all: 0
-                    price_usd_all: 0
-                    data: []
+                  message: 'Method Illuminate\Validation\Validator::validateYYYYMMDD does not exist.'
+                  exception: BadMethodCallException
+                  file: 'C:\OSPanel\domains\icecream\vendor\laravel\framework\src\Illuminate\Validation\Validator.php'
+                  line: 1575
+                  trace:
+                    -
+                      file: 'C:\OSPanel\domains\icecream\vendor\laravel\framework\src\Illuminate\Validation\Validator.php'
+                      line: 624
+                      function: __call
+                      class: Illuminate\Validation\Validator
+                      type: '->'
+                    -
+                      file: 'C:\OSPanel\domains\icecream\vendor\laravel\framework\src\Illuminate\Validation\Validator.php'
+                      line: 430
+                      function: validateAttribute
+                      class: Illuminate\Validation\Validator
+                      type: '->'
+                    -
+                      file: 'C:\OSPanel\domains\icecream\vendor\laravel\framework\src\Illuminate\Validation\Validator.php'
+                      line: 461
+                      function: passes
+                      class: Illuminate\Validation\Validator
+                      type: '->'
+                    -
+                      file: 'C:\OSPanel\domains\icecream\vendor\laravel\framework\src\Illuminate\Validation\ValidatesWhenResolvedTrait.php'
+                      line: 31
+                      function: fails
+                      class: Illuminate\Validation\Validator
+                      type: '->'
+                    -
+                      file: 'C:\OSPanel\domains\icecream\vendor\laravel\framework\src\Illuminate\Foundation\Providers\FormRequestServiceProvider.php'
+                      line: 30
+                      function: validateResolved
+                      class: Illuminate\Foundation\Http\FormRequest
+                      type: '->'
+                    -
+                      file: 'C:\OSPanel\domains\icecream\vendor\laravel\framework\src\Illuminate\Container\Container.php'
+                      line: 1304
+                      function: 'Illuminate\Foundation\Providers\{closure}'
+                      class: Illuminate\Foundation\Providers\FormRequestServiceProvider
+                      type: '->'
+                    -
+                      file: 'C:\OSPanel\domains\icecream\vendor\laravel\framework\src\Illuminate\Container\Container.php'
+                      line: 1269
+                      function: fireCallbackArray
+                      class: Illuminate\Container\Container
+                      type: '->'
+                    -
+                      file: 'C:\OSPanel\domains\icecream\vendor\laravel\framework\src\Illuminate\Container\Container.php'
+                      line: 1254
+                      function: fireAfterResolvingCallbacks
+                      class: Illuminate\Container\Container
+                      type: '->'
+                    -
+                      file: 'C:\OSPanel\domains\icecream\vendor\laravel\framework\src\Illuminate\Container\Container.php'
+                      line: 815
+                      function: fireResolvingCallbacks
+                      class: Illuminate\Container\Container
+                      type: '->'
+                    -
+                      file: 'C:\OSPanel\domains\icecream\vendor\laravel\framework\src\Illuminate\Foundation\Application.php'
+                      line: 933
+                      function: resolve
+                      class: Illuminate\Container\Container
+                      type: '->'
+                    -
+                      file: 'C:\OSPanel\domains\icecream\vendor\laravel\framework\src\Illuminate\Container\Container.php'
+                      line: 731
+                      function: resolve
+                      class: Illuminate\Foundation\Application
+                      type: '->'
+                    -
+                      file: 'C:\OSPanel\domains\icecream\vendor\laravel\framework\src\Illuminate\Foundation\Application.php'
+                      line: 918
+                      function: make
+                      class: Illuminate\Container\Container
+                      type: '->'
+                    -
+                      file: 'C:\OSPanel\domains\icecream\vendor\laravel\framework\src\Illuminate\Routing\ResolvesRouteDependencies.php'
+                      line: 85
+                      function: make
+                      class: Illuminate\Foundation\Application
+                      type: '->'
+                    -
+                      file: 'C:\OSPanel\domains\icecream\vendor\laravel\framework\src\Illuminate\Routing\ResolvesRouteDependencies.php'
+                      line: 50
+                      function: transformDependency
+                      class: Illuminate\Routing\ControllerDispatcher
+                      type: '->'
+                    -
+                      file: 'C:\OSPanel\domains\icecream\vendor\laravel\framework\src\Illuminate\Routing\ResolvesRouteDependencies.php'
+                      line: 30
+                      function: resolveMethodDependencies
+                      class: Illuminate\Routing\ControllerDispatcher
+                      type: '->'
+                    -
+                      file: 'C:\OSPanel\domains\icecream\vendor\laravel\framework\src\Illuminate\Routing\ControllerDispatcher.php'
+                      line: 60
+                      function: resolveClassMethodDependencies
+                      class: Illuminate\Routing\ControllerDispatcher
+                      type: '->'
+                    -
+                      file: 'C:\OSPanel\domains\icecream\vendor\laravel\framework\src\Illuminate\Routing\ControllerDispatcher.php'
+                      line: 40
+                      function: resolveParameters
+                      class: Illuminate\Routing\ControllerDispatcher
+                      type: '->'
+                    -
+                      file: 'C:\OSPanel\domains\icecream\vendor\laravel\framework\src\Illuminate\Routing\Route.php'
+                      line: 260
+                      function: dispatch
+                      class: Illuminate\Routing\ControllerDispatcher
+                      type: '->'
+                    -
+                      file: 'C:\OSPanel\domains\icecream\vendor\laravel\framework\src\Illuminate\Routing\Route.php'
+                      line: 205
+                      function: runController
+                      class: Illuminate\Routing\Route
+                      type: '->'
+                    -
+                      file: 'C:\OSPanel\domains\icecream\vendor\laravel\framework\src\Illuminate\Routing\Router.php'
+                      line: 799
+                      function: run
+                      class: Illuminate\Routing\Route
+                      type: '->'
+                    -
+                      file: 'C:\OSPanel\domains\icecream\vendor\laravel\framework\src\Illuminate\Pipeline\Pipeline.php'
+                      line: 141
+                      function: 'Illuminate\Routing\{closure}'
+                      class: Illuminate\Routing\Router
+                      type: '->'
+                    -
+                      file: 'C:\OSPanel\domains\icecream\vendor\laravel\framework\src\Illuminate\Routing\Middleware\SubstituteBindings.php'
+                      line: 50
+                      function: 'Illuminate\Pipeline\{closure}'
+                      class: Illuminate\Pipeline\Pipeline
+                      type: '->'
+                    -
+                      file: 'C:\OSPanel\domains\icecream\vendor\laravel\framework\src\Illuminate\Pipeline\Pipeline.php'
+                      line: 180
+                      function: handle
+                      class: Illuminate\Routing\Middleware\SubstituteBindings
+                      type: '->'
+                    -
+                      file: 'C:\OSPanel\domains\icecream\vendor\laravel\framework\src\Illuminate\Routing\Middleware\ThrottleRequests.php'
+                      line: 159
+                      function: 'Illuminate\Pipeline\{closure}'
+                      class: Illuminate\Pipeline\Pipeline
+                      type: '->'
+                    -
+                      file: 'C:\OSPanel\domains\icecream\vendor\laravel\framework\src\Illuminate\Routing\Middleware\ThrottleRequests.php'
+                      line: 135
+                      function: handleRequest
+                      class: Illuminate\Routing\Middleware\ThrottleRequests
+                      type: '->'
+                    -
+                      file: 'C:\OSPanel\domains\icecream\vendor\laravel\framework\src\Illuminate\Routing\Middleware\ThrottleRequests.php'
+                      line: 87
+                      function: handleRequestUsingNamedLimiter
+                      class: Illuminate\Routing\Middleware\ThrottleRequests
+                      type: '->'
+                    -
+                      file: 'C:\OSPanel\domains\icecream\vendor\laravel\framework\src\Illuminate\Pipeline\Pipeline.php'
+                      line: 180
+                      function: handle
+                      class: Illuminate\Routing\Middleware\ThrottleRequests
+                      type: '->'
+                    -
+                      file: 'C:\OSPanel\domains\icecream\vendor\laravel\framework\src\Illuminate\Pipeline\Pipeline.php'
+                      line: 116
+                      function: 'Illuminate\Pipeline\{closure}'
+                      class: Illuminate\Pipeline\Pipeline
+                      type: '->'
+                    -
+                      file: 'C:\OSPanel\domains\icecream\vendor\laravel\framework\src\Illuminate\Routing\Router.php'
+                      line: 800
+                      function: then
+                      class: Illuminate\Pipeline\Pipeline
+                      type: '->'
+                    -
+                      file: 'C:\OSPanel\domains\icecream\vendor\laravel\framework\src\Illuminate\Routing\Router.php'
+                      line: 777
+                      function: runRouteWithinStack
+                      class: Illuminate\Routing\Router
+                      type: '->'
+                    -
+                      file: 'C:\OSPanel\domains\icecream\vendor\laravel\framework\src\Illuminate\Routing\Router.php'
+                      line: 741
+                      function: runRoute
+                      class: Illuminate\Routing\Router
+                      type: '->'
+                    -
+                      file: 'C:\OSPanel\domains\icecream\vendor\laravel\framework\src\Illuminate\Routing\Router.php'
+                      line: 730
+                      function: dispatchToRoute
+                      class: Illuminate\Routing\Router
+                      type: '->'
+                    -
+                      file: 'C:\OSPanel\domains\icecream\vendor\laravel\framework\src\Illuminate\Foundation\Http\Kernel.php'
+                      line: 200
+                      function: dispatch
+                      class: Illuminate\Routing\Router
+                      type: '->'
+                    -
+                      file: 'C:\OSPanel\domains\icecream\vendor\laravel\framework\src\Illuminate\Pipeline\Pipeline.php'
+                      line: 141
+                      function: 'Illuminate\Foundation\Http\{closure}'
+                      class: Illuminate\Foundation\Http\Kernel
+                      type: '->'
+                    -
+                      file: 'C:\OSPanel\domains\icecream\vendor\laravel\framework\src\Illuminate\Foundation\Http\Middleware\TransformsRequest.php'
+                      line: 21
+                      function: 'Illuminate\Pipeline\{closure}'
+                      class: Illuminate\Pipeline\Pipeline
+                      type: '->'
+                    -
+                      file: 'C:\OSPanel\domains\icecream\vendor\laravel\framework\src\Illuminate\Foundation\Http\Middleware\ConvertEmptyStringsToNull.php'
+                      line: 31
+                      function: handle
+                      class: Illuminate\Foundation\Http\Middleware\TransformsRequest
+                      type: '->'
+                    -
+                      file: 'C:\OSPanel\domains\icecream\vendor\laravel\framework\src\Illuminate\Pipeline\Pipeline.php'
+                      line: 180
+                      function: handle
+                      class: Illuminate\Foundation\Http\Middleware\ConvertEmptyStringsToNull
+                      type: '->'
+                    -
+                      file: 'C:\OSPanel\domains\icecream\vendor\laravel\framework\src\Illuminate\Foundation\Http\Middleware\TransformsRequest.php'
+                      line: 21
+                      function: 'Illuminate\Pipeline\{closure}'
+                      class: Illuminate\Pipeline\Pipeline
+                      type: '->'
+                    -
+                      file: 'C:\OSPanel\domains\icecream\vendor\laravel\framework\src\Illuminate\Foundation\Http\Middleware\TrimStrings.php'
+                      line: 40
+                      function: handle
+                      class: Illuminate\Foundation\Http\Middleware\TransformsRequest
+                      type: '->'
+                    -
+                      file: 'C:\OSPanel\domains\icecream\vendor\laravel\framework\src\Illuminate\Pipeline\Pipeline.php'
+                      line: 180
+                      function: handle
+                      class: Illuminate\Foundation\Http\Middleware\TrimStrings
+                      type: '->'
+                    -
+                      file: 'C:\OSPanel\domains\icecream\vendor\laravel\framework\src\Illuminate\Foundation\Http\Middleware\ValidatePostSize.php'
+                      line: 27
+                      function: 'Illuminate\Pipeline\{closure}'
+                      class: Illuminate\Pipeline\Pipeline
+                      type: '->'
+                    -
+                      file: 'C:\OSPanel\domains\icecream\vendor\laravel\framework\src\Illuminate\Pipeline\Pipeline.php'
+                      line: 180
+                      function: handle
+                      class: Illuminate\Foundation\Http\Middleware\ValidatePostSize
+                      type: '->'
+                    -
+                      file: 'C:\OSPanel\domains\icecream\vendor\laravel\framework\src\Illuminate\Foundation\Http\Middleware\PreventRequestsDuringMaintenance.php'
+                      line: 86
+                      function: 'Illuminate\Pipeline\{closure}'
+                      class: Illuminate\Pipeline\Pipeline
+                      type: '->'
+                    -
+                      file: 'C:\OSPanel\domains\icecream\vendor\laravel\framework\src\Illuminate\Pipeline\Pipeline.php'
+                      line: 180
+                      function: handle
+                      class: Illuminate\Foundation\Http\Middleware\PreventRequestsDuringMaintenance
+                      type: '->'
+                    -
+                      file: 'C:\OSPanel\domains\icecream\vendor\laravel\framework\src\Illuminate\Http\Middleware\HandleCors.php'
+                      line: 62
+                      function: 'Illuminate\Pipeline\{closure}'
+                      class: Illuminate\Pipeline\Pipeline
+                      type: '->'
+                    -
+                      file: 'C:\OSPanel\domains\icecream\vendor\laravel\framework\src\Illuminate\Pipeline\Pipeline.php'
+                      line: 180
+                      function: handle
+                      class: Illuminate\Http\Middleware\HandleCors
+                      type: '->'
+                    -
+                      file: 'C:\OSPanel\domains\icecream\vendor\laravel\framework\src\Illuminate\Http\Middleware\TrustProxies.php'
+                      line: 39
+                      function: 'Illuminate\Pipeline\{closure}'
+                      class: Illuminate\Pipeline\Pipeline
+                      type: '->'
+                    -
+                      file: 'C:\OSPanel\domains\icecream\vendor\laravel\framework\src\Illuminate\Pipeline\Pipeline.php'
+                      line: 180
+                      function: handle
+                      class: Illuminate\Http\Middleware\TrustProxies
+                      type: '->'
+                    -
+                      file: 'C:\OSPanel\domains\icecream\vendor\laravel\framework\src\Illuminate\Pipeline\Pipeline.php'
+                      line: 116
+                      function: 'Illuminate\Pipeline\{closure}'
+                      class: Illuminate\Pipeline\Pipeline
+                      type: '->'
+                    -
+                      file: 'C:\OSPanel\domains\icecream\vendor\laravel\framework\src\Illuminate\Foundation\Http\Kernel.php'
+                      line: 175
+                      function: then
+                      class: Illuminate\Pipeline\Pipeline
+                      type: '->'
+                    -
+                      file: 'C:\OSPanel\domains\icecream\vendor\laravel\framework\src\Illuminate\Foundation\Http\Kernel.php'
+                      line: 144
+                      function: sendRequestThroughRouter
+                      class: Illuminate\Foundation\Http\Kernel
+                      type: '->'
+                    -
+                      file: 'C:\OSPanel\domains\icecream\vendor\knuckleswtf\scribe\src\Extracting\Strategies\Responses\ResponseCalls.php'
+                      line: 299
+                      function: handle
+                      class: Illuminate\Foundation\Http\Kernel
+                      type: '->'
+                    -
+                      file: 'C:\OSPanel\domains\icecream\vendor\knuckleswtf\scribe\src\Extracting\Strategies\Responses\ResponseCalls.php'
+                      line: 287
+                      function: callLaravelOrLumenRoute
+                      class: Knuckles\Scribe\Extracting\Strategies\Responses\ResponseCalls
+                      type: '->'
+                    -
+                      file: 'C:\OSPanel\domains\icecream\vendor\knuckleswtf\scribe\src\Extracting\Strategies\Responses\ResponseCalls.php'
+                      line: 92
+                      function: makeApiCall
+                      class: Knuckles\Scribe\Extracting\Strategies\Responses\ResponseCalls
+                      type: '->'
+                    -
+                      file: 'C:\OSPanel\domains\icecream\vendor\knuckleswtf\scribe\src\Extracting\Strategies\Responses\ResponseCalls.php'
+                      line: 45
+                      function: makeResponseCall
+                      class: Knuckles\Scribe\Extracting\Strategies\Responses\ResponseCalls
+                      type: '->'
+                    -
+                      file: 'C:\OSPanel\domains\icecream\vendor\knuckleswtf\scribe\src\Extracting\Strategies\Responses\ResponseCalls.php'
+                      line: 35
+                      function: makeResponseCallIfConditionsPass
+                      class: Knuckles\Scribe\Extracting\Strategies\Responses\ResponseCalls
+                      type: '->'
+                    -
+                      file: 'C:\OSPanel\domains\icecream\vendor\knuckleswtf\scribe\src\Extracting\Extractor.php'
+                      line: 209
+                      function: __invoke
+                      class: Knuckles\Scribe\Extracting\Strategies\Responses\ResponseCalls
+                      type: '->'
+                    -
+                      file: 'C:\OSPanel\domains\icecream\vendor\knuckleswtf\scribe\src\Extracting\Extractor.php'
+                      line: 166
+                      function: iterateThroughStrategies
+                      class: Knuckles\Scribe\Extracting\Extractor
+                      type: '->'
+                    -
+                      file: 'C:\OSPanel\domains\icecream\vendor\knuckleswtf\scribe\src\Extracting\Extractor.php'
+                      line: 95
+                      function: fetchResponses
+                      class: Knuckles\Scribe\Extracting\Extractor
+                      type: '->'
+                    -
+                      file: 'C:\OSPanel\domains\icecream\vendor\knuckleswtf\scribe\src\GroupedEndpoints\GroupedEndpointsFromApp.php'
+                      line: 124
+                      function: processRoute
+                      class: Knuckles\Scribe\Extracting\Extractor
+                      type: '->'
+                    -
+                      file: 'C:\OSPanel\domains\icecream\vendor\knuckleswtf\scribe\src\GroupedEndpoints\GroupedEndpointsFromApp.php'
+                      line: 71
+                      function: extractEndpointsInfoFromLaravelApp
+                      class: Knuckles\Scribe\GroupedEndpoints\GroupedEndpointsFromApp
+                      type: '->'
+                    -
+                      file: 'C:\OSPanel\domains\icecream\vendor\knuckleswtf\scribe\src\GroupedEndpoints\GroupedEndpointsFromApp.php'
+                      line: 49
+                      function: extractEndpointsInfoAndWriteToDisk
+                      class: Knuckles\Scribe\GroupedEndpoints\GroupedEndpointsFromApp
+                      type: '->'
+                    -
+                      file: 'C:\OSPanel\domains\icecream\vendor\knuckleswtf\scribe\src\Commands\GenerateDocumentation.php'
+                      line: 51
+                      function: get
+                      class: Knuckles\Scribe\GroupedEndpoints\GroupedEndpointsFromApp
+                      type: '->'
+                    -
+                      file: 'C:\OSPanel\domains\icecream\vendor\laravel\framework\src\Illuminate\Container\BoundMethod.php'
+                      line: 36
+                      function: handle
+                      class: Knuckles\Scribe\Commands\GenerateDocumentation
+                      type: '->'
+                    -
+                      file: 'C:\OSPanel\domains\icecream\vendor\laravel\framework\src\Illuminate\Container\Util.php'
+                      line: 41
+                      function: 'Illuminate\Container\{closure}'
+                      class: Illuminate\Container\BoundMethod
+                      type: '::'
+                    -
+                      file: 'C:\OSPanel\domains\icecream\vendor\laravel\framework\src\Illuminate\Container\BoundMethod.php'
+                      line: 93
+                      function: unwrapIfClosure
+                      class: Illuminate\Container\Util
+                      type: '::'
+                    -
+                      file: 'C:\OSPanel\domains\icecream\vendor\laravel\framework\src\Illuminate\Container\BoundMethod.php'
+                      line: 37
+                      function: callBoundMethod
+                      class: Illuminate\Container\BoundMethod
+                      type: '::'
+                    -
+                      file: 'C:\OSPanel\domains\icecream\vendor\laravel\framework\src\Illuminate\Container\Container.php'
+                      line: 662
+                      function: call
+                      class: Illuminate\Container\BoundMethod
+                      type: '::'
+                    -
+                      file: 'C:\OSPanel\domains\icecream\vendor\laravel\framework\src\Illuminate\Console\Command.php'
+                      line: 208
+                      function: call
+                      class: Illuminate\Container\Container
+                      type: '->'
+                    -
+                      file: 'C:\OSPanel\domains\icecream\vendor\symfony\console\Command\Command.php'
+                      line: 326
+                      function: execute
+                      class: Illuminate\Console\Command
+                      type: '->'
+                    -
+                      file: 'C:\OSPanel\domains\icecream\vendor\laravel\framework\src\Illuminate\Console\Command.php'
+                      line: 178
+                      function: run
+                      class: Symfony\Component\Console\Command\Command
+                      type: '->'
+                    -
+                      file: 'C:\OSPanel\domains\icecream\vendor\symfony\console\Application.php'
+                      line: 1081
+                      function: run
+                      class: Illuminate\Console\Command
+                      type: '->'
+                    -
+                      file: 'C:\OSPanel\domains\icecream\vendor\symfony\console\Application.php'
+                      line: 320
+                      function: doRunCommand
+                      class: Symfony\Component\Console\Application
+                      type: '->'
+                    -
+                      file: 'C:\OSPanel\domains\icecream\vendor\symfony\console\Application.php'
+                      line: 174
+                      function: doRun
+                      class: Symfony\Component\Console\Application
+                      type: '->'
+                    -
+                      file: 'C:\OSPanel\domains\icecream\vendor\laravel\framework\src\Illuminate\Foundation\Console\Kernel.php'
+                      line: 200
+                      function: run
+                      class: Symfony\Component\Console\Application
+                      type: '->'
+                    -
+                      file: 'C:\OSPanel\domains\icecream\artisan'
+                      line: 37
+                      function: handle
+                      class: Illuminate\Foundation\Console\Kernel
+                      type: '->'
                 properties:
-                  result:
-                    type: object
-                    properties:
-                      all_count:
-                        type: integer
-                        example: 0
-                      price_uzs_all:
-                        type: integer
-                        example: 0
-                      price_usd_all:
-                        type: integer
-                        example: 0
-                      data:
-                        type: array
-                        example: []
+                  message:
+                    type: string
+                    example: 'Method Illuminate\Validation\Validator::validateYYYYMMDD does not exist.'
+                  exception:
+                    type: string
+                    example: BadMethodCallException
+                  file:
+                    type: string
+                    example: 'C:\OSPanel\domains\icecream\vendor\laravel\framework\src\Illuminate\Validation\Validator.php'
+                  line:
+                    type: integer
+                    example: 1575
+                  trace:
+                    type: array
+                    example:
+                      -
+                        file: 'C:\OSPanel\domains\icecream\vendor\laravel\framework\src\Illuminate\Validation\Validator.php'
+                        line: 624
+                        function: __call
+                        class: Illuminate\Validation\Validator
+                        type: '->'
+                      -
+                        file: 'C:\OSPanel\domains\icecream\vendor\laravel\framework\src\Illuminate\Validation\Validator.php'
+                        line: 430
+                        function: validateAttribute
+                        class: Illuminate\Validation\Validator
+                        type: '->'
+                      -
+                        file: 'C:\OSPanel\domains\icecream\vendor\laravel\framework\src\Illuminate\Validation\Validator.php'
+                        line: 461
+                        function: passes
+                        class: Illuminate\Validation\Validator
+                        type: '->'
+                      -
+                        file: 'C:\OSPanel\domains\icecream\vendor\laravel\framework\src\Illuminate\Validation\ValidatesWhenResolvedTrait.php'
+                        line: 31
+                        function: fails
+                        class: Illuminate\Validation\Validator
+                        type: '->'
+                      -
+                        file: 'C:\OSPanel\domains\icecream\vendor\laravel\framework\src\Illuminate\Foundation\Providers\FormRequestServiceProvider.php'
+                        line: 30
+                        function: validateResolved
+                        class: Illuminate\Foundation\Http\FormRequest
+                        type: '->'
+                      -
+                        file: 'C:\OSPanel\domains\icecream\vendor\laravel\framework\src\Illuminate\Container\Container.php'
+                        line: 1304
+                        function: 'Illuminate\Foundation\Providers\{closure}'
+                        class: Illuminate\Foundation\Providers\FormRequestServiceProvider
+                        type: '->'
+                      -
+                        file: 'C:\OSPanel\domains\icecream\vendor\laravel\framework\src\Illuminate\Container\Container.php'
+                        line: 1269
+                        function: fireCallbackArray
+                        class: Illuminate\Container\Container
+                        type: '->'
+                      -
+                        file: 'C:\OSPanel\domains\icecream\vendor\laravel\framework\src\Illuminate\Container\Container.php'
+                        line: 1254
+                        function: fireAfterResolvingCallbacks
+                        class: Illuminate\Container\Container
+                        type: '->'
+                      -
+                        file: 'C:\OSPanel\domains\icecream\vendor\laravel\framework\src\Illuminate\Container\Container.php'
+                        line: 815
+                        function: fireResolvingCallbacks
+                        class: Illuminate\Container\Container
+                        type: '->'
+                      -
+                        file: 'C:\OSPanel\domains\icecream\vendor\laravel\framework\src\Illuminate\Foundation\Application.php'
+                        line: 933
+                        function: resolve
+                        class: Illuminate\Container\Container
+                        type: '->'
+                      -
+                        file: 'C:\OSPanel\domains\icecream\vendor\laravel\framework\src\Illuminate\Container\Container.php'
+                        line: 731
+                        function: resolve
+                        class: Illuminate\Foundation\Application
+                        type: '->'
+                      -
+                        file: 'C:\OSPanel\domains\icecream\vendor\laravel\framework\src\Illuminate\Foundation\Application.php'
+                        line: 918
+                        function: make
+                        class: Illuminate\Container\Container
+                        type: '->'
+                      -
+                        file: 'C:\OSPanel\domains\icecream\vendor\laravel\framework\src\Illuminate\Routing\ResolvesRouteDependencies.php'
+                        line: 85
+                        function: make
+                        class: Illuminate\Foundation\Application
+                        type: '->'
+                      -
+                        file: 'C:\OSPanel\domains\icecream\vendor\laravel\framework\src\Illuminate\Routing\ResolvesRouteDependencies.php'
+                        line: 50
+                        function: transformDependency
+                        class: Illuminate\Routing\ControllerDispatcher
+                        type: '->'
+                      -
+                        file: 'C:\OSPanel\domains\icecream\vendor\laravel\framework\src\Illuminate\Routing\ResolvesRouteDependencies.php'
+                        line: 30
+                        function: resolveMethodDependencies
+                        class: Illuminate\Routing\ControllerDispatcher
+                        type: '->'
+                      -
+                        file: 'C:\OSPanel\domains\icecream\vendor\laravel\framework\src\Illuminate\Routing\ControllerDispatcher.php'
+                        line: 60
+                        function: resolveClassMethodDependencies
+                        class: Illuminate\Routing\ControllerDispatcher
+                        type: '->'
+                      -
+                        file: 'C:\OSPanel\domains\icecream\vendor\laravel\framework\src\Illuminate\Routing\ControllerDispatcher.php'
+                        line: 40
+                        function: resolveParameters
+                        class: Illuminate\Routing\ControllerDispatcher
+                        type: '->'
+                      -
+                        file: 'C:\OSPanel\domains\icecream\vendor\laravel\framework\src\Illuminate\Routing\Route.php'
+                        line: 260
+                        function: dispatch
+                        class: Illuminate\Routing\ControllerDispatcher
+                        type: '->'
+                      -
+                        file: 'C:\OSPanel\domains\icecream\vendor\laravel\framework\src\Illuminate\Routing\Route.php'
+                        line: 205
+                        function: runController
+                        class: Illuminate\Routing\Route
+                        type: '->'
+                      -
+                        file: 'C:\OSPanel\domains\icecream\vendor\laravel\framework\src\Illuminate\Routing\Router.php'
+                        line: 799
+                        function: run
+                        class: Illuminate\Routing\Route
+                        type: '->'
+                      -
+                        file: 'C:\OSPanel\domains\icecream\vendor\laravel\framework\src\Illuminate\Pipeline\Pipeline.php'
+                        line: 141
+                        function: 'Illuminate\Routing\{closure}'
+                        class: Illuminate\Routing\Router
+                        type: '->'
+                      -
+                        file: 'C:\OSPanel\domains\icecream\vendor\laravel\framework\src\Illuminate\Routing\Middleware\SubstituteBindings.php'
+                        line: 50
+                        function: 'Illuminate\Pipeline\{closure}'
+                        class: Illuminate\Pipeline\Pipeline
+                        type: '->'
+                      -
+                        file: 'C:\OSPanel\domains\icecream\vendor\laravel\framework\src\Illuminate\Pipeline\Pipeline.php'
+                        line: 180
+                        function: handle
+                        class: Illuminate\Routing\Middleware\SubstituteBindings
+                        type: '->'
+                      -
+                        file: 'C:\OSPanel\domains\icecream\vendor\laravel\framework\src\Illuminate\Routing\Middleware\ThrottleRequests.php'
+                        line: 159
+                        function: 'Illuminate\Pipeline\{closure}'
+                        class: Illuminate\Pipeline\Pipeline
+                        type: '->'
+                      -
+                        file: 'C:\OSPanel\domains\icecream\vendor\laravel\framework\src\Illuminate\Routing\Middleware\ThrottleRequests.php'
+                        line: 135
+                        function: handleRequest
+                        class: Illuminate\Routing\Middleware\ThrottleRequests
+                        type: '->'
+                      -
+                        file: 'C:\OSPanel\domains\icecream\vendor\laravel\framework\src\Illuminate\Routing\Middleware\ThrottleRequests.php'
+                        line: 87
+                        function: handleRequestUsingNamedLimiter
+                        class: Illuminate\Routing\Middleware\ThrottleRequests
+                        type: '->'
+                      -
+                        file: 'C:\OSPanel\domains\icecream\vendor\laravel\framework\src\Illuminate\Pipeline\Pipeline.php'
+                        line: 180
+                        function: handle
+                        class: Illuminate\Routing\Middleware\ThrottleRequests
+                        type: '->'
+                      -
+                        file: 'C:\OSPanel\domains\icecream\vendor\laravel\framework\src\Illuminate\Pipeline\Pipeline.php'
+                        line: 116
+                        function: 'Illuminate\Pipeline\{closure}'
+                        class: Illuminate\Pipeline\Pipeline
+                        type: '->'
+                      -
+                        file: 'C:\OSPanel\domains\icecream\vendor\laravel\framework\src\Illuminate\Routing\Router.php'
+                        line: 800
+                        function: then
+                        class: Illuminate\Pipeline\Pipeline
+                        type: '->'
+                      -
+                        file: 'C:\OSPanel\domains\icecream\vendor\laravel\framework\src\Illuminate\Routing\Router.php'
+                        line: 777
+                        function: runRouteWithinStack
+                        class: Illuminate\Routing\Router
+                        type: '->'
+                      -
+                        file: 'C:\OSPanel\domains\icecream\vendor\laravel\framework\src\Illuminate\Routing\Router.php'
+                        line: 741
+                        function: runRoute
+                        class: Illuminate\Routing\Router
+                        type: '->'
+                      -
+                        file: 'C:\OSPanel\domains\icecream\vendor\laravel\framework\src\Illuminate\Routing\Router.php'
+                        line: 730
+                        function: dispatchToRoute
+                        class: Illuminate\Routing\Router
+                        type: '->'
+                      -
+                        file: 'C:\OSPanel\domains\icecream\vendor\laravel\framework\src\Illuminate\Foundation\Http\Kernel.php'
+                        line: 200
+                        function: dispatch
+                        class: Illuminate\Routing\Router
+                        type: '->'
+                      -
+                        file: 'C:\OSPanel\domains\icecream\vendor\laravel\framework\src\Illuminate\Pipeline\Pipeline.php'
+                        line: 141
+                        function: 'Illuminate\Foundation\Http\{closure}'
+                        class: Illuminate\Foundation\Http\Kernel
+                        type: '->'
+                      -
+                        file: 'C:\OSPanel\domains\icecream\vendor\laravel\framework\src\Illuminate\Foundation\Http\Middleware\TransformsRequest.php'
+                        line: 21
+                        function: 'Illuminate\Pipeline\{closure}'
+                        class: Illuminate\Pipeline\Pipeline
+                        type: '->'
+                      -
+                        file: 'C:\OSPanel\domains\icecream\vendor\laravel\framework\src\Illuminate\Foundation\Http\Middleware\ConvertEmptyStringsToNull.php'
+                        line: 31
+                        function: handle
+                        class: Illuminate\Foundation\Http\Middleware\TransformsRequest
+                        type: '->'
+                      -
+                        file: 'C:\OSPanel\domains\icecream\vendor\laravel\framework\src\Illuminate\Pipeline\Pipeline.php'
+                        line: 180
+                        function: handle
+                        class: Illuminate\Foundation\Http\Middleware\ConvertEmptyStringsToNull
+                        type: '->'
+                      -
+                        file: 'C:\OSPanel\domains\icecream\vendor\laravel\framework\src\Illuminate\Foundation\Http\Middleware\TransformsRequest.php'
+                        line: 21
+                        function: 'Illuminate\Pipeline\{closure}'
+                        class: Illuminate\Pipeline\Pipeline
+                        type: '->'
+                      -
+                        file: 'C:\OSPanel\domains\icecream\vendor\laravel\framework\src\Illuminate\Foundation\Http\Middleware\TrimStrings.php'
+                        line: 40
+                        function: handle
+                        class: Illuminate\Foundation\Http\Middleware\TransformsRequest
+                        type: '->'
+                      -
+                        file: 'C:\OSPanel\domains\icecream\vendor\laravel\framework\src\Illuminate\Pipeline\Pipeline.php'
+                        line: 180
+                        function: handle
+                        class: Illuminate\Foundation\Http\Middleware\TrimStrings
+                        type: '->'
+                      -
+                        file: 'C:\OSPanel\domains\icecream\vendor\laravel\framework\src\Illuminate\Foundation\Http\Middleware\ValidatePostSize.php'
+                        line: 27
+                        function: 'Illuminate\Pipeline\{closure}'
+                        class: Illuminate\Pipeline\Pipeline
+                        type: '->'
+                      -
+                        file: 'C:\OSPanel\domains\icecream\vendor\laravel\framework\src\Illuminate\Pipeline\Pipeline.php'
+                        line: 180
+                        function: handle
+                        class: Illuminate\Foundation\Http\Middleware\ValidatePostSize
+                        type: '->'
+                      -
+                        file: 'C:\OSPanel\domains\icecream\vendor\laravel\framework\src\Illuminate\Foundation\Http\Middleware\PreventRequestsDuringMaintenance.php'
+                        line: 86
+                        function: 'Illuminate\Pipeline\{closure}'
+                        class: Illuminate\Pipeline\Pipeline
+                        type: '->'
+                      -
+                        file: 'C:\OSPanel\domains\icecream\vendor\laravel\framework\src\Illuminate\Pipeline\Pipeline.php'
+                        line: 180
+                        function: handle
+                        class: Illuminate\Foundation\Http\Middleware\PreventRequestsDuringMaintenance
+                        type: '->'
+                      -
+                        file: 'C:\OSPanel\domains\icecream\vendor\laravel\framework\src\Illuminate\Http\Middleware\HandleCors.php'
+                        line: 62
+                        function: 'Illuminate\Pipeline\{closure}'
+                        class: Illuminate\Pipeline\Pipeline
+                        type: '->'
+                      -
+                        file: 'C:\OSPanel\domains\icecream\vendor\laravel\framework\src\Illuminate\Pipeline\Pipeline.php'
+                        line: 180
+                        function: handle
+                        class: Illuminate\Http\Middleware\HandleCors
+                        type: '->'
+                      -
+                        file: 'C:\OSPanel\domains\icecream\vendor\laravel\framework\src\Illuminate\Http\Middleware\TrustProxies.php'
+                        line: 39
+                        function: 'Illuminate\Pipeline\{closure}'
+                        class: Illuminate\Pipeline\Pipeline
+                        type: '->'
+                      -
+                        file: 'C:\OSPanel\domains\icecream\vendor\laravel\framework\src\Illuminate\Pipeline\Pipeline.php'
+                        line: 180
+                        function: handle
+                        class: Illuminate\Http\Middleware\TrustProxies
+                        type: '->'
+                      -
+                        file: 'C:\OSPanel\domains\icecream\vendor\laravel\framework\src\Illuminate\Pipeline\Pipeline.php'
+                        line: 116
+                        function: 'Illuminate\Pipeline\{closure}'
+                        class: Illuminate\Pipeline\Pipeline
+                        type: '->'
+                      -
+                        file: 'C:\OSPanel\domains\icecream\vendor\laravel\framework\src\Illuminate\Foundation\Http\Kernel.php'
+                        line: 175
+                        function: then
+                        class: Illuminate\Pipeline\Pipeline
+                        type: '->'
+                      -
+                        file: 'C:\OSPanel\domains\icecream\vendor\laravel\framework\src\Illuminate\Foundation\Http\Kernel.php'
+                        line: 144
+                        function: sendRequestThroughRouter
+                        class: Illuminate\Foundation\Http\Kernel
+                        type: '->'
+                      -
+                        file: 'C:\OSPanel\domains\icecream\vendor\knuckleswtf\scribe\src\Extracting\Strategies\Responses\ResponseCalls.php'
+                        line: 299
+                        function: handle
+                        class: Illuminate\Foundation\Http\Kernel
+                        type: '->'
+                      -
+                        file: 'C:\OSPanel\domains\icecream\vendor\knuckleswtf\scribe\src\Extracting\Strategies\Responses\ResponseCalls.php'
+                        line: 287
+                        function: callLaravelOrLumenRoute
+                        class: Knuckles\Scribe\Extracting\Strategies\Responses\ResponseCalls
+                        type: '->'
+                      -
+                        file: 'C:\OSPanel\domains\icecream\vendor\knuckleswtf\scribe\src\Extracting\Strategies\Responses\ResponseCalls.php'
+                        line: 92
+                        function: makeApiCall
+                        class: Knuckles\Scribe\Extracting\Strategies\Responses\ResponseCalls
+                        type: '->'
+                      -
+                        file: 'C:\OSPanel\domains\icecream\vendor\knuckleswtf\scribe\src\Extracting\Strategies\Responses\ResponseCalls.php'
+                        line: 45
+                        function: makeResponseCall
+                        class: Knuckles\Scribe\Extracting\Strategies\Responses\ResponseCalls
+                        type: '->'
+                      -
+                        file: 'C:\OSPanel\domains\icecream\vendor\knuckleswtf\scribe\src\Extracting\Strategies\Responses\ResponseCalls.php'
+                        line: 35
+                        function: makeResponseCallIfConditionsPass
+                        class: Knuckles\Scribe\Extracting\Strategies\Responses\ResponseCalls
+                        type: '->'
+                      -
+                        file: 'C:\OSPanel\domains\icecream\vendor\knuckleswtf\scribe\src\Extracting\Extractor.php'
+                        line: 209
+                        function: __invoke
+                        class: Knuckles\Scribe\Extracting\Strategies\Responses\ResponseCalls
+                        type: '->'
+                      -
+                        file: 'C:\OSPanel\domains\icecream\vendor\knuckleswtf\scribe\src\Extracting\Extractor.php'
+                        line: 166
+                        function: iterateThroughStrategies
+                        class: Knuckles\Scribe\Extracting\Extractor
+                        type: '->'
+                      -
+                        file: 'C:\OSPanel\domains\icecream\vendor\knuckleswtf\scribe\src\Extracting\Extractor.php'
+                        line: 95
+                        function: fetchResponses
+                        class: Knuckles\Scribe\Extracting\Extractor
+                        type: '->'
+                      -
+                        file: 'C:\OSPanel\domains\icecream\vendor\knuckleswtf\scribe\src\GroupedEndpoints\GroupedEndpointsFromApp.php'
+                        line: 124
+                        function: processRoute
+                        class: Knuckles\Scribe\Extracting\Extractor
+                        type: '->'
+                      -
+                        file: 'C:\OSPanel\domains\icecream\vendor\knuckleswtf\scribe\src\GroupedEndpoints\GroupedEndpointsFromApp.php'
+                        line: 71
+                        function: extractEndpointsInfoFromLaravelApp
+                        class: Knuckles\Scribe\GroupedEndpoints\GroupedEndpointsFromApp
+                        type: '->'
+                      -
+                        file: 'C:\OSPanel\domains\icecream\vendor\knuckleswtf\scribe\src\GroupedEndpoints\GroupedEndpointsFromApp.php'
+                        line: 49
+                        function: extractEndpointsInfoAndWriteToDisk
+                        class: Knuckles\Scribe\GroupedEndpoints\GroupedEndpointsFromApp
+                        type: '->'
+                      -
+                        file: 'C:\OSPanel\domains\icecream\vendor\knuckleswtf\scribe\src\Commands\GenerateDocumentation.php'
+                        line: 51
+                        function: get
+                        class: Knuckles\Scribe\GroupedEndpoints\GroupedEndpointsFromApp
+                        type: '->'
+                      -
+                        file: 'C:\OSPanel\domains\icecream\vendor\laravel\framework\src\Illuminate\Container\BoundMethod.php'
+                        line: 36
+                        function: handle
+                        class: Knuckles\Scribe\Commands\GenerateDocumentation
+                        type: '->'
+                      -
+                        file: 'C:\OSPanel\domains\icecream\vendor\laravel\framework\src\Illuminate\Container\Util.php'
+                        line: 41
+                        function: 'Illuminate\Container\{closure}'
+                        class: Illuminate\Container\BoundMethod
+                        type: '::'
+                      -
+                        file: 'C:\OSPanel\domains\icecream\vendor\laravel\framework\src\Illuminate\Container\BoundMethod.php'
+                        line: 93
+                        function: unwrapIfClosure
+                        class: Illuminate\Container\Util
+                        type: '::'
+                      -
+                        file: 'C:\OSPanel\domains\icecream\vendor\laravel\framework\src\Illuminate\Container\BoundMethod.php'
+                        line: 37
+                        function: callBoundMethod
+                        class: Illuminate\Container\BoundMethod
+                        type: '::'
+                      -
+                        file: 'C:\OSPanel\domains\icecream\vendor\laravel\framework\src\Illuminate\Container\Container.php'
+                        line: 662
+                        function: call
+                        class: Illuminate\Container\BoundMethod
+                        type: '::'
+                      -
+                        file: 'C:\OSPanel\domains\icecream\vendor\laravel\framework\src\Illuminate\Console\Command.php'
+                        line: 208
+                        function: call
+                        class: Illuminate\Container\Container
+                        type: '->'
+                      -
+                        file: 'C:\OSPanel\domains\icecream\vendor\symfony\console\Command\Command.php'
+                        line: 326
+                        function: execute
+                        class: Illuminate\Console\Command
+                        type: '->'
+                      -
+                        file: 'C:\OSPanel\domains\icecream\vendor\laravel\framework\src\Illuminate\Console\Command.php'
+                        line: 178
+                        function: run
+                        class: Symfony\Component\Console\Command\Command
+                        type: '->'
+                      -
+                        file: 'C:\OSPanel\domains\icecream\vendor\symfony\console\Application.php'
+                        line: 1081
+                        function: run
+                        class: Illuminate\Console\Command
+                        type: '->'
+                      -
+                        file: 'C:\OSPanel\domains\icecream\vendor\symfony\console\Application.php'
+                        line: 320
+                        function: doRunCommand
+                        class: Symfony\Component\Console\Application
+                        type: '->'
+                      -
+                        file: 'C:\OSPanel\domains\icecream\vendor\symfony\console\Application.php'
+                        line: 174
+                        function: doRun
+                        class: Symfony\Component\Console\Application
+                        type: '->'
+                      -
+                        file: 'C:\OSPanel\domains\icecream\vendor\laravel\framework\src\Illuminate\Foundation\Console\Kernel.php'
+                        line: 200
+                        function: run
+                        class: Symfony\Component\Console\Application
+                        type: '->'
+                      -
+                        file: 'C:\OSPanel\domains\icecream\artisan'
+                        line: 37
+                        function: handle
+                        class: Illuminate\Foundation\Console\Kernel
+                        type: '->'
+                    items:
+                      type: object
+                      properties:
+                        file:
+                          type: string
+                          example: 'C:\OSPanel\domains\icecream\vendor\laravel\framework\src\Illuminate\Validation\Validator.php'
+                        line:
+                          type: integer
+                          example: 624
+                        function:
+                          type: string
+                          example: __call
+                        class:
+                          type: string
+                          example: Illuminate\Validation\Validator
+                        type:
+                          type: string
+                          example: '->'
       tags:
         - Exchanges
       requestBody:
@@ -218,19 +1148,19 @@ paths:
                 caterogy_id:
                   type: integer
                   description: nullable
-                  example: 6
+                  example: 1
                 partner_id:
                   type: integer
                   description: nullable
-                  example: 16
+                  example: 14
                 type_id:
                   type: integer
                   description: nullable
-                  example: 6
+                  example: 15
                 product_id:
                   type: integer
                   description: nullable
-                  example: 18
+                  example: 16
                 cyrrency:
                   type: boolean
                   description: nullable
@@ -238,11 +1168,11 @@ paths:
                 from_date:
                   type: date
                   description: nullable
-                  example: est
+                  example: adipisci
                 to_date:
                   type: date
                   description: nullable
-                  example: in
+                  example: quia
       security: []
   /api/exchanges/edit:
     put:
@@ -325,6 +1255,29 @@ paths:
       responses: {  }
       tags:
         - Expenses
+      requestBody:
+        required: false
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                product_id:
+                  type: integer
+                  description: optional
+                  example: 18
+                material_id:
+                  type: integer
+                  description: optional
+                  example: 4
+                from_date:
+                  type: date
+                  description: optional
+                  example: id
+                to_date:
+                  type: date
+                  description: optional
+                  example: rerum
       security: []
   /api/partners/new:
     post:
@@ -374,22 +1327,22 @@ paths:
                   result:
                     -
                       id: 1
-                      name: 'John Doe'
+                      name: 'Ahmadjon Dadabayev'
                       phone_number: '998901234567'
                       address: '123, Main Street, New York'
-                      created_at: '2023-07-30T00:06:05.000000Z'
-                      updated_at: '2023-07-30T00:06:05.000000Z'
+                      created_at: '2023-07-31T22:18:39.000000Z'
+                      updated_at: '2023-07-31T22:18:54.000000Z'
                 properties:
                   result:
                     type: array
                     example:
                       -
                         id: 1
-                        name: 'John Doe'
+                        name: 'Ahmadjon Dadabayev'
                         phone_number: '998901234567'
                         address: '123, Main Street, New York'
-                        created_at: '2023-07-30T00:06:05.000000Z'
-                        updated_at: '2023-07-30T00:06:05.000000Z'
+                        created_at: '2023-07-31T22:18:39.000000Z'
+                        updated_at: '2023-07-31T22:18:54.000000Z'
                     items:
                       type: object
                       properties:
@@ -398,7 +1351,7 @@ paths:
                           example: 1
                         name:
                           type: string
-                          example: 'John Doe'
+                          example: 'Ahmadjon Dadabayev'
                         phone_number:
                           type: string
                           example: '998901234567'
@@ -407,10 +1360,10 @@ paths:
                           example: '123, Main Street, New York'
                         created_at:
                           type: string
-                          example: '2023-07-30T00:06:05.000000Z'
+                          example: '2023-07-31T22:18:39.000000Z'
                         updated_at:
                           type: string
-                          example: '2023-07-30T00:06:05.000000Z'
+                          example: '2023-07-31T22:18:54.000000Z'
       tags:
         - Partners
       security: []
@@ -497,9 +1450,9 @@ paths:
                   description: 'The name of the product.'
                   example: 'Product 1'
                 price:
-                  type: integer
-                  description: 'float The price of the product.'
-                  example: 100
+                  type: string
+                  description: 'The price of the product.'
+                  example: '100'
                 type_id:
                   type: integer
                   description: 'The id of the type.'
@@ -515,6 +1468,7 @@ paths:
               required:
                 - caterogy_id
                 - name
+                - price
                 - type_id
                 - cyrrency
       security: []
@@ -542,7 +1496,7 @@ paths:
             value: ''
           present:
             summary: 'When the value is present'
-            value: culpa
+            value: ut
   /api/products/edit:
     put:
       summary: 'Update product'
@@ -572,13 +1526,13 @@ paths:
                   description: 'nullable The name of the product.'
                   example: 'Product 1'
                 price:
-                  type: number
+                  type: string
                   description: 'nullable The price of the product.'
-                  example: 100.0
+                  example: '100'
                 count:
-                  type: number
+                  type: string
                   description: 'nullable The count of the product.'
-                  example: 100.0
+                  example: '100'
                 type_id:
                   type: integer
                   description: 'nullable The id of the type.'
@@ -611,9 +1565,9 @@ paths:
                   description: 'The id of the product.'
                   example: 1
                 count:
-                  type: number
+                  type: string
                   description: 'The count of the product.'
-                  example: 100.0
+                  example: '100'
                 materials:
                   type: string
                   description: 'The materials of the product.'

@@ -27,8 +27,8 @@ class GetExchangesRequest extends FormRequest
             'type_id' => 'nullable|integer',
             'product_id' => 'nullable|integer',
             'cyrrency' => 'nullable|boolean',
-            'from_date' => 'nullable|string',
-            'to_date' => 'nullable|string',
+            'from_date' => 'nullable|date|YYYY-MM-DD',
+            'to_date' => 'nullable|date|YYYY-MM-DD',
         ];
     }
 }

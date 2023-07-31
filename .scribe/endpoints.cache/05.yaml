@@ -83,7 +83,7 @@ endpoints:
     responses:
       -
         status: 200
-        content: '{"result":[{"id":1,"name":"John Doe","phone_number":"998901234567","address":"123, Main Street, New York","created_at":"2023-07-30T00:06:05.000000Z","updated_at":"2023-07-30T00:06:05.000000Z"}]}'
+        content: '{"result":[{"id":1,"name":"Ahmadjon Dadabayev","phone_number":"998901234567","address":"123, Main Street, New York","created_at":"2023-07-31T22:18:39.000000Z","updated_at":"2023-07-31T22:18:54.000000Z"}]}'
         headers:
           cache-control: 'no-cache, private'
           content-type: application/json
