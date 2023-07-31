@@ -111,6 +111,16 @@
                             </li>
                                                                         </ul>
                             </ul>
+                    <ul id="tocify-header-expenses" class="tocify-header">
+                <li class="tocify-item level-1" data-unique="expenses">
+                    <a href="#expenses">Expenses</a>
+                </li>
+                                    <ul id="tocify-subheader-expenses" class="tocify-subheader">
+                                                    <li class="tocify-item level-2" data-unique="expenses-POSTapi-expenses-get">
+                                <a href="#expenses-POSTapi-expenses-get">Get all expenses</a>
+                            </li>
+                                                                        </ul>
+                            </ul>
                     <ul id="tocify-header-partners" class="tocify-header">
                 <li class="tocify-item level-1" data-unique="partners">
                     <a href="#partners">Partners</a>
@@ -144,8 +154,8 @@
                                                                                 <li class="tocify-item level-2" data-unique="products-PUTapi-products-edit">
                                 <a href="#products-PUTapi-products-edit">Update product</a>
                             </li>
-                                                                                <li class="tocify-item level-2" data-unique="products-POSTapi-products-makeproduct">
-                                <a href="#products-POSTapi-products-makeproduct">Make product</a>
+                                                                                <li class="tocify-item level-2" data-unique="products-POSTapi-products-make">
+                                <a href="#products-POSTapi-products-make">Make product</a>
                             </li>
                                                                         </ul>
                             </ul>
@@ -207,7 +217,7 @@ You can switch the language used with the tabs at the top right (or from the nav
     --header "Content-Type: application/json" \
     --header "Accept: application/json" \
     --data "{
-    \"name\": \"necessitatibus\"
+    \"name\": \"ducimus\"
 }"
 </code></pre></div>
 
@@ -223,7 +233,7 @@ const headers = {
 };
 
 let body = {
-    "name": "necessitatibus"
+    "name": "ducimus"
 };
 
 fetch(url, {
@@ -312,10 +322,10 @@ You can check the Dev Tools console for debugging information.</code></pre>
  &nbsp;
                 <input type="text" style="display: none"
                name="name"                data-endpoint="POSTapi-caterogies-new"
-               value="necessitatibus"
+               value="ducimus"
                data-component="body">
     <br>
-<p>Example: <code>necessitatibus</code></p>
+<p>Example: <code>ducimus</code></p>
         </div>
         </form>
 
@@ -470,8 +480,8 @@ You can check the Dev Tools console for debugging information.</code></pre>
     --header "Content-Type: application/json" \
     --header "Accept: application/json" \
     --data "{
-    \"id\": 13,
-    \"name\": \"laborum\"
+    \"id\": 14,
+    \"name\": \"voluptatem\"
 }"
 </code></pre></div>
 
@@ -487,8 +497,8 @@ const headers = {
 };
 
 let body = {
-    "id": 13,
-    "name": "laborum"
+    "id": 14,
+    "name": "voluptatem"
 };
 
 fetch(url, {
@@ -577,10 +587,10 @@ You can check the Dev Tools console for debugging information.</code></pre>
  &nbsp;
                 <input type="number" style="display: none"
                name="id"                data-endpoint="PUTapi-caterogies-edit"
-               value="13"
+               value="14"
                data-component="body">
     <br>
-<p>Example: <code>13</code></p>
+<p>Example: <code>14</code></p>
         </div>
                 <div style=" padding-left: 28px;  clear: unset;">
             <b style="line-height: 2;"><code>name</code></b>&nbsp;&nbsp;
@@ -588,10 +598,10 @@ You can check the Dev Tools console for debugging information.</code></pre>
 <i>optional</i> &nbsp;
                 <input type="text" style="display: none"
                name="name"                data-endpoint="PUTapi-caterogies-edit"
-               value="laborum"
+               value="voluptatem"
                data-component="body">
     <br>
-<p>nullable Example: <code>laborum</code></p>
+<p>nullable Example: <code>voluptatem</code></p>
         </div>
         </form>
 
@@ -910,13 +920,13 @@ You can check the Dev Tools console for debugging information.</code></pre>
     --header "Content-Type: application/json" \
     --header "Accept: application/json" \
     --data "{
-    \"caterogy_id\": 15,
-    \"partner_id\": 10,
-    \"type_id\": 1,
-    \"product_id\": 8,
-    \"cyrrency\": true,
-    \"from_date\": \"quia\",
-    \"to_date\": \"eos\"
+    \"caterogy_id\": 6,
+    \"partner_id\": 16,
+    \"type_id\": 6,
+    \"product_id\": 18,
+    \"cyrrency\": false,
+    \"from_date\": \"est\",
+    \"to_date\": \"in\"
 }"
 </code></pre></div>
 
@@ -932,13 +942,13 @@ const headers = {
 };
 
 let body = {
-    "caterogy_id": 15,
-    "partner_id": 10,
-    "type_id": 1,
-    "product_id": 8,
-    "cyrrency": true,
-    "from_date": "quia",
-    "to_date": "eos"
+    "caterogy_id": 6,
+    "partner_id": 16,
+    "type_id": 6,
+    "product_id": 18,
+    "cyrrency": false,
+    "from_date": "est",
+    "to_date": "in"
 };
 
 fetch(url, {
@@ -1050,10 +1060,10 @@ You can check the Dev Tools console for debugging information.</code></pre>
 <i>optional</i> &nbsp;
                 <input type="number" style="display: none"
                name="caterogy_id"                data-endpoint="GETapi-exchanges-get"
-               value="15"
+               value="6"
                data-component="body">
     <br>
-<p>nullable Example: <code>15</code></p>
+<p>nullable Example: <code>6</code></p>
         </div>
                 <div style=" padding-left: 28px;  clear: unset;">
             <b style="line-height: 2;"><code>partner_id</code></b>&nbsp;&nbsp;
@@ -1061,10 +1071,10 @@ You can check the Dev Tools console for debugging information.</code></pre>
 <i>optional</i> &nbsp;
                 <input type="number" style="display: none"
                name="partner_id"                data-endpoint="GETapi-exchanges-get"
-               value="10"
+               value="16"
                data-component="body">
     <br>
-<p>nullable Example: <code>10</code></p>
+<p>nullable Example: <code>16</code></p>
         </div>
                 <div style=" padding-left: 28px;  clear: unset;">
             <b style="line-height: 2;"><code>type_id</code></b>&nbsp;&nbsp;
@@ -1072,10 +1082,10 @@ You can check the Dev Tools console for debugging information.</code></pre>
 <i>optional</i> &nbsp;
                 <input type="number" style="display: none"
                name="type_id"                data-endpoint="GETapi-exchanges-get"
-               value="1"
+               value="6"
                data-component="body">
     <br>
-<p>nullable Example: <code>1</code></p>
+<p>nullable Example: <code>6</code></p>
         </div>
                 <div style=" padding-left: 28px;  clear: unset;">
             <b style="line-height: 2;"><code>product_id</code></b>&nbsp;&nbsp;
@@ -1083,10 +1093,10 @@ You can check the Dev Tools console for debugging information.</code></pre>
 <i>optional</i> &nbsp;
                 <input type="number" style="display: none"
                name="product_id"                data-endpoint="GETapi-exchanges-get"
-               value="8"
+               value="18"
                data-component="body">
     <br>
-<p>nullable Example: <code>8</code></p>
+<p>nullable Example: <code>18</code></p>
         </div>
                 <div style=" padding-left: 28px;  clear: unset;">
             <b style="line-height: 2;"><code>cyrrency</code></b>&nbsp;&nbsp;
@@ -1107,7 +1117,7 @@ You can check the Dev Tools console for debugging information.</code></pre>
             <code>false</code>
         </label>
     <br>
-<p>nullable Example: <code>true</code></p>
+<p>nullable Example: <code>false</code></p>
         </div>
                 <div style=" padding-left: 28px;  clear: unset;">
             <b style="line-height: 2;"><code>from_date</code></b>&nbsp;&nbsp;
@@ -1115,10 +1125,10 @@ You can check the Dev Tools console for debugging information.</code></pre>
 <i>optional</i> &nbsp;
                 <input type="text" style="display: none"
                name="from_date"                data-endpoint="GETapi-exchanges-get"
-               value="quia"
+               value="est"
                data-component="body">
     <br>
-<p>nullable Example: <code>quia</code></p>
+<p>nullable Example: <code>est</code></p>
         </div>
                 <div style=" padding-left: 28px;  clear: unset;">
             <b style="line-height: 2;"><code>to_date</code></b>&nbsp;&nbsp;
@@ -1126,10 +1136,10 @@ You can check the Dev Tools console for debugging information.</code></pre>
 <i>optional</i> &nbsp;
                 <input type="text" style="display: none"
                name="to_date"                data-endpoint="GETapi-exchanges-get"
-               value="eos"
+               value="in"
                data-component="body">
     <br>
-<p>nullable Example: <code>eos</code></p>
+<p>nullable Example: <code>in</code></p>
         </div>
         </form>
 
@@ -1447,6 +1457,118 @@ You can check the Dev Tools console for debugging information.</code></pre>
 <p>The id of the exchange. Example: <code>1</code></p>
         </div>
         </form>
+
+                <h1 id="expenses">Expenses</h1>
+
+    
+
+                                <h2 id="expenses-POSTapi-expenses-get">Get all expenses</h2>
+
+<p>
+</p>
+
+
+
+<span id="example-requests-POSTapi-expenses-get">
+<blockquote>Example request:</blockquote>
+
+
+<div class="bash-example">
+    <pre><code class="language-bash">curl --request POST \
+    "https://icecream/api/expenses/get" \
+    --header "Content-Type: application/json" \
+    --header "Accept: application/json"</code></pre></div>
+
+
+<div class="javascript-example">
+    <pre><code class="language-javascript">const url = new URL(
+    "https://icecream/api/expenses/get"
+);
+
+const headers = {
+    "Content-Type": "application/json",
+    "Accept": "application/json",
+};
+
+fetch(url, {
+    method: "POST",
+    headers,
+}).then(response =&gt; response.json());</code></pre></div>
+
+</span>
+
+<span id="example-responses-POSTapi-expenses-get">
+</span>
+<span id="execution-results-POSTapi-expenses-get" hidden>
+    <blockquote>Received response<span
+                id="execution-response-status-POSTapi-expenses-get"></span>:
+    </blockquote>
+    <pre class="json"><code id="execution-response-content-POSTapi-expenses-get"
+      data-empty-response-text="<Empty response>" style="max-height: 400px;"></code></pre>
+</span>
+<span id="execution-error-POSTapi-expenses-get" hidden>
+    <blockquote>Request failed with error:</blockquote>
+    <pre><code id="execution-error-message-POSTapi-expenses-get">
+
+Tip: Check that you&#039;re properly connected to the network.
+If you&#039;re a maintainer of ths API, verify that your API is running and you&#039;ve enabled CORS.
+You can check the Dev Tools console for debugging information.</code></pre>
+</span>
+<form id="form-POSTapi-expenses-get" data-method="POST"
+      data-path="api/expenses/get"
+      data-authed="0"
+      data-hasfiles="0"
+      data-isarraybody="0"
+      autocomplete="off"
+      onsubmit="event.preventDefault(); executeTryOut('POSTapi-expenses-get', this);">
+    <h3>
+        Request&nbsp;&nbsp;&nbsp;
+                    <button type="button"
+                    style="background-color: #8fbcd4; padding: 5px 10px; border-radius: 5px; border-width: thin;"
+                    id="btn-tryout-POSTapi-expenses-get"
+                    onclick="tryItOut('POSTapi-expenses-get');">Try it out ⚡
+            </button>
+            <button type="button"
+                    style="background-color: #c97a7e; padding: 5px 10px; border-radius: 5px; border-width: thin;"
+                    id="btn-canceltryout-POSTapi-expenses-get"
+                    onclick="cancelTryOut('POSTapi-expenses-get');" hidden>Cancel 🛑
+            </button>&nbsp;&nbsp;
+            <button type="submit"
+                    style="background-color: #6ac174; padding: 5px 10px; border-radius: 5px; border-width: thin;"
+                    id="btn-executetryout-POSTapi-expenses-get"
+                    data-initial-text="Send Request 💥"
+                    data-loading-text="⏱ Sending..."
+                    hidden>Send Request 💥
+            </button>
+            </h3>
+            <p>
+            <small class="badge badge-black">POST</small>
+            <b><code>api/expenses/get</code></b>
+        </p>
+                <h4 class="fancy-heading-panel"><b>Headers</b></h4>
+                                <div style="padding-left: 28px; clear: unset;">
+                <b style="line-height: 2;"><code>Content-Type</code></b>&nbsp;&nbsp;
+&nbsp;
+ &nbsp;
+                <input type="text" style="display: none"
+               name="Content-Type"                data-endpoint="POSTapi-expenses-get"
+               value="application/json"
+               data-component="header">
+    <br>
+<p>Example: <code>application/json</code></p>
+            </div>
+                                <div style="padding-left: 28px; clear: unset;">
+                <b style="line-height: 2;"><code>Accept</code></b>&nbsp;&nbsp;
+&nbsp;
+ &nbsp;
+                <input type="text" style="display: none"
+               name="Accept"                data-endpoint="POSTapi-expenses-get"
+               value="application/json"
+               data-component="header">
+    <br>
+<p>Example: <code>application/json</code></p>
+            </div>
+                        </form>
 
                 <h1 id="partners">Partners</h1>
 
@@ -2270,14 +2392,14 @@ You can check the Dev Tools console for debugging information.</code></pre>
 
 <div class="bash-example">
     <pre><code class="language-bash">curl --request POST \
-    "https://icecream/api/products/getaut" \
+    "https://icecream/api/products/getculpa" \
     --header "Content-Type: application/json" \
     --header "Accept: application/json"</code></pre></div>
 
 
 <div class="javascript-example">
     <pre><code class="language-javascript">const url = new URL(
-    "https://icecream/api/products/getaut"
+    "https://icecream/api/products/getculpa"
 );
 
 const headers = {
@@ -2370,10 +2492,10 @@ You can check the Dev Tools console for debugging information.</code></pre>
 <i>optional</i> &nbsp;
                 <input type="text" style="display: none"
                name="caterogy_id"                data-endpoint="POSTapi-products-get-caterogy_id--"
-               value="aut"
+               value="culpa"
                data-component="url">
     <br>
-<p>The ID of the caterogy. Example: <code>aut</code></p>
+<p>The ID of the caterogy. Example: <code>culpa</code></p>
             </div>
                     </form>
 
@@ -2551,7 +2673,7 @@ You can check the Dev Tools console for debugging information.</code></pre>
         </div>
                 <div style=" padding-left: 28px;  clear: unset;">
             <b style="line-height: 2;"><code>count</code></b>&nbsp;&nbsp;
-<small>integer</small>&nbsp;
+<small>number</small>&nbsp;
 <i>optional</i> &nbsp;
                 <input type="number" style="display: none"
                name="count"                data-endpoint="PUTapi-products-edit"
@@ -2594,20 +2716,20 @@ You can check the Dev Tools console for debugging information.</code></pre>
         </div>
         </form>
 
-                    <h2 id="products-POSTapi-products-makeproduct">Make product</h2>
+                    <h2 id="products-POSTapi-products-make">Make product</h2>
 
 <p>
 </p>
 
 
 
-<span id="example-requests-POSTapi-products-makeproduct">
+<span id="example-requests-POSTapi-products-make">
 <blockquote>Example request:</blockquote>
 
 
 <div class="bash-example">
     <pre><code class="language-bash">curl --request POST \
-    "https://icecream/api/products/makeproduct" \
+    "https://icecream/api/products/make" \
     --header "Content-Type: application/json" \
     --header "Accept: application/json" \
     --data "{
@@ -2621,7 +2743,7 @@ You can check the Dev Tools console for debugging information.</code></pre>
 
 <div class="javascript-example">
     <pre><code class="language-javascript">const url = new URL(
-    "https://icecream/api/products/makeproduct"
+    "https://icecream/api/products/make"
 );
 
 const headers = {
@@ -2644,45 +2766,45 @@ fetch(url, {
 
 </span>
 
-<span id="example-responses-POSTapi-products-makeproduct">
+<span id="example-responses-POSTapi-products-make">
 </span>
-<span id="execution-results-POSTapi-products-makeproduct" hidden>
+<span id="execution-results-POSTapi-products-make" hidden>
     <blockquote>Received response<span
-                id="execution-response-status-POSTapi-products-makeproduct"></span>:
+                id="execution-response-status-POSTapi-products-make"></span>:
     </blockquote>
-    <pre class="json"><code id="execution-response-content-POSTapi-products-makeproduct"
+    <pre class="json"><code id="execution-response-content-POSTapi-products-make"
       data-empty-response-text="<Empty response>" style="max-height: 400px;"></code></pre>
 </span>
-<span id="execution-error-POSTapi-products-makeproduct" hidden>
+<span id="execution-error-POSTapi-products-make" hidden>
     <blockquote>Request failed with error:</blockquote>
-    <pre><code id="execution-error-message-POSTapi-products-makeproduct">
+    <pre><code id="execution-error-message-POSTapi-products-make">
 
 Tip: Check that you&#039;re properly connected to the network.
 If you&#039;re a maintainer of ths API, verify that your API is running and you&#039;ve enabled CORS.
 You can check the Dev Tools console for debugging information.</code></pre>
 </span>
-<form id="form-POSTapi-products-makeproduct" data-method="POST"
-      data-path="api/products/makeproduct"
+<form id="form-POSTapi-products-make" data-method="POST"
+      data-path="api/products/make"
       data-authed="0"
       data-hasfiles="0"
       data-isarraybody="0"
       autocomplete="off"
-      onsubmit="event.preventDefault(); executeTryOut('POSTapi-products-makeproduct', this);">
+      onsubmit="event.preventDefault(); executeTryOut('POSTapi-products-make', this);">
     <h3>
         Request&nbsp;&nbsp;&nbsp;
                     <button type="button"
                     style="background-color: #8fbcd4; padding: 5px 10px; border-radius: 5px; border-width: thin;"
-                    id="btn-tryout-POSTapi-products-makeproduct"
-                    onclick="tryItOut('POSTapi-products-makeproduct');">Try it out ⚡
+                    id="btn-tryout-POSTapi-products-make"
+                    onclick="tryItOut('POSTapi-products-make');">Try it out ⚡
             </button>
             <button type="button"
                     style="background-color: #c97a7e; padding: 5px 10px; border-radius: 5px; border-width: thin;"
-                    id="btn-canceltryout-POSTapi-products-makeproduct"
-                    onclick="cancelTryOut('POSTapi-products-makeproduct');" hidden>Cancel 🛑
+                    id="btn-canceltryout-POSTapi-products-make"
+                    onclick="cancelTryOut('POSTapi-products-make');" hidden>Cancel 🛑
             </button>&nbsp;&nbsp;
             <button type="submit"
                     style="background-color: #6ac174; padding: 5px 10px; border-radius: 5px; border-width: thin;"
-                    id="btn-executetryout-POSTapi-products-makeproduct"
+                    id="btn-executetryout-POSTapi-products-make"
                     data-initial-text="Send Request 💥"
                     data-loading-text="⏱ Sending..."
                     hidden>Send Request 💥
@@ -2690,7 +2812,7 @@ You can check the Dev Tools console for debugging information.</code></pre>
             </h3>
             <p>
             <small class="badge badge-black">POST</small>
-            <b><code>api/products/makeproduct</code></b>
+            <b><code>api/products/make</code></b>
         </p>
                 <h4 class="fancy-heading-panel"><b>Headers</b></h4>
                                 <div style="padding-left: 28px; clear: unset;">
@@ -2698,7 +2820,7 @@ You can check the Dev Tools console for debugging information.</code></pre>
 &nbsp;
  &nbsp;
                 <input type="text" style="display: none"
-               name="Content-Type"                data-endpoint="POSTapi-products-makeproduct"
+               name="Content-Type"                data-endpoint="POSTapi-products-make"
                value="application/json"
                data-component="header">
     <br>
@@ -2709,7 +2831,7 @@ You can check the Dev Tools console for debugging information.</code></pre>
 &nbsp;
  &nbsp;
                 <input type="text" style="display: none"
-               name="Accept"                data-endpoint="POSTapi-products-makeproduct"
+               name="Accept"                data-endpoint="POSTapi-products-make"
                value="application/json"
                data-component="header">
     <br>
@@ -2721,7 +2843,7 @@ You can check the Dev Tools console for debugging information.</code></pre>
 <small>integer</small>&nbsp;
  &nbsp;
                 <input type="number" style="display: none"
-               name="product_id"                data-endpoint="POSTapi-products-makeproduct"
+               name="product_id"                data-endpoint="POSTapi-products-make"
                value="1"
                data-component="body">
     <br>
@@ -2729,10 +2851,10 @@ You can check the Dev Tools console for debugging information.</code></pre>
         </div>
                 <div style=" padding-left: 28px;  clear: unset;">
             <b style="line-height: 2;"><code>count</code></b>&nbsp;&nbsp;
-<small>integer</small>&nbsp;
+<small>number</small>&nbsp;
  &nbsp;
                 <input type="number" style="display: none"
-               name="count"                data-endpoint="POSTapi-products-makeproduct"
+               name="count"                data-endpoint="POSTapi-products-make"
                value="100"
                data-component="body">
     <br>
@@ -2743,7 +2865,7 @@ You can check the Dev Tools console for debugging information.</code></pre>
 <small>string</small>&nbsp;
  &nbsp;
                 <input type="text" style="display: none"
-               name="materials"                data-endpoint="POSTapi-products-makeproduct"
+               name="materials"                data-endpoint="POSTapi-products-make"
                value="1,2,3"
                data-component="body">
     <br>
@@ -2754,7 +2876,7 @@ You can check the Dev Tools console for debugging information.</code></pre>
 <small>string</small>&nbsp;
  &nbsp;
                 <input type="text" style="display: none"
-               name="values"                data-endpoint="POSTapi-products-makeproduct"
+               name="values"                data-endpoint="POSTapi-products-make"
                value="1,2,3"
                data-component="body">
     <br>

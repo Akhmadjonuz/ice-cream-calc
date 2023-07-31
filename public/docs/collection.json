@@ -10,7 +10,7 @@
     ],
     "info": {
         "name": "IceCream",
-        "_postman_id": "92da141e-b1ac-4a17-8fc0-18d29e6af735",
+        "_postman_id": "3d5677e6-e347-469b-b135-74bbf53c4d97",
         "description": "",
         "schema": "https:\/\/schema.getpostman.com\/json\/collection\/v2.1.0\/collection.json"
     },
@@ -41,7 +41,7 @@
                         ],
                         "body": {
                             "mode": "raw",
-                            "raw": "{\"name\":\"necessitatibus\"}"
+                            "raw": "{\"name\":\"ducimus\"}"
                         },
                         "description": "",
                         "auth": {
@@ -128,7 +128,7 @@
                         ],
                         "body": {
                             "mode": "raw",
-                            "raw": "{\"id\":13,\"name\":\"laborum\"}"
+                            "raw": "{\"id\":14,\"name\":\"voluptatem\"}"
                         },
                         "description": "",
                         "auth": {
@@ -265,7 +265,7 @@
                         ],
                         "body": {
                             "mode": "raw",
-                            "raw": "{\"caterogy_id\":15,\"partner_id\":10,\"type_id\":1,\"product_id\":8,\"cyrrency\":true,\"from_date\":\"quia\",\"to_date\":\"eos\"}"
+                            "raw": "{\"caterogy_id\":6,\"partner_id\":16,\"type_id\":6,\"product_id\":18,\"cyrrency\":false,\"from_date\":\"est\",\"to_date\":\"in\"}"
                         },
                         "description": "",
                         "auth": {
@@ -377,6 +377,40 @@
                             "name": ""
                         }
                     ]
+                }
+            ]
+        },
+        {
+            "name": "Expenses",
+            "description": "",
+            "item": [
+                {
+                    "name": "Get all expenses",
+                    "request": {
+                        "url": {
+                            "host": "{{baseUrl}}",
+                            "path": "api\/expenses\/get",
+                            "query": [],
+                            "raw": "{{baseUrl}}\/api\/expenses\/get"
+                        },
+                        "method": "POST",
+                        "header": [
+                            {
+                                "key": "Content-Type",
+                                "value": "application\/json"
+                            },
+                            {
+                                "key": "Accept",
+                                "value": "application\/json"
+                            }
+                        ],
+                        "body": null,
+                        "description": "",
+                        "auth": {
+                            "type": "noauth"
+                        }
+                    },
+                    "response": []
                 }
             ]
         },
@@ -582,7 +616,7 @@
                                 {
                                     "id": "caterogy_id",
                                     "key": "caterogy_id",
-                                    "value": "aut",
+                                    "value": "culpa",
                                     "description": "The ID of the caterogy."
                                 }
                             ]
@@ -642,9 +676,9 @@
                     "request": {
                         "url": {
                             "host": "{{baseUrl}}",
-                            "path": "api\/products\/makeproduct",
+                            "path": "api\/products\/make",
                             "query": [],
-                            "raw": "{{baseUrl}}\/api\/products\/makeproduct"
+                            "raw": "{{baseUrl}}\/api\/products\/make"
                         },
                         "method": "POST",
                         "header": [

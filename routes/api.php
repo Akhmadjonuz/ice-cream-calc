@@ -2,6 +2,7 @@
 
 use App\Http\Controllers\CaterogyController;
 use App\Http\Controllers\ExchangesController;
+use App\Http\Controllers\ExpensesController;
 use App\Http\Controllers\NbuController;
 use App\Http\Controllers\PartnersController;
 use App\Http\Controllers\ProductsController;
@@ -31,12 +32,17 @@ Route::prefix('settings')->controller(SettingController::class)->group(function 
 // nbu manipulation
 Route::get('nbu/save', [NbuController::class, 'save']);
 
+// expenses manipulation
+Route::prefix('expenses')->controller(ExpensesController::class)->group(function () {
+    Route::post('get', 'getExpenses')->name('getExpenses');
+});
+
 // products manipulation
 Route::prefix('products')->controller(ProductsController::class)->group(function () {
     Route::post('new', 'createProduct')->name('createProduct');
     Route::post('get{caterogy_id?}', 'getProducts')->name('getProducts');
     Route::put('edit', 'updateProduct')->name('updateProduct');
-    Route::post('makeproduct', 'MakeProduct')->name('MakeProduct');
+    Route::post('make', 'MakeProduct')->name('MakeProduct');
 });
 
 // caterogies manipulation

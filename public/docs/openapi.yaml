@@ -26,7 +26,7 @@ paths:
                 name:
                   type: string
                   description: ''
-                  example: necessitatibus
+                  example: ducimus
               required:
                 - name
       security: []
@@ -101,11 +101,11 @@ paths:
                 id:
                   type: integer
                   description: ''
-                  example: 13
+                  example: 14
                 name:
                   type: string
                   description: nullable
-                  example: laborum
+                  example: voluptatem
               required:
                 - id
       security: []
@@ -218,31 +218,31 @@ paths:
                 caterogy_id:
                   type: integer
                   description: nullable
-                  example: 15
+                  example: 6
                 partner_id:
                   type: integer
                   description: nullable
-                  example: 10
+                  example: 16
                 type_id:
                   type: integer
                   description: nullable
-                  example: 1
+                  example: 6
                 product_id:
                   type: integer
                   description: nullable
-                  example: 8
+                  example: 18
                 cyrrency:
                   type: boolean
                   description: nullable
-                  example: true
+                  example: false
                 from_date:
                   type: date
                   description: nullable
-                  example: quia
+                  example: est
                 to_date:
                   type: date
                   description: nullable
-                  example: eos
+                  example: in
       security: []
   /api/exchanges/edit:
     put:
@@ -315,6 +315,16 @@ paths:
                   example: 1
               required:
                 - id
+      security: []
+  /api/expenses/get:
+    post:
+      summary: 'Get all expenses'
+      operationId: getAllExpenses
+      description: ''
+      parameters: []
+      responses: {  }
+      tags:
+        - Expenses
       security: []
   /api/partners/new:
     post:
@@ -532,7 +542,7 @@ paths:
             value: ''
           present:
             summary: 'When the value is present'
-            value: aut
+            value: culpa
   /api/products/edit:
     put:
       summary: 'Update product'
@@ -566,9 +576,9 @@ paths:
                   description: 'nullable The price of the product.'
                   example: 100.0
                 count:
-                  type: integer
+                  type: number
                   description: 'nullable The count of the product.'
-                  example: 100
+                  example: 100.0
                 type_id:
                   type: integer
                   description: 'nullable The id of the type.'
@@ -580,7 +590,7 @@ paths:
               required:
                 - id
       security: []
-  /api/products/makeproduct:
+  /api/products/make:
     post:
       summary: 'Make product'
       operationId: makeProduct
@@ -601,9 +611,9 @@ paths:
                   description: 'The id of the product.'
                   example: 1
                 count:
-                  type: integer
+                  type: number
                   description: 'The count of the product.'
-                  example: 100
+                  example: 100.0
                 materials:
                   type: string
                   description: 'The materials of the product.'
@@ -691,6 +701,9 @@ tags:
     description: ''
   -
     name: Exchanges
+    description: ''
+  -
+    name: Expenses
     description: ''
   -
     name: Partners
