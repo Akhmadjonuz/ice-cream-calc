@@ -36,6 +36,7 @@ Route::prefix('products')->controller(ProductsController::class)->group(function
     Route::post('new', 'createProduct')->name('createProduct');
     Route::post('get{caterogy_id?}', 'getProducts')->name('getProducts');
     Route::put('edit', 'updateProduct')->name('updateProduct');
+    Route::post('makeproduct', 'MakeProduct')->name('MakeProduct');
 });
 
 // caterogies manipulation

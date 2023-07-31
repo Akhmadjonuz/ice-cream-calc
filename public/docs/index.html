@@ -144,6 +144,9 @@
                                                                                 <li class="tocify-item level-2" data-unique="products-PUTapi-products-edit">
                                 <a href="#products-PUTapi-products-edit">Update product</a>
                             </li>
+                                                                                <li class="tocify-item level-2" data-unique="products-POSTapi-products-makeproduct">
+                                <a href="#products-POSTapi-products-makeproduct">Make product</a>
+                            </li>
                                                                         </ul>
                             </ul>
                     <ul id="tocify-header-settings" class="tocify-header">
@@ -165,7 +168,7 @@
     </ul>
 
     <ul class="toc-footer" id="last-updated">
-        <li>Last updated: July 30, 2023</li>
+        <li>Last updated: July 31, 2023</li>
     </ul>
 </div>
 
@@ -204,7 +207,7 @@ You can switch the language used with the tabs at the top right (or from the nav
     --header "Content-Type: application/json" \
     --header "Accept: application/json" \
     --data "{
-    \"name\": \"maxime\"
+    \"name\": \"necessitatibus\"
 }"
 </code></pre></div>
 
@@ -220,7 +223,7 @@ const headers = {
 };
 
 let body = {
-    "name": "maxime"
+    "name": "necessitatibus"
 };
 
 fetch(url, {
@@ -309,10 +312,10 @@ You can check the Dev Tools console for debugging information.</code></pre>
  &nbsp;
                 <input type="text" style="display: none"
                name="name"                data-endpoint="POSTapi-caterogies-new"
-               value="maxime"
+               value="necessitatibus"
                data-component="body">
     <br>
-<p>Example: <code>maxime</code></p>
+<p>Example: <code>necessitatibus</code></p>
         </div>
         </form>
 
@@ -467,8 +470,8 @@ You can check the Dev Tools console for debugging information.</code></pre>
     --header "Content-Type: application/json" \
     --header "Accept: application/json" \
     --data "{
-    \"id\": 5,
-    \"name\": \"aut\"
+    \"id\": 13,
+    \"name\": \"laborum\"
 }"
 </code></pre></div>
 
@@ -484,8 +487,8 @@ const headers = {
 };
 
 let body = {
-    "id": 5,
-    "name": "aut"
+    "id": 13,
+    "name": "laborum"
 };
 
 fetch(url, {
@@ -574,10 +577,10 @@ You can check the Dev Tools console for debugging information.</code></pre>
  &nbsp;
                 <input type="number" style="display: none"
                name="id"                data-endpoint="PUTapi-caterogies-edit"
-               value="5"
+               value="13"
                data-component="body">
     <br>
-<p>Example: <code>5</code></p>
+<p>Example: <code>13</code></p>
         </div>
                 <div style=" padding-left: 28px;  clear: unset;">
             <b style="line-height: 2;"><code>name</code></b>&nbsp;&nbsp;
@@ -585,10 +588,10 @@ You can check the Dev Tools console for debugging information.</code></pre>
 <i>optional</i> &nbsp;
                 <input type="text" style="display: none"
                name="name"                data-endpoint="PUTapi-caterogies-edit"
-               value="aut"
+               value="laborum"
                data-component="body">
     <br>
-<p>nullable Example: <code>aut</code></p>
+<p>nullable Example: <code>laborum</code></p>
         </div>
         </form>
 
@@ -907,13 +910,13 @@ You can check the Dev Tools console for debugging information.</code></pre>
     --header "Content-Type: application/json" \
     --header "Accept: application/json" \
     --data "{
-    \"caterogy_id\": 17,
-    \"partner_id\": 3,
-    \"type_id\": 15,
-    \"product_id\": 19,
+    \"caterogy_id\": 15,
+    \"partner_id\": 10,
+    \"type_id\": 1,
+    \"product_id\": 8,
     \"cyrrency\": true,
-    \"from_date\": \"porro\",
-    \"to_date\": \"enim\"
+    \"from_date\": \"quia\",
+    \"to_date\": \"eos\"
 }"
 </code></pre></div>
 
@@ -929,13 +932,13 @@ const headers = {
 };
 
 let body = {
-    "caterogy_id": 17,
-    "partner_id": 3,
-    "type_id": 15,
-    "product_id": 19,
+    "caterogy_id": 15,
+    "partner_id": 10,
+    "type_id": 1,
+    "product_id": 8,
     "cyrrency": true,
-    "from_date": "porro",
-    "to_date": "enim"
+    "from_date": "quia",
+    "to_date": "eos"
 };
 
 fetch(url, {
@@ -1047,10 +1050,10 @@ You can check the Dev Tools console for debugging information.</code></pre>
 <i>optional</i> &nbsp;
                 <input type="number" style="display: none"
                name="caterogy_id"                data-endpoint="GETapi-exchanges-get"
-               value="17"
+               value="15"
                data-component="body">
     <br>
-<p>nullable Example: <code>17</code></p>
+<p>nullable Example: <code>15</code></p>
         </div>
                 <div style=" padding-left: 28px;  clear: unset;">
             <b style="line-height: 2;"><code>partner_id</code></b>&nbsp;&nbsp;
@@ -1058,10 +1061,10 @@ You can check the Dev Tools console for debugging information.</code></pre>
 <i>optional</i> &nbsp;
                 <input type="number" style="display: none"
                name="partner_id"                data-endpoint="GETapi-exchanges-get"
-               value="3"
+               value="10"
                data-component="body">
     <br>
-<p>nullable Example: <code>3</code></p>
+<p>nullable Example: <code>10</code></p>
         </div>
                 <div style=" padding-left: 28px;  clear: unset;">
             <b style="line-height: 2;"><code>type_id</code></b>&nbsp;&nbsp;
@@ -1069,10 +1072,10 @@ You can check the Dev Tools console for debugging information.</code></pre>
 <i>optional</i> &nbsp;
                 <input type="number" style="display: none"
                name="type_id"                data-endpoint="GETapi-exchanges-get"
-               value="15"
+               value="1"
                data-component="body">
     <br>
-<p>nullable Example: <code>15</code></p>
+<p>nullable Example: <code>1</code></p>
         </div>
                 <div style=" padding-left: 28px;  clear: unset;">
             <b style="line-height: 2;"><code>product_id</code></b>&nbsp;&nbsp;
@@ -1080,10 +1083,10 @@ You can check the Dev Tools console for debugging information.</code></pre>
 <i>optional</i> &nbsp;
                 <input type="number" style="display: none"
                name="product_id"                data-endpoint="GETapi-exchanges-get"
-               value="19"
+               value="8"
                data-component="body">
     <br>
-<p>nullable Example: <code>19</code></p>
+<p>nullable Example: <code>8</code></p>
         </div>
                 <div style=" padding-left: 28px;  clear: unset;">
             <b style="line-height: 2;"><code>cyrrency</code></b>&nbsp;&nbsp;
@@ -1112,10 +1115,10 @@ You can check the Dev Tools console for debugging information.</code></pre>
 <i>optional</i> &nbsp;
                 <input type="text" style="display: none"
                name="from_date"                data-endpoint="GETapi-exchanges-get"
-               value="porro"
+               value="quia"
                data-component="body">
     <br>
-<p>nullable Example: <code>porro</code></p>
+<p>nullable Example: <code>quia</code></p>
         </div>
                 <div style=" padding-left: 28px;  clear: unset;">
             <b style="line-height: 2;"><code>to_date</code></b>&nbsp;&nbsp;
@@ -1123,10 +1126,10 @@ You can check the Dev Tools console for debugging information.</code></pre>
 <i>optional</i> &nbsp;
                 <input type="text" style="display: none"
                name="to_date"                data-endpoint="GETapi-exchanges-get"
-               value="enim"
+               value="eos"
                data-component="body">
     <br>
-<p>nullable Example: <code>enim</code></p>
+<p>nullable Example: <code>eos</code></p>
         </div>
         </form>
 
@@ -2267,14 +2270,14 @@ You can check the Dev Tools console for debugging information.</code></pre>
 
 <div class="bash-example">
     <pre><code class="language-bash">curl --request POST \
-    "https://icecream/api/products/getodio" \
+    "https://icecream/api/products/getaut" \
     --header "Content-Type: application/json" \
     --header "Accept: application/json"</code></pre></div>
 
 
 <div class="javascript-example">
     <pre><code class="language-javascript">const url = new URL(
-    "https://icecream/api/products/getodio"
+    "https://icecream/api/products/getaut"
 );
 
 const headers = {
@@ -2367,10 +2370,10 @@ You can check the Dev Tools console for debugging information.</code></pre>
 <i>optional</i> &nbsp;
                 <input type="text" style="display: none"
                name="caterogy_id"                data-endpoint="POSTapi-products-get-caterogy_id--"
-               value="odio"
+               value="aut"
                data-component="url">
     <br>
-<p>The ID of the caterogy. Example: <code>odio</code></p>
+<p>The ID of the caterogy. Example: <code>aut</code></p>
             </div>
                     </form>
 
@@ -2588,6 +2591,174 @@ You can check the Dev Tools console for debugging information.</code></pre>
         </label>
     <br>
 <p>nullable The status of the product. Example: <code>true</code></p>
+        </div>
+        </form>
+
+                    <h2 id="products-POSTapi-products-makeproduct">Make product</h2>
+
+<p>
+</p>
+
+
+
+<span id="example-requests-POSTapi-products-makeproduct">
+<blockquote>Example request:</blockquote>
+
+
+<div class="bash-example">
+    <pre><code class="language-bash">curl --request POST \
+    "https://icecream/api/products/makeproduct" \
+    --header "Content-Type: application/json" \
+    --header "Accept: application/json" \
+    --data "{
+    \"product_id\": 1,
+    \"count\": 100,
+    \"materials\": \"1,2,3\",
+    \"values\": \"1,2,3\"
+}"
+</code></pre></div>
+
+
+<div class="javascript-example">
+    <pre><code class="language-javascript">const url = new URL(
+    "https://icecream/api/products/makeproduct"
+);
+
+const headers = {
+    "Content-Type": "application/json",
+    "Accept": "application/json",
+};
+
+let body = {
+    "product_id": 1,
+    "count": 100,
+    "materials": "1,2,3",
+    "values": "1,2,3"
+};
+
+fetch(url, {
+    method: "POST",
+    headers,
+    body: JSON.stringify(body),
+}).then(response =&gt; response.json());</code></pre></div>
+
+</span>
+
+<span id="example-responses-POSTapi-products-makeproduct">
+</span>
+<span id="execution-results-POSTapi-products-makeproduct" hidden>
+    <blockquote>Received response<span
+                id="execution-response-status-POSTapi-products-makeproduct"></span>:
+    </blockquote>
+    <pre class="json"><code id="execution-response-content-POSTapi-products-makeproduct"
+      data-empty-response-text="<Empty response>" style="max-height: 400px;"></code></pre>
+</span>
+<span id="execution-error-POSTapi-products-makeproduct" hidden>
+    <blockquote>Request failed with error:</blockquote>
+    <pre><code id="execution-error-message-POSTapi-products-makeproduct">
+
+Tip: Check that you&#039;re properly connected to the network.
+If you&#039;re a maintainer of ths API, verify that your API is running and you&#039;ve enabled CORS.
+You can check the Dev Tools console for debugging information.</code></pre>
+</span>
+<form id="form-POSTapi-products-makeproduct" data-method="POST"
+      data-path="api/products/makeproduct"
+      data-authed="0"
+      data-hasfiles="0"
+      data-isarraybody="0"
+      autocomplete="off"
+      onsubmit="event.preventDefault(); executeTryOut('POSTapi-products-makeproduct', this);">
+    <h3>
+        Request&nbsp;&nbsp;&nbsp;
+                    <button type="button"
+                    style="background-color: #8fbcd4; padding: 5px 10px; border-radius: 5px; border-width: thin;"
+                    id="btn-tryout-POSTapi-products-makeproduct"
+                    onclick="tryItOut('POSTapi-products-makeproduct');">Try it out ⚡
+            </button>
+            <button type="button"
+                    style="background-color: #c97a7e; padding: 5px 10px; border-radius: 5px; border-width: thin;"
+                    id="btn-canceltryout-POSTapi-products-makeproduct"
+                    onclick="cancelTryOut('POSTapi-products-makeproduct');" hidden>Cancel 🛑
+            </button>&nbsp;&nbsp;
+            <button type="submit"
+                    style="background-color: #6ac174; padding: 5px 10px; border-radius: 5px; border-width: thin;"
+                    id="btn-executetryout-POSTapi-products-makeproduct"
+                    data-initial-text="Send Request 💥"
+                    data-loading-text="⏱ Sending..."
+                    hidden>Send Request 💥
+            </button>
+            </h3>
+            <p>
+            <small class="badge badge-black">POST</small>
+            <b><code>api/products/makeproduct</code></b>
+        </p>
+                <h4 class="fancy-heading-panel"><b>Headers</b></h4>
+                                <div style="padding-left: 28px; clear: unset;">
+                <b style="line-height: 2;"><code>Content-Type</code></b>&nbsp;&nbsp;
+&nbsp;
+ &nbsp;
+                <input type="text" style="display: none"
+               name="Content-Type"                data-endpoint="POSTapi-products-makeproduct"
+               value="application/json"
+               data-component="header">
+    <br>
+<p>Example: <code>application/json</code></p>
+            </div>
+                                <div style="padding-left: 28px; clear: unset;">
+                <b style="line-height: 2;"><code>Accept</code></b>&nbsp;&nbsp;
+&nbsp;
+ &nbsp;
+                <input type="text" style="display: none"
+               name="Accept"                data-endpoint="POSTapi-products-makeproduct"
+               value="application/json"
+               data-component="header">
+    <br>
+<p>Example: <code>application/json</code></p>
+            </div>
+                                <h4 class="fancy-heading-panel"><b>Body Parameters</b></h4>
+        <div style=" padding-left: 28px;  clear: unset;">
+            <b style="line-height: 2;"><code>product_id</code></b>&nbsp;&nbsp;
+<small>integer</small>&nbsp;
+ &nbsp;
+                <input type="number" style="display: none"
+               name="product_id"                data-endpoint="POSTapi-products-makeproduct"
+               value="1"
+               data-component="body">
+    <br>
+<p>The id of the product. Example: <code>1</code></p>
+        </div>
+                <div style=" padding-left: 28px;  clear: unset;">
+            <b style="line-height: 2;"><code>count</code></b>&nbsp;&nbsp;
+<small>integer</small>&nbsp;
+ &nbsp;
+                <input type="number" style="display: none"
+               name="count"                data-endpoint="POSTapi-products-makeproduct"
+               value="100"
+               data-component="body">
+    <br>
+<p>The count of the product. Example: <code>100</code></p>
+        </div>
+                <div style=" padding-left: 28px;  clear: unset;">
+            <b style="line-height: 2;"><code>materials</code></b>&nbsp;&nbsp;
+<small>string</small>&nbsp;
+ &nbsp;
+                <input type="text" style="display: none"
+               name="materials"                data-endpoint="POSTapi-products-makeproduct"
+               value="1,2,3"
+               data-component="body">
+    <br>
+<p>The materials of the product. Example: <code>1,2,3</code></p>
+        </div>
+                <div style=" padding-left: 28px;  clear: unset;">
+            <b style="line-height: 2;"><code>values</code></b>&nbsp;&nbsp;
+<small>string</small>&nbsp;
+ &nbsp;
+                <input type="text" style="display: none"
+               name="values"                data-endpoint="POSTapi-products-makeproduct"
+               value="1,2,3"
+               data-component="body">
+    <br>
+<p>The values of the product. Example: <code>1,2,3</code></p>
         </div>
         </form>
 

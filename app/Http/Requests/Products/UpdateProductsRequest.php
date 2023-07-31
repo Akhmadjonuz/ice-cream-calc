@@ -25,8 +25,8 @@ class UpdateProductsRequest extends FormRequest
             'id' => 'required|integer|exists:products,id',
             'caterogy_id' => 'nullable|integer|exists:caterogy,id',
             'name' => 'nullable|string|max:255',
-            'price' => 'nullable|float',
-            'count' => 'nullable|integer',
+            'price' => 'required|regex:/^\d+(\.\d{1,2})?$/',
+            'count' => 'required|regex:/^\d+(\.\d{1,2})?$/|min:1',
             'type_id' => 'nullable|integer|exists:settings,id',
             'is_active' => 'nullable|boolean',
         ];

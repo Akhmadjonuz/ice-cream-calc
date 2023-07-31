@@ -10,7 +10,7 @@
     ],
     "info": {
         "name": "IceCream",
-        "_postman_id": "0fcea66f-3e49-4574-8558-a984fe55ad05",
+        "_postman_id": "92da141e-b1ac-4a17-8fc0-18d29e6af735",
         "description": "",
         "schema": "https:\/\/schema.getpostman.com\/json\/collection\/v2.1.0\/collection.json"
     },
@@ -41,7 +41,7 @@
                         ],
                         "body": {
                             "mode": "raw",
-                            "raw": "{\"name\":\"maxime\"}"
+                            "raw": "{\"name\":\"necessitatibus\"}"
                         },
                         "description": "",
                         "auth": {
@@ -128,7 +128,7 @@
                         ],
                         "body": {
                             "mode": "raw",
-                            "raw": "{\"id\":5,\"name\":\"aut\"}"
+                            "raw": "{\"id\":13,\"name\":\"laborum\"}"
                         },
                         "description": "",
                         "auth": {
@@ -265,7 +265,7 @@
                         ],
                         "body": {
                             "mode": "raw",
-                            "raw": "{\"caterogy_id\":17,\"partner_id\":3,\"type_id\":15,\"product_id\":19,\"cyrrency\":true,\"from_date\":\"porro\",\"to_date\":\"enim\"}"
+                            "raw": "{\"caterogy_id\":15,\"partner_id\":10,\"type_id\":1,\"product_id\":8,\"cyrrency\":true,\"from_date\":\"quia\",\"to_date\":\"eos\"}"
                         },
                         "description": "",
                         "auth": {
@@ -582,7 +582,7 @@
                                 {
                                     "id": "caterogy_id",
                                     "key": "caterogy_id",
-                                    "value": "odio",
+                                    "value": "aut",
                                     "description": "The ID of the caterogy."
                                 }
                             ]
@@ -629,6 +629,37 @@
                         "body": {
                             "mode": "raw",
                             "raw": "{\"id\":1,\"caterogy_id\":1,\"name\":\"Product 1\",\"price\":100,\"count\":100,\"type_id\":1,\"is_active\":true}"
+                        },
+                        "description": "",
+                        "auth": {
+                            "type": "noauth"
+                        }
+                    },
+                    "response": []
+                },
+                {
+                    "name": "Make product",
+                    "request": {
+                        "url": {
+                            "host": "{{baseUrl}}",
+                            "path": "api\/products\/makeproduct",
+                            "query": [],
+                            "raw": "{{baseUrl}}\/api\/products\/makeproduct"
+                        },
+                        "method": "POST",
+                        "header": [
+                            {
+                                "key": "Content-Type",
+                                "value": "application\/json"
+                            },
+                            {
+                                "key": "Accept",
+                                "value": "application\/json"
+                            }
+                        ],
+                        "body": {
+                            "mode": "raw",
+                            "raw": "{\"product_id\":1,\"count\":100,\"materials\":\"1,2,3\",\"values\":\"1,2,3\"}"
                         },
                         "description": "",
                         "auth": {

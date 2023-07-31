@@ -89,28 +89,28 @@ endpoints:
         name: caterogy_id
         description: nullable
         required: false
-        example: 17
+        example: 15
         type: integer
         custom: []
       partner_id:
         name: partner_id
         description: nullable
         required: false
-        example: 3
+        example: 10
         type: integer
         custom: []
       type_id:
         name: type_id
         description: nullable
         required: false
-        example: 15
+        example: 1
         type: integer
         custom: []
       product_id:
         name: product_id
         description: nullable
         required: false
-        example: 19
+        example: 8
         type: integer
         custom: []
       cyrrency:
@@ -124,24 +124,24 @@ endpoints:
         name: from_date
         description: nullable
         required: false
-        example: porro
+        example: quia
         type: date
         custom: []
       to_date:
         name: to_date
         description: nullable
         required: false
-        example: enim
+        example: eos
         type: date
         custom: []
     cleanBodyParameters:
-      caterogy_id: 17
-      partner_id: 3
-      type_id: 15
-      product_id: 19
+      caterogy_id: 15
+      partner_id: 10
+      type_id: 1
+      product_id: 8
       cyrrency: true
-      from_date: porro
-      to_date: enim
+      from_date: quia
+      to_date: eos
     fileParameters: []
     responses:
       -

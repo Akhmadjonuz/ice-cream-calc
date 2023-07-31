@@ -26,7 +26,7 @@ paths:
                 name:
                   type: string
                   description: ''
-                  example: maxime
+                  example: necessitatibus
               required:
                 - name
       security: []
@@ -101,11 +101,11 @@ paths:
                 id:
                   type: integer
                   description: ''
-                  example: 5
+                  example: 13
                 name:
                   type: string
                   description: nullable
-                  example: aut
+                  example: laborum
               required:
                 - id
       security: []
@@ -218,19 +218,19 @@ paths:
                 caterogy_id:
                   type: integer
                   description: nullable
-                  example: 17
+                  example: 15
                 partner_id:
                   type: integer
                   description: nullable
-                  example: 3
+                  example: 10
                 type_id:
                   type: integer
                   description: nullable
-                  example: 15
+                  example: 1
                 product_id:
                   type: integer
                   description: nullable
-                  example: 19
+                  example: 8
                 cyrrency:
                   type: boolean
                   description: nullable
@@ -238,11 +238,11 @@ paths:
                 from_date:
                   type: date
                   description: nullable
-                  example: porro
+                  example: quia
                 to_date:
                   type: date
                   description: nullable
-                  example: enim
+                  example: eos
       security: []
   /api/exchanges/edit:
     put:
@@ -532,7 +532,7 @@ paths:
             value: ''
           present:
             summary: 'When the value is present'
-            value: odio
+            value: aut
   /api/products/edit:
     put:
       summary: 'Update product'
@@ -579,6 +579,44 @@ paths:
                   example: true
               required:
                 - id
+      security: []
+  /api/products/makeproduct:
+    post:
+      summary: 'Make product'
+      operationId: makeProduct
+      description: ''
+      parameters: []
+      responses: {  }
+      tags:
+        - Products
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                product_id:
+                  type: integer
+                  description: 'The id of the product.'
+                  example: 1
+                count:
+                  type: integer
+                  description: 'The count of the product.'
+                  example: 100
+                materials:
+                  type: string
+                  description: 'The materials of the product.'
+                  example: '1,2,3'
+                values:
+                  type: string
+                  description: 'The values of the product.'
+                  example: '1,2,3'
+              required:
+                - product_id
+                - count
+                - materials
+                - values
       security: []
   /api/settings/get:
     get:

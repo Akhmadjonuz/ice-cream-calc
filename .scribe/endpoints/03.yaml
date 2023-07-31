@@ -26,11 +26,11 @@ endpoints:
         name: name
         description: ''
         required: true
-        example: maxime
+        example: necessitatibus
         type: string
         custom: []
     cleanBodyParameters:
-      name: maxime
+      name: necessitatibus
     fileParameters: []
     responses: []
     responseFields: []
@@ -105,19 +105,19 @@ endpoints:
         name: id
         description: ''
         required: true
-        example: 5
+        example: 13
         type: integer
         custom: []
       name:
         name: name
         description: nullable
         required: false
-        example: aut
+        example: laborum
         type: string
         custom: []
     cleanBodyParameters:
-      id: 5
-      name: aut
+      id: 13
+      name: laborum
     fileParameters: []
     responses: []
     responseFields: []
