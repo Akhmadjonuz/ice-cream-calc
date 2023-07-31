@@ -219,7 +219,7 @@ class ProductsController extends Controller
             $exp->material_id = 1;
             $exp->price_uzs = 0;
             $exp->price_usd = 0;
-            $exp->type_id = 0;
+            $exp->type_id = 1;
             $exp->count = $data['count'];
             $exp->product_id = $data['product_id'];
             $exp->save();
