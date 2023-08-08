@@ -12,6 +12,7 @@ use App\Traits\HttpResponses;
 use Carbon\Carbon;
 use Illuminate\Http\JsonResponse;
 use Illuminate\Support\Facades\DB;
+use Illuminate\Support\Facades\Log;
 
 class ProductsController extends Controller
 {
@@ -175,23 +176,23 @@ class ProductsController extends Controller
                     break;
 
                 // if not exist material
+
+                // $material = $material - 1;
+
                 $is_material = Product::where('id', $material)->first();
                 if (!$is_material)
-                    return $this->error('Material not found. ID: ' . $material, 404);
-
-                // if product type another material type
-                if ($is_material->type == false)
-                    return $this->error('Product type another material type. ID: ' . $material, 404);
+                    return $this->error('Homashyo topilmadi nomi: ' . $is_material->name, 404);
 
                 // if value null or empty
                 if (empty($values[$i]))
-                    return $this->error('Value not found. ID: ' . $material, 404);
+                    $values[$i] = 0;
 
                 // if count of material less than value
                 if ($is_material->count < $values[$i])
-                    return $this->error('Count of material less than value. ID: ' . $material, 404);
+                    return $this->error('Homashyo omborda tugabdi nomi: ' . $is_material->name, 404);
 
                 $is_material->count = $is_material->count - $values[$i];
+                $is_material->save();
 
                 $expense = new Expense();
                 $expense->material_id = $material;
@@ -210,26 +211,23 @@ class ProductsController extends Controller
                 $expense->value = $values[$i];
                 $expense->product_id = $data['product_id'];
                 $expense->save();
-                $is_material->save();
 
                 $i++;
             }
 
+            $product->count = $product->count + $data['count'];
+            $product->save();
+
             $exp = new Expense();
             $exp->material_id = 1;
-            $exp->price_uzs = 0;
-            $exp->price_usd = 0;
             $exp->type_id = 1;
             $exp->count = $data['count'];
             $exp->product_id = $data['product_id'];
             $exp->save();
 
-            $product->count = $product->count + $data['count'];
-            $product->save();
-
             DB::commit();
 
-            return $this->success('Added count of product successfully', 200);
+            return $this->success('Hammasi muvaffaqiyatli bo\'ldi!', 200);
         } catch (\Exception $e) {
             return $this->log($e);
         }
