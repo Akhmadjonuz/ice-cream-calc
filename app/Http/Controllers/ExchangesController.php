@@ -44,11 +44,10 @@ class ExchangesController extends Controller
             $data = $request->validated();
 
             $from_date = isset($data['from_date']) ? Carbon::parse($data['from_date'])->startOfDay() : Carbon::now()->startOfDay();
-            $to_date = isset($data['to_date']) ? Carbon::parse($data['to_date'])->endOfDay() : Carbon::now()->endOfDay();            
-
+            $to_date = isset($data['to_date']) ? Carbon::parse($data['to_date'])->endOfDay() : Carbon::now()->endOfDay();
 
             // create query builder
-            $query = Exchange::query()->with(['products', 'partners', 'products.caterogies', 'products.settings'])->orderBy('id', 'desc');
+            $query = Exchange::query()->with(['products', 'partners', 'products.caterogies', 'products.nbu', 'products.settings'])->orderBy('id', 'desc');
 
             // filter by product
             if (isset($data['product_id']))
@@ -81,8 +80,8 @@ class ExchangesController extends Controller
 
             $success = [
                 'all_count' => $query->sum('value'),
-                'price_uzs_all' => $query->sum('price_uzs'),
-                'price_usd_all' => $query->sum('price_usd'),
+                'price_uzs_all' => round($query->sum('price_uzs'), 2),
+                'price_usd_all' => round($query->sum('price_usd'), 2),
                 'data' => $query->get()
             ];
 
@@ -128,12 +127,12 @@ class ExchangesController extends Controller
 
             // save to storage->laravel.log file $product
             // Log::info($exchange->products);
-            
+
             $usd = Nbu::orderBy('id', 'desc')->first()->nbu_cell_price;
 
             if ($product->cyrrency == 0) {
                 $exchange->price_uzs = $data['value'] * $product->price;
-                $exchange->price_usd = ($data['value'] * $product->price) / $usd;
+                $exchange->price_usd = round(($data['value'] * $product->price) / $usd, 2);
             } elseif ($product->cyrrency == 1) {
                 $exchange->price_uzs = $data['value'] * ($product->price * $usd);
                 $exchange->price_usd = $data['value'] * $product->price;
@@ -262,6 +261,8 @@ class ExchangesController extends Controller
      * 
      * download exchanges
      * 
+     * 
+     * 
      * @bodyParam id integer required The id of the partner. Example: 1
      * @bodyParam from_date string required The from_date of the exchange. Example: 2023-06-15 00:00
      * @bodyParam to_date string required The to_date of the exchange. Example: 2023-06-15 00:00
@@ -272,7 +273,7 @@ class ExchangesController extends Controller
     // public function downpdf(Request $request)
     // {
     //     try {
-    //         //save to excel use from_date and to_date and use Maatwebsite\Excel\Concerns\FromCollection
+    //         //save to excel use from_date and to_date and use LPWKtcPjpxQzc26CxTtPFuQMNfm2RfEHfKlection
 
     //         return Excel::download(new ExportExchanges($request), $request['from_date'] . 'exchanges.xlsx');
     //     } catch (\Exception $e) {
