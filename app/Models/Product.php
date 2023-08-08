@@ -20,4 +20,9 @@ class Product extends Model
     {
         return $this->hasMany(Setting::class, 'id', 'type_id');
     }
+
+    public function nbu()
+    {
+        return $this->hasMany(Nbu::class, 'id', 'nbu_id');
+    }
 }
