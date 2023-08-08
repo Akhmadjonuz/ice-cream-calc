@@ -53,8 +53,8 @@ class ExpensesController extends Controller
             $success = [];
             $success['data'] = $query->get();
 
-            $success['used_uzs'] = $query->sum('price_uzs');
-            $success['used_usd'] = $query->sum('price_usd');
+            $success['used_uzs'] = round($query->sum('price_uzs'), 2);
+            $success['used_usd'] = round($query->sum('price_usd'), 2);
             $success['maked_products'] = $query->sum('count');
             $success['distinct_products'] = $query->distinct()->count('product_id');
             $success['distinct_materials'] = $query->distinct()->count('material_id') - 1;
