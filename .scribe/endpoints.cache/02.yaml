@@ -28,27 +28,49 @@ endpoints:
         name: product_id
         description: optional
         required: false
+<<<<<<< HEAD
+        example: 1
+=======
         example: 18
+>>>>>>> 18312cc2d053d16f98b224a1c107bd624fd99449
         type: integer
         custom: []
       material_id:
         name: material_id
         description: optional
         required: false
+<<<<<<< HEAD
+        example: 16
+=======
         example: 4
+>>>>>>> 18312cc2d053d16f98b224a1c107bd624fd99449
         type: integer
         custom: []
       from_date:
         name: from_date
         description: optional
         required: false
+<<<<<<< HEAD
+        example: ullam
+=======
         example: id
+>>>>>>> 18312cc2d053d16f98b224a1c107bd624fd99449
         type: date
         custom: []
       to_date:
         name: to_date
         description: optional
         required: false
+<<<<<<< HEAD
+        example: nesciunt
+        type: date
+        custom: []
+    cleanBodyParameters:
+      product_id: 1
+      material_id: 16
+      from_date: ullam
+      to_date: nesciunt
+=======
         example: rerum
         type: date
         custom: []
@@ -57,6 +79,7 @@ endpoints:
       material_id: 4
       from_date: id
       to_date: rerum
+>>>>>>> 18312cc2d053d16f98b224a1c107bd624fd99449
     fileParameters: []
     responses: []
     responseFields: []

@@ -24,8 +24,8 @@ class MakeProductsRequest extends FormRequest
         return [
             'product_id' => 'required|integer|exists:products,id',
             'count' => 'required|regex:/^\d+(\.\d{1,2})?$/|min:1',
-            'materials' => 'required|string',
-            'values' => 'required|string'
+            'materials' => 'required|array',
+            'values' => 'required|array'
         ];
     }
 }

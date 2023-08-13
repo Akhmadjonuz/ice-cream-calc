@@ -100,11 +100,19 @@ endpoints:
         name: caterogy_id
         description: 'The ID of the caterogy.'
         required: false
+<<<<<<< HEAD
+        example: voluptatem
+        type: string
+        custom: []
+    cleanUrlParameters:
+      caterogy_id: voluptatem
+=======
         example: ut
         type: string
         custom: []
     cleanUrlParameters:
       caterogy_id: ut
+>>>>>>> 18312cc2d053d16f98b224a1c107bd624fd99449
     queryParameters: []
     cleanQueryParameters: []
     bodyParameters: []

@@ -163,52 +163,51 @@ class ProductsController extends Controller
             $product = Product::find($data['product_id']);
 
             // parse materials
-            $materials = explode(',', $data['materials']);
-            $values = explode(',', $data['values']);
+            $materials = $data['materials'];
+            $original_values = $data['values'];
 
             DB::beginTransaction();
 
             $i = 0;
-            foreach ($materials as $key => $material) {
+            $is_checked = 0;
+            foreach ($original_values as $is_value) {
+                
+                if (empty($is_value) and $i == 0) {
+                    return $this->error('Maxsulot uchun miqdorni kiritmadingiz !', 404);
+                } elseif (empty($is_value)) {
+                    $i++;
+                    continue;
+                } elseif ($i == 0 and $is_checked == 0) {
+                    $is_checked = 1;
+                    continue;
+                }
 
-                // set break
-                if ($i == (count($materials) - 1))
-                    break;
-
-                // if not exist material
-
-                // $material = $material - 1;
-
-                $is_material = Product::where('id', $material)->first();
+                $is_material = Product::where('id', $materials[$i])->first();
                 if (!$is_material)
                     return $this->error('Homashyo topilmadi nomi: ' . $is_material->name, 404);
 
-                // if value null or empty
-                if (empty($values[$i]))
-                    $values[$i] = 0;
-
                 // if count of material less than value
-                if ($is_material->count < $values[$i])
-                    return $this->error('Homashyo omborda tugabdi nomi: ' . $is_material->name, 404);
+                if ($is_material->count < $is_value)
+                    return $this->error('Homashyo omborda tugabdi nomi: ' . $is_material->name . ' Omborda bor qolgan: ' . $is_material->count, 404);
 
-                $is_material->count = $is_material->count - $values[$i];
+                $is_material->count = $is_material->count - $is_value;
                 $is_material->save();
 
                 $expense = new Expense();
-                $expense->material_id = $material;
+                $expense->material_id = $is_material->id;
 
                 $usd = Nbu::orderBy('id', 'desc')->first()->nbu_cell_price;
 
                 if ($is_material->cyrrency == 0) {
-                    $expense->price_uzs = $values[$i] * $is_material->price;
-                    $expense->price_usd = ($values[$i] * $is_material->price) / $usd;
+                    $expense->price_uzs = $is_value * $is_material->price;
+                    $expense->price_usd = ($is_value * $is_material->price) / $usd;
                 } elseif ($is_material->cyrrency == 1) {
-                    $expense->price_uzs = $values[$i] * ($is_material->price * $usd);
-                    $expense->price_usd = $values[$i] * $is_material->price;
+                    $expense->price_uzs = $is_value * ($is_material->price * $usd);
+                    $expense->price_usd = $is_value * $is_material->price;
                 }
 
                 $expense->type_id = $is_material->type_id;
-                $expense->value = $values[$i];
+                $expense->value = $is_value;
                 $expense->product_id = $data['product_id'];
                 $expense->save();
 

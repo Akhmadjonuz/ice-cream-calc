@@ -273,7 +273,7 @@ class ExchangesController extends Controller
     // public function downpdf(Request $request)
     // {
     //     try {
-    //         //save to excel use from_date and to_date and use LPWKtcPjpxQzc26CxTtPFuQMNfm2RfEHfKlection
+    //         //save to excel use from_date and to_date and use Maatwebsite\Excel\Concerns\FromCollection
 
     //         return Excel::download(new ExportExchanges($request), $request['from_date'] . 'exchanges.xlsx');
     //     } catch (\Exception $e) {
