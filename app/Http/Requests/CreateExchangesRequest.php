@@ -27,4 +27,23 @@ class CreateExchangesRequest extends FormRequest
             'value' => 'required|integer',
         ];
     }
+
+    
+    /**
+     * Get the error messages for the defined validation rules.
+     */
+
+    public function messages(): array
+    {
+        return [
+            'product_id.required' => 'Product id is required',
+            'product_id.integer' => 'Product id must be integer',
+            'product_id.exists' => 'Product id must be exists in products table',
+            'partner_id.required' => 'Partner id is required',
+            'partner_id.integer' => 'Partner id must be integer',
+            'partner_id.exists' => 'Partner id must be exists in partners table',
+            'value.required' => 'Value is required',
+            'value.integer' => 'Value must be integer',
+        ];
+    }
 }

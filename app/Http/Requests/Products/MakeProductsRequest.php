@@ -28,4 +28,25 @@ class MakeProductsRequest extends FormRequest
             'values' => 'required|array'
         ];
     }
+
+    
+    /**
+     * Get the error messages for the defined validation rules.
+     */
+
+    public function messages(): array
+    {
+        return [
+            'product_id.required' => 'Product id is required',
+            'product_id.integer' => 'Product id must be integer',
+            'product_id.exists' => 'Product id must be exists in products table',
+            'count.required' => 'Count is required',
+            'count.regex' => 'Count must be float',
+            'count.min' => 'Count must be min 1',
+            'materials.required' => 'Materials is required',
+            'materials.array' => 'Materials must be array',
+            'values.required' => 'Values is required',
+            'values.array' => 'Values must be array',
+        ];
+    }
 }

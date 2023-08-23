@@ -28,4 +28,23 @@ class EditExchangesRequest extends FormRequest
             'value' => 'nullable|integer',
         ];
     }
+
+    
+    /**
+     * Get the error messages for the defined validation rules.
+     */
+
+    public function messages(): array
+    {
+        return [
+            'id.required' => 'Id is required',
+            'id.integer' => 'Id must be integer',
+            'id.exists' => 'Id must be exists in exchanges table',
+            'product_id.integer' => 'Product id must be integer',
+            'product_id.exists' => 'Product id must be exists in products table',
+            'partner_id.integer' => 'Partner id must be integer',
+            'partner_id.exists' => 'Partner id must be exists in partners table',
+            'value.integer' => 'Value must be integer',
+        ];
+    }
 }

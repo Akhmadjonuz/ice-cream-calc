@@ -31,4 +31,28 @@ class UpdateProductsRequest extends FormRequest
             'is_active' => 'nullable|boolean',
         ];
     }
+
+    
+    /**
+     * Get the error messages for the defined validation rules.
+     */
+
+    public function messages(): array
+    {
+        return [
+            'id.required' => 'Id is required',
+            'id.integer' => 'Id must be integer',
+            'id.exists' => 'Id must be exists in products table',
+            'caterogy_id.integer' => 'Caterogy id must be integer',
+            'caterogy_id.exists' => 'Caterogy id must be exists in caterogy table',
+            'name.string' => 'Name must be string',
+            'name.max' => 'Name must be max 255 characters',
+            'price.regex' => 'Price must be float',
+            'count.regex' => 'Count must be float',
+            'count.min' => 'Count must be min 1',
+            'type_id.integer' => 'Type id must be integer',
+            'type_id.exists' => 'Type id must be exists in settings table',
+            'is_active.boolean' => 'Is active must be boolean',
+        ];
+    }
 }

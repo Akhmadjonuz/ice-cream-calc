@@ -26,4 +26,20 @@ class UpdateCaterogyRequest extends FormRequest
             'name' => 'nullable|string|max:255',
         ];
     }
+
+    
+    /**
+     * Get the error messages for the defined validation rules.
+     */
+
+    public function messages(): array
+    {
+        return [
+            'id.required' => 'Id is required',
+            'id.integer' => 'Id must be integer',
+            'id.exists' => 'Id must be exists in caterogy table',
+            'name.string' => 'Name must be string',
+            'name.max' => 'Name must be max 255 characters',
+        ];
+    }
 }
