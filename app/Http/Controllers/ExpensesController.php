@@ -46,7 +46,7 @@ class ExpensesController extends Controller
                 $query->where('product_id', $data['product_id']);
 
             if (isset($data['material_id']))
-                $query->where('product_id', $data['material_id']);
+                $query->where('material_id', $data['material_id']);
 
             $query->whereBetween('created_at', [$from_date, $to_date]);
 

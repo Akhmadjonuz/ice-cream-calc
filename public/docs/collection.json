@@ -10,11 +10,7 @@
     ],
     "info": {
         "name": "IceCream",
-<<<<<<< HEAD
         "_postman_id": "ec613701-69bc-4554-a95d-17ff409ba9f7",
-=======
-        "_postman_id": "8d25035c-014b-4cd4-9cc1-ac5fce3bbe83",
->>>>>>> 18312cc2d053d16f98b224a1c107bd624fd99449
         "description": "",
         "schema": "https:\/\/schema.getpostman.com\/json\/collection\/v2.1.0\/collection.json"
     },
@@ -45,11 +41,7 @@
                         ],
                         "body": {
                             "mode": "raw",
-<<<<<<< HEAD
                             "raw": "{\"name\":\"ratione\"}"
-=======
-                            "raw": "{\"name\":\"nesciunt\"}"
->>>>>>> 18312cc2d053d16f98b224a1c107bd624fd99449
                         },
                         "description": "",
                         "auth": {
@@ -136,11 +128,7 @@
                         ],
                         "body": {
                             "mode": "raw",
-<<<<<<< HEAD
                             "raw": "{\"id\":3,\"name\":\"sed\"}"
-=======
-                            "raw": "{\"id\":1,\"name\":\"sit\"}"
->>>>>>> 18312cc2d053d16f98b224a1c107bd624fd99449
                         },
                         "description": "",
                         "auth": {
@@ -277,11 +265,7 @@
                         ],
                         "body": {
                             "mode": "raw",
-<<<<<<< HEAD
                             "raw": "{\"caterogy_id\":14,\"partner_id\":20,\"type_id\":20,\"product_id\":13,\"cyrrency\":true,\"from_date\":\"ipsam\",\"to_date\":\"omnis\"}"
-=======
-                            "raw": "{\"caterogy_id\":1,\"partner_id\":14,\"type_id\":15,\"product_id\":16,\"cyrrency\":false,\"from_date\":\"adipisci\",\"to_date\":\"quia\"}"
->>>>>>> 18312cc2d053d16f98b224a1c107bd624fd99449
                         },
                         "description": "",
                         "auth": {
@@ -422,11 +406,7 @@
                         ],
                         "body": {
                             "mode": "raw",
-<<<<<<< HEAD
                             "raw": "{\"product_id\":1,\"material_id\":16,\"from_date\":\"ullam\",\"to_date\":\"nesciunt\"}"
-=======
-                            "raw": "{\"product_id\":18,\"material_id\":4,\"from_date\":\"id\",\"to_date\":\"rerum\"}"
->>>>>>> 18312cc2d053d16f98b224a1c107bd624fd99449
                         },
                         "description": "",
                         "auth": {
@@ -639,11 +619,7 @@
                                 {
                                     "id": "caterogy_id",
                                     "key": "caterogy_id",
-<<<<<<< HEAD
                                     "value": "voluptatem",
-=======
-                                    "value": "ut",
->>>>>>> 18312cc2d053d16f98b224a1c107bd624fd99449
                                     "description": "The ID of the caterogy."
                                 }
                             ]

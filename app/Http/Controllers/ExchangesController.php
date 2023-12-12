@@ -50,27 +50,27 @@ class ExchangesController extends Controller
             $query = Exchange::query()->with(['products', 'partners', 'products.caterogies', 'products.nbu', 'products.settings'])->orderBy('id', 'desc');
 
             // filter by product
-            if (isset($data['product_id']))
+            if (isset($data['product_id']) and $data['product_id'] != 0)
                 $query->where('product_id', $data['product_id']);
 
             // filter by partner
-            if (isset($data['partner_id']))
+            if (isset($data['partner_id']) and $data['partner_id'] != 0)
                 $query->where('partner_id', $data['partner_id']);
 
             // filter by cyrrency type (UZS or USD) get data from hasMany relation
-            if (isset($data['cyrrency']))
+            if (isset($data['cyrrency']) and $data['cyrrency'] != 0)
                 $query->whereHas('products', function ($q) use ($data) {
                     $q->where('cyrrency', $data['cyrrency']);
                 });
 
             // filter by caterogy get data from hasMany relation
-            if (isset($data['caterogy_id']))
+            if (isset($data['caterogy_id']) and $data['caterogy_id'] != 0)
                 $query->whereHas('products', function ($q) use ($data) {
                     $q->where('caterogy_id', $data['caterogy_id']);
                 });
 
             // filter by type get data from hasMany relation
-            if (isset($data['type_id']))
+            if (isset($data['type_id']) and $data['type_id'] != 0)
                 $query->whereHas('products', function ($q) use ($data) {
                     $q->where('type_id', $data['type_id']);
                 });
@@ -140,6 +140,7 @@ class ExchangesController extends Controller
 
             // update product quantity
             $result = $product->count - $data['value'];
+            $product->nbu_id = Nbu::orderBy('id', 'desc')->first()->id;
 
             if ($result < 0)
                 return $this->error('Insufficient stock!', 400);
@@ -260,8 +261,6 @@ class ExchangesController extends Controller
      * @group Exchanges
      * 
      * download exchanges
-     * 
-     * 
      * 
      * @bodyParam id integer required The id of the partner. Example: 1
      * @bodyParam from_date string required The from_date of the exchange. Example: 2023-06-15 00:00

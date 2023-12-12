@@ -91,73 +91,48 @@ endpoints:
         name: caterogy_id
         description: nullable
         required: false
-<<<<<<< HEAD
         example: 14
-=======
-        example: 1
->>>>>>> 18312cc2d053d16f98b224a1c107bd624fd99449
         type: integer
         custom: []
       partner_id:
         name: partner_id
         description: nullable
         required: false
-<<<<<<< HEAD
         example: 20
-=======
-        example: 14
->>>>>>> 18312cc2d053d16f98b224a1c107bd624fd99449
         type: integer
         custom: []
       type_id:
         name: type_id
         description: nullable
         required: false
-<<<<<<< HEAD
         example: 20
-=======
-        example: 15
->>>>>>> 18312cc2d053d16f98b224a1c107bd624fd99449
         type: integer
         custom: []
       product_id:
         name: product_id
         description: nullable
         required: false
-<<<<<<< HEAD
         example: 13
-=======
-        example: 16
->>>>>>> 18312cc2d053d16f98b224a1c107bd624fd99449
         type: integer
         custom: []
       cyrrency:
         name: cyrrency
         description: nullable
         required: false
-<<<<<<< HEAD
         example: true
-=======
-        example: false
->>>>>>> 18312cc2d053d16f98b224a1c107bd624fd99449
         type: boolean
         custom: []
       from_date:
         name: from_date
         description: nullable
         required: false
-<<<<<<< HEAD
         example: ipsam
-=======
-        example: adipisci
->>>>>>> 18312cc2d053d16f98b224a1c107bd624fd99449
         type: date
         custom: []
       to_date:
         name: to_date
         description: nullable
         required: false
-<<<<<<< HEAD
         example: omnis
         type: date
         custom: []
@@ -169,19 +144,6 @@ endpoints:
       cyrrency: true
       from_date: ipsam
       to_date: omnis
-=======
-        example: quia
-        type: date
-        custom: []
-    cleanBodyParameters:
-      caterogy_id: 1
-      partner_id: 14
-      type_id: 15
-      product_id: 16
-      cyrrency: false
-      from_date: adipisci
-      to_date: quia
->>>>>>> 18312cc2d053d16f98b224a1c107bd624fd99449
     fileParameters: []
     responses:
       -

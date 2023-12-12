@@ -25,18 +25,4 @@ class DeletePartnersRequest extends FormRequest
             'id' => 'required|integer|exists:partners,id',
         ];
     }
-
-
-    /**
-     * Get the error messages for the defined validation rules.
-     */
-
-    public function messages(): array
-    {
-        return [
-            'id.required' => 'Id is required',
-            'id.integer' => 'Id must be integer',
-            'id.exists' => 'Id must be exists in partners table',
-        ];
-    }
 }

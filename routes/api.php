@@ -34,7 +34,7 @@ Route::get('nbu/save', [NbuController::class, 'save']);
 
 // expenses manipulation
 Route::prefix('expenses')->controller(ExpensesController::class)->group(function () {
-    Route::post('get', 'getExpenses')->name('getExpenses');
+    Route::get('get', 'getExpenses')->name('getExpenses');
 });
 
 // products manipulation

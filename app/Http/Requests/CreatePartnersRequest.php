@@ -27,22 +27,4 @@ class CreatePartnersRequest extends FormRequest
             'address' => 'nullable|string|max:255',
         ];
     }
-
-
-    /**
-     * Get the error messages for the defined validation rules.
-     */
-
-    public function messages(): array
-    {
-        return [
-            'name.required' => 'Name is required',
-            'name.string' => 'Name must be string',
-            'name.max' => 'Name must be max 255 characters',
-            'phone_number.string' => 'Phone number must be string',
-            'phone_number.regex' => 'Phone number must be valid',
-            'address.string' => 'Address must be string',
-            'address.max' => 'Address must be max 255 characters',
-        ];
-    }
 }

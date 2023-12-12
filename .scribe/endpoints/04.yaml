@@ -26,19 +26,11 @@ endpoints:
         name: name
         description: ''
         required: true
-<<<<<<< HEAD
         example: ratione
         type: string
         custom: []
     cleanBodyParameters:
       name: ratione
-=======
-        example: nesciunt
-        type: string
-        custom: []
-    cleanBodyParameters:
-      name: nesciunt
->>>>>>> 18312cc2d053d16f98b224a1c107bd624fd99449
     fileParameters: []
     responses: []
     responseFields: []
@@ -113,32 +105,19 @@ endpoints:
         name: id
         description: ''
         required: true
-<<<<<<< HEAD
         example: 3
-=======
-        example: 1
->>>>>>> 18312cc2d053d16f98b224a1c107bd624fd99449
         type: integer
         custom: []
       name:
         name: name
         description: nullable
         required: false
-<<<<<<< HEAD
         example: sed
         type: string
         custom: []
     cleanBodyParameters:
       id: 3
       name: sed
-=======
-        example: sit
-        type: string
-        custom: []
-    cleanBodyParameters:
-      id: 1
-      name: sit
->>>>>>> 18312cc2d053d16f98b224a1c107bd624fd99449
     fileParameters: []
     responses: []
     responseFields: []

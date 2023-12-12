@@ -26,18 +26,4 @@ class CreateCaterogyRequest extends FormRequest
             // 'type' => 'nullable|integer',
         ];
     }
-
-    
-    /**
-     * Get the error messages for the defined validation rules.
-     */
-
-    public function messages(): array
-    {
-        return [
-            'name.string' => 'Name must be string',
-            'name.max' => 'Name must be max 255 characters',
-            // 'type.integer' => 'Type must be integer',
-        ];
-    }
 }

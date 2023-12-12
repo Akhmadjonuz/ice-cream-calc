@@ -26,11 +26,7 @@ paths:
                 name:
                   type: string
                   description: ''
-<<<<<<< HEAD
                   example: ratione
-=======
-                  example: nesciunt
->>>>>>> 18312cc2d053d16f98b224a1c107bd624fd99449
               required:
                 - name
       security: []
@@ -105,19 +101,11 @@ paths:
                 id:
                   type: integer
                   description: ''
-<<<<<<< HEAD
                   example: 3
                 name:
                   type: string
                   description: nullable
                   example: sed
-=======
-                  example: 1
-                name:
-                  type: string
-                  description: nullable
-                  example: sit
->>>>>>> 18312cc2d053d16f98b224a1c107bd624fd99449
               required:
                 - id
       security: []
@@ -1160,7 +1148,6 @@ paths:
                 caterogy_id:
                   type: integer
                   description: nullable
-<<<<<<< HEAD
                   example: 14
                 partner_id:
                   type: integer
@@ -1186,33 +1173,6 @@ paths:
                   type: date
                   description: nullable
                   example: omnis
-=======
-                  example: 1
-                partner_id:
-                  type: integer
-                  description: nullable
-                  example: 14
-                type_id:
-                  type: integer
-                  description: nullable
-                  example: 15
-                product_id:
-                  type: integer
-                  description: nullable
-                  example: 16
-                cyrrency:
-                  type: boolean
-                  description: nullable
-                  example: false
-                from_date:
-                  type: date
-                  description: nullable
-                  example: adipisci
-                to_date:
-                  type: date
-                  description: nullable
-                  example: quia
->>>>>>> 18312cc2d053d16f98b224a1c107bd624fd99449
       security: []
   /api/exchanges/edit:
     put:
@@ -1305,7 +1265,6 @@ paths:
                 product_id:
                   type: integer
                   description: optional
-<<<<<<< HEAD
                   example: 1
                 material_id:
                   type: integer
@@ -1319,21 +1278,6 @@ paths:
                   type: date
                   description: optional
                   example: nesciunt
-=======
-                  example: 18
-                material_id:
-                  type: integer
-                  description: optional
-                  example: 4
-                from_date:
-                  type: date
-                  description: optional
-                  example: id
-                to_date:
-                  type: date
-                  description: optional
-                  example: rerum
->>>>>>> 18312cc2d053d16f98b224a1c107bd624fd99449
       security: []
   /api/partners/new:
     post:
@@ -1552,11 +1496,7 @@ paths:
             value: ''
           present:
             summary: 'When the value is present'
-<<<<<<< HEAD
             value: voluptatem
-=======
-            value: ut
->>>>>>> 18312cc2d053d16f98b224a1c107bd624fd99449
   /api/products/edit:
     put:
       summary: 'Update product'

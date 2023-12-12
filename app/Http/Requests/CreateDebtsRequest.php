@@ -4,7 +4,7 @@ namespace App\Http\Requests;
 
 use Illuminate\Foundation\Http\FormRequest;
 
-class EditExchangesRequest extends FormRequest
+class CreateDebtsRequest extends FormRequest
 {
     /**
      * Determine if the user is authorized to make this request.
@@ -22,10 +22,14 @@ class EditExchangesRequest extends FormRequest
     public function rules(): array
     {
         return [
-            'id' => 'required|integer|exists:exchanges,id',
-            'product_id' => 'nullable|integer|exists:products,id',
-            'partner_id' => 'nullable|integer|exists:partners,id',
-            'value' => 'nullable|integer',
+            'partner_id' => 'required|exists:partners,id',
+            'name' => 'nullable|string',
+            'value' => 'nullable|string',
+            'type' => 'nullable|string',
+            'amount' => 'nullable|integer',
+            'given_amount' => 'required|integer',
+            'other' => 'required|boolean',
+            'created_at' => 'nullable|date_format:Y-m-d H:i:s',
         ];
     }
 }

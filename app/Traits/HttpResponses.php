@@ -42,6 +42,6 @@ trait HttpResponses
     protected function log($e)
     {
         Log::error($e->getMessage() . "\n" . $e->getTraceAsString());
-        return response()->json(['data' => '500 Error Server'], 500);
+        return response()->json(['data' => 'Nimadir server tomondan xato ketti biz bilan bog\'laning!'], 500);
     }
 }

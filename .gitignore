@@ -20,5 +20,4 @@ yarn-error.log
 /.fleet
 /.idea
 /.vscode
-/public/1.zip
-/public/docs
+example-app.zip
