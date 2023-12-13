@@ -9,6 +9,7 @@ use App\Http\Requests\EditExchangesRequest;
 use App\Http\Requests\GetExchangesRequest;
 use App\Models\Exchange;
 use App\Models\Nbu;
+use App\Models\ProductsPriceLog;
 use App\Traits\HttpResponses;
 use Carbon\Carbon;
 use Illuminate\Http\Request;
@@ -142,10 +143,27 @@ class ExchangesController extends Controller
             $result = $product->count - $data['value'];
             $product->nbu_id = Nbu::orderBy('id', 'desc')->first()->id;
 
-            if ($result < 0)
+
+            // call to static function from ProductsController
+            $check = ProductsController::PriceLog($product, $data['value']);
+
+            if ($check == false)
                 return $this->error('Insufficient stock!', 400);
 
             $product->count = $result;
+            
+            // $log = ProductsPriceLog::where('product_id', $product->id)->where('price', $product->price)->first();
+
+            // if ($log) {
+            //     $result = $log->count - $data['value'];
+
+            //     if ($result == 0)
+            //         $log->delete();
+            //     else
+            //         $log->count = $result;
+
+            //     $log->save();
+            // }
 
             $product->save();
             $exchange->save();
@@ -212,6 +230,19 @@ class ExchangesController extends Controller
                     return $this->error('Insufficient stock!', 400);
 
                 $product->count = $result;
+
+                $log = ProductsPriceLog::where('product_id', $product->id)->where('price', $product->price)->first();
+
+                if ($log) {
+                    $result = $log->count - $data['value'];
+
+                    if ($result == 0)
+                        $log->delete();
+                    else
+                        $log->count = $result;
+
+                    $log->save();
+                }
 
                 $product->save();
             }
