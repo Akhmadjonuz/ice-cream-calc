@@ -11,6 +11,12 @@ class ProductsPriceLog extends Model
 
     protected $table = 'products_price_log';
 
+    public function products()
+    {
+        return $this->hasMany(Product::class, 'id', 'product_id');
+    }
+
+
     public function nbu()
     {
         return $this->hasMany(Nbu::class, 'id', 'nbu_id');

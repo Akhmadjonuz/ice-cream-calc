@@ -66,7 +66,7 @@ class ProductsController extends Controller
             $from_date = isset($data['from_date']) ? Carbon::parse($data['from_date'])->startOfDay() : Carbon::now()->startOfDay();
             $to_date = isset($data['to_date']) ? Carbon::parse($data['to_date'])->endOfDay() : Carbon::now()->endOfDay();
 
-            $log = ProductsPriceLog::with('nbu')->whereBetween('created_at', [$from_date, $to_date]);
+            $log = ProductsPriceLog::with('nbu', 'products')->whereBetween('created_at', [$from_date, $to_date]);
 
             $all_price_uzs = $log->sum('price_uzs');
             $all_price_usd = $log->sum('price_usd');
@@ -103,7 +103,7 @@ class ProductsController extends Controller
             $from_date = isset($data['from_date']) ? Carbon::parse($data['from_date'])->startOfDay() : Carbon::now()->startOfDay();
             $to_date = isset($data['to_date']) ? Carbon::parse($data['to_date'])->endOfDay() : Carbon::now()->endOfDay();
 
-            $log = ProductsInput::with('nbu')->whereBetween('created_at', [$from_date, $to_date]);
+            $log = ProductsInput::with('nbu', 'products')->whereBetween('created_at', [$from_date, $to_date]);
 
             $all_price_uzs = $log->sum('price_uzs');
             $all_price_usd = $log->sum('price_usd');
@@ -218,8 +218,13 @@ class ProductsController extends Controller
                     $log = new ProductsPriceLog;
                     $log->product_id = $product->id;
                     $log->price = $data['price'];
-                    $log->price_uzs = $data['price'] * $usd->nbu_cell_price;
-                    $log->price_usd = $data['price'];
+                if ($product->cyrrency == 0) {
+                    $log->price_uzs = $data['price'] * $count;
+                    $log->price_usd = intval($data['price'] * $count) / $usd->nbu_cell_price;
+                } elseif ($product->cyrrency == 1) {
+                    $log->price_uzs = ($data['price'] * $count) * $usd->nbu_cell_price;
+                    $log->price_usd = $data['price'] * $count;
+                }
                     $log->nbu_id = $usd->id;
 
                     if ($count > 0)
@@ -296,9 +301,9 @@ class ProductsController extends Controller
         }
     }
 
-    public static function PriceLog(int $product_id, $count, $product_price = 0): bool
+    public static function PriceLog($product_id, $count, $product_price = 0): bool
     {
-        $log = ProductsPriceLog::where('product_id', $product_id)->orderBy('price', 'asc')->all();
+        $log = ProductsPriceLog::where('product_id', $product_id)->orderBy('price', 'asc')->get();
 
         $all_count = 0;
 
@@ -315,7 +320,7 @@ class ProductsController extends Controller
             $check = $item->count - $count;
 
             if ($check == 0 or $check < 0) {
-                $item->delete();
+                // $item->delete();
                 $count = $count - $item->count;
                 continue;
             } elseif ($check > 0) {
@@ -361,6 +366,8 @@ class ProductsController extends Controller
             $spent = [];
             $spent_price_uzs = 0;
             $spent_price_usd = 0;
+            $benefit_uzs_all = 0;
+            $benefit_usd_all = 0;
 
             foreach ($original_values as $is_value) {
 
@@ -400,7 +407,7 @@ class ProductsController extends Controller
                     $expense->price_usd = $is_value * $is_material->price;
                 }
 
-                $spent[] = ['name' => $is_material->name, 'value' => $is_value, 'price_uzs' => $expense->price_uzs, 'price_usd' => $expense->price_usd, 'benefit_uzs' => $product->price - $expense->price_uzs, 'benefit_usd' => $product->price - $expense->price_usd];
+                $spent[] = ['name' => $is_material->name, 'value' => $is_value, 'price_uzs' => $expense->price_uzs, 'price_usd' => $expense->price_usd];
                 $spent_price_uzs = $spent_price_uzs + $expense->price_uzs;
                 $spent_price_usd = $spent_price_usd + $expense->price_usd;
 
@@ -428,8 +435,10 @@ class ProductsController extends Controller
             }
 
             $products_input->description = $product->name . ' maxsulotiga ' . $data['count'] . ' ta qo\'shildi.';
+            $benefit_usd_all = round($products_input->price_usd - $spent_price_usd, 2);
+            $benefit_uzs_all = round($products_input->price_uzs - $spent_price_uzs, 2);
 
-            array_push($spent, ['all_price_uzs' => $spent_price_uzs, 'all_price_usd' => $spent_price_usd]);
+            array_push($spent, ['all_price_uzs' => $spent_price_uzs, 'all_price_usd' => $spent_price_usd, 'benefit_uzs_all' => $benefit_uzs_all, 'benefit_usd_all' => $benefit_usd_all]);
             $spent = json_encode($spent);
 
             $products_input->spent = $spent;

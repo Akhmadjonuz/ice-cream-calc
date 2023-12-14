@@ -11,6 +11,12 @@ class ProductsInput extends Model
 
     protected $table = 'products_input';
 
+    public function products()
+    {
+        return $this->hasMany(Product::class, 'id', 'product_id');
+    }
+
+
     public function nbu()
     {
         return $this->hasMany(Nbu::class, 'id', 'nbu_id');
