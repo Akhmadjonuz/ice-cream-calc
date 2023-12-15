@@ -145,7 +145,7 @@ class ExchangesController extends Controller
 
 
             // call to static function from ProductsController
-            $check = ProductsController::PriceLog($product, $data['value']);
+            $check = ProductsController::PriceLog($product->id, $data['value']);
 
             if ($check == false)
                 return $this->error('Insufficient stock!', 400);

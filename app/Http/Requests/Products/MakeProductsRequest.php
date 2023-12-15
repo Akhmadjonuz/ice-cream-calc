@@ -22,8 +22,10 @@ class MakeProductsRequest extends FormRequest
     public function rules(): array
     {
         return [
-            'product_id' => 'required|integer|exists:products,id',
-            'count' => 'required|regex:/^\d+(\.\d{1,2})?$/|min:1',
+            // 'product_id' => 'required|integer|exists:products,id',
+            'product_id' => 'required|array',
+            // 'count' => 'required|regex:/^\d+(\.\d{1,2})?$/|min:1',
+            'count' => 'required|array',
             'materials' => 'required|array',
             'values' => 'required|array'
         ];

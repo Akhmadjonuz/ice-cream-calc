@@ -218,13 +218,13 @@ class ProductsController extends Controller
                     $log = new ProductsPriceLog;
                     $log->product_id = $product->id;
                     $log->price = $data['price'];
-                if ($product->cyrrency == 0) {
-                    $log->price_uzs = $data['price'] * $count;
-                    $log->price_usd = intval($data['price'] * $count) / $usd->nbu_cell_price;
-                } elseif ($product->cyrrency == 1) {
-                    $log->price_uzs = ($data['price'] * $count) * $usd->nbu_cell_price;
-                    $log->price_usd = $data['price'] * $count;
-                }
+                    if ($product->cyrrency == 0) {
+                        $log->price_uzs = $data['price'] * $count;
+                        $log->price_usd = intval($data['price'] * $count) / $usd->nbu_cell_price;
+                    } elseif ($product->cyrrency == 1) {
+                        $log->price_uzs = ($data['price'] * $count) * $usd->nbu_cell_price;
+                        $log->price_usd = $data['price'] * $count;
+                    }
                     $log->nbu_id = $usd->id;
 
                     if ($count > 0)
@@ -352,8 +352,9 @@ class ProductsController extends Controller
         try {
             $data = $request->validated();
 
-            $product = Product::find($data['product_id']);
-
+            // $product = Product::find($data['product_id']);
+            if (count($data['product_id']) != count($data['count']))
+                return $this->error('Maxsulotlar soni va miqdori mos kelmaydi !', 404);
             // parse materials
             $materials = $data['materials'];
             $original_values = $data['values'];
@@ -361,96 +362,108 @@ class ProductsController extends Controller
 
             DB::beginTransaction();
 
-            $i = 0;
-            $is_checked = 0;
-            $spent = [];
-            $spent_price_uzs = 0;
-            $spent_price_usd = 0;
-            $benefit_uzs_all = 0;
-            $benefit_usd_all = 0;
+            foreach ($data['product_id'] as $key => $value) {
+                $product = Product::find($value);
 
-            foreach ($original_values as $is_value) {
+                if (!$product)
+                    return $this->error('Maxsulot topilmadi !', 404);
 
-                if (empty($is_value) and $i == 0) {
-                    return $this->error('Maxsulot uchun miqdorni kiritmadingiz !', 404);
-                } elseif (empty($is_value)) {
+                $i = 0;
+                $is_checked = 0;
+                $spent = [];
+                $spent_price_uzs = 0;
+                $spent_price_usd = 0;
+                $benefit_uzs_all = 0;
+                $benefit_usd_all = 0;
+
+                foreach ($original_values as $is_value) {
+
+                    // if (empty($is_value) and $i == 0) {
+                    //     continue;
+                    // } elseif (empty($is_value)) {
+                    //     $i++;
+                    //     continue;
+                    // } elseif ($i == 0 and $is_checked == 0) {
+                    //     $is_checked = 1;
+                    //     continue;
+                    // }
+
+                    if (empty($is_value) or $is_value == 0){
+                        $i++;
+                        continue;
+                    }
+
+                    $is_material = Product::where('id', $materials[$i])->first();
+                    if (!$is_material)
+                        return $this->error('Homashyo topilmadi nomi: ' . $is_material->name, 404);
+
+                    // if count of material less than value
+
+                    // call to static function
+                    $check = $this->PriceLog($is_material->id, $is_value);
+
+                    if ($check == false)
+                        return $this->error('Homashyo omborda tugabdi nomi: ' . $is_material->name, 404);
+
+                    $is_material->count = $is_material->count - $is_value;
+                    $is_material->save();
+
+                    $expense = new Expense;
+                    $expense->material_id = $is_material->id;
+
+                    if ($is_material->cyrrency == 0) {
+                        $expense->price_uzs = $is_value * $is_material->price;
+                        $expense->price_usd = ($is_value * $is_material->price) / $usd;
+                    } elseif ($is_material->cyrrency == 1) {
+                        $expense->price_uzs = $is_value * ($is_material->price * $usd);
+                        $expense->price_usd = $is_value * $is_material->price;
+                    }
+
+                    $spent[] = ['name' => $is_material->name, 'value' => $is_value, 'price_uzs' => $expense->price_uzs, 'price_usd' => $expense->price_usd];
+                    $spent_price_uzs = $spent_price_uzs + $expense->price_uzs;
+                    $spent_price_usd = $spent_price_usd + $expense->price_usd;
+
+                    $expense->type_id = $is_material->type_id;
+                    $expense->value = $is_value;
+                    $expense->product_id = $product->id;
+                    $expense->save();
+
                     $i++;
-                    continue;
-                } elseif ($i == 0 and $is_checked == 0) {
-                    $is_checked = 1;
-                    continue;
                 }
 
-                $is_material = Product::where('id', $materials[$i])->first();
-                if (!$is_material)
-                    return $this->error('Homashyo topilmadi nomi: ' . $is_material->name, 404);
+                $product->count = $product->count + $data['count'][$key];
+                $product->save();
 
-                // if count of material less than value
+                $products_input = new ProductsInput;
+                $products_input->product_id = $product->id;
+                $products_input->quantity = $data['count'][$key];
 
-                // call to static function
-                $check = $this->PriceLog($is_material->id, $is_value);
-
-                if ($check == false)
-                    return $this->error('Homashyo omborda tugabdi nomi: ' . $is_material->name, 404);
-
-                $is_material->count = $is_material->count - $is_value;
-                $is_material->save();
-
-                $expense = new Expense;
-                $expense->material_id = $is_material->id;
-
-                if ($is_material->cyrrency == 0) {
-                    $expense->price_uzs = $is_value * $is_material->price;
-                    $expense->price_usd = ($is_value * $is_material->price) / $usd;
-                } elseif ($is_material->cyrrency == 1) {
-                    $expense->price_uzs = $is_value * ($is_material->price * $usd);
-                    $expense->price_usd = $is_value * $is_material->price;
+                if ($product->cyrrency == 0) {
+                    $products_input->price_uzs = $product->price * $data['count'][$key];
+                    $products_input->price_usd = ($product->price * $data['count'][$key]) / $usd;
+                } elseif ($product->cyrrency == 1) {
+                    $products_input->price_uzs = ($product->price * $data['count'][$key]) * $usd;
+                    $products_input->price_usd = $product->price * $data['count'][$key];
                 }
 
-                $spent[] = ['name' => $is_material->name, 'value' => $is_value, 'price_uzs' => $expense->price_uzs, 'price_usd' => $expense->price_usd];
-                $spent_price_uzs = $spent_price_uzs + $expense->price_uzs;
-                $spent_price_usd = $spent_price_usd + $expense->price_usd;
+                $products_input->description = $product->name . ' maxsulotiga ' . $data['count'][$key] . ' ta qo\'shildi.';
+                $benefit_usd_all = round($products_input->price_usd - $spent_price_usd, 2);
+                $benefit_uzs_all = round($products_input->price_uzs - $spent_price_uzs, 2);
 
-                $expense->type_id = $is_material->type_id;
-                $expense->value = $is_value;
-                $expense->product_id = $data['product_id'];
-                $expense->save();
+                array_push($spent, ['all_price_uzs' => $spent_price_uzs, 'all_price_usd' => $spent_price_usd, 'benefit_uzs_all' => $benefit_uzs_all, 'benefit_usd_all' => $benefit_usd_all]);
+                $spent = json_encode($spent);
 
-                $i++;
+                $products_input->spent = $spent;
+                $products_input->save();
+
+
+                $exp = new Expense();
+                $exp->material_id = 1;
+                $exp->type_id = 1;
+                $exp->count = $data['count'][$key];
+                $exp->product_id = $product->id;
+                $exp->save();
             }
-
-            $product->count = $product->count + $data['count'];
-            $product->save();
-
-            $products_input = new ProductsInput;
-            $products_input->product_id = $product->id;
-            $products_input->quantity = $data['count'];
-
-            if ($product->cyrrency == 0) {
-                $products_input->price_uzs = $product->price * $data['count'];
-                $products_input->price_usd = ($product->price * $data['count']) / $usd;
-            } elseif ($product->cyrrency == 1) {
-                $products_input->price_uzs = ($product->price * $data['count']) * $usd;
-                $products_input->price_usd = $product->price * $data['count'];
-            }
-
-            $products_input->description = $product->name . ' maxsulotiga ' . $data['count'] . ' ta qo\'shildi.';
-            $benefit_usd_all = round($products_input->price_usd - $spent_price_usd, 2);
-            $benefit_uzs_all = round($products_input->price_uzs - $spent_price_uzs, 2);
-
-            array_push($spent, ['all_price_uzs' => $spent_price_uzs, 'all_price_usd' => $spent_price_usd, 'benefit_uzs_all' => $benefit_uzs_all, 'benefit_usd_all' => $benefit_usd_all]);
-            $spent = json_encode($spent);
-
-            $products_input->spent = $spent;
-            $products_input->save();
-
-
-            $exp = new Expense();
-            $exp->material_id = 1;
-            $exp->type_id = 1;
-            $exp->count = $data['count'];
-            $exp->product_id = $data['product_id'];
-            $exp->save();
 
             DB::commit();
 
