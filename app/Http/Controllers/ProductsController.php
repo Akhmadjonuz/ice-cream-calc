@@ -301,6 +301,13 @@ class ProductsController extends Controller
         }
     }
 
+
+    /**
+     * @group Products
+     * 
+     * price log
+     */
+
     public static function PriceLog($product_id, $count, $product_price = 0): bool
     {
         $log = ProductsPriceLog::where('product_id', $product_id)->orderBy('price', 'asc')->get();
@@ -319,10 +326,14 @@ class ProductsController extends Controller
         foreach ($log as $item) {
             $check = $item->count - $count;
 
-            if ($check == 0 or $check < 0) {
-                // $item->delete();
+            if ($check < 0) {
                 $count = $count - $item->count;
                 continue;
+            } elseif ($check == 0) {
+                $count = $count - $item->count;
+                $item->count = $check;
+                $item->save();
+                break;
             } elseif ($check > 0) {
                 $item->count = $check;
                 $item->save();
@@ -355,6 +366,7 @@ class ProductsController extends Controller
             // $product = Product::find($data['product_id']);
             if (count($data['product_id']) != count($data['count']))
                 return $this->error('Maxsulotlar soni va miqdori mos kelmaydi !', 404);
+            
             // parse materials
             $materials = $data['materials'];
             $original_values = $data['values'];
@@ -369,7 +381,6 @@ class ProductsController extends Controller
                     return $this->error('Maxsulot topilmadi !', 404);
 
                 $i = 0;
-                $is_checked = 0;
                 $spent = [];
                 $spent_price_uzs = 0;
                 $spent_price_usd = 0;
@@ -388,7 +399,7 @@ class ProductsController extends Controller
                     //     continue;
                     // }
 
-                    if (empty($is_value) or $is_value == 0){
+                    if (empty($is_value) or $is_value == 0) {
                         $i++;
                         continue;
                     }
