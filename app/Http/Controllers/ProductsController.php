@@ -249,6 +249,25 @@ class ProductsController extends Controller
                     }
                     $check->count = $check->count + $count;
                     $check->save();
+                } else {
+                    $log = new ProductsPriceLog;
+                    $log->product_id = $product->id;
+                    $log->price = $product->price;
+                    if ($product->cyrrency == 0) {
+                        $log->price_uzs = $product->price * $count;
+                        $log->price_usd = intval($product->price * $count) / $usd->nbu_cell_price;
+                    } elseif ($product->cyrrency == 1) {
+                        $log->price_uzs = ($product->price * $count) * $usd->nbu_cell_price;
+                        $log->price_usd = $product->price * $count;
+                    }
+                    $log->nbu_id = $usd->id;
+
+                    if ($count > 0)
+                        $log->count = $count;
+                    else
+                        $log->count = 0;
+
+                    $log->save();
                 }
             }
 
@@ -326,29 +345,6 @@ class ProductsController extends Controller
         foreach ($log as $item) {
             $all_count += $item->count;
         }
-
-        // if ($all_count == 0) {
-        //     $reSearch = Product::find($product_id);
-
-        //     if (!$reSearch or $reSearch->count == $count)
-        //         return false;
-        //     else
-        //         $all_count += $reSearch->count;
-
-        //     $log = new ProductsPriceLog;
-        //     $log->product_id = $product_id;
-        //     $log->price = $reSearch->price;
-        //     if ($reSearch->cyrrency == 0) {
-        //         $log->price_uzs = $reSearch->price * $reSearch->count;
-        //         $log->price_usd = intval($reSearch->price * $reSearch->count) / $nbu->nbu_cell_price;
-        //     } elseif ($reSearch->cyrrency == 1) {
-        //         $log->price_uzs = ($reSearch->price * $reSearch->count) * $nbu->nbu_cell_price;
-        //         $log->price_usd = $reSearch->price * $reSearch->count;
-        //     }
-        //     $log->nbu_id = $nbu->id;
-        //     $log->count = $reSearch->count;
-        //     $log->save();
-        // }
 
         if ($all_count < $count)
             return false;
@@ -493,6 +489,34 @@ class ProductsController extends Controller
 
                 $product->count = $product->count + $data['count'][$key];
                 $product->save();
+
+                $verify = ProductsPriceLog::where('product_id', $product->id)->where('price', $product->price)->first();
+
+                if ($verify) {
+                    $verify->count = $verify->count + $data['count'][$key];
+                    if ($product->cyrrency == 0) {
+                        $verify->price_uzs = $verify->price * $verify->count;
+                        $verify->price_usd = intval($verify->price * $verify->count) / $usd;
+                    } elseif ($product->cyrrency == 1) {
+                        $verify->price_uzs = ($verify->price * $verify->count) * $usd;
+                        $verify->price_usd = $verify->price * $verify->count;
+                    }
+                    $verify->save();
+                } else {
+                    $log = new ProductsPriceLog;
+                    $log->product_id = $product->id;
+                    $log->price = $product->price;
+                    if ($product->cyrrency == 0) {
+                        $log->price_uzs = $product->price * $data['count'][$key];
+                        $log->price_usd = intval($product->price * $data['count'][$key]) / $usd;
+                    } elseif ($product->cyrrency == 1) {
+                        $log->price_uzs = ($product->price * $data['count'][$key]) * $usd;
+                        $log->price_usd = $product->price * $data['count'][$key];
+                    }
+                    $log->nbu_id = $usd->id;
+                    $log->count = $data['count'][$key];
+                    $log->save();
+                }
 
                 $products_input = new ProductsInput;
                 $products_input->product_id = $product->id;
