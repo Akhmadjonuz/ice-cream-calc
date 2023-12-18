@@ -240,6 +240,13 @@ class ProductsController extends Controller
             } else {
                 $check = ProductsPriceLog::where('product_id', $product->id)->where('price', $product->price)->first();
                 if ($check) {
+                    if ($check->cyrruncy == 0) {
+                        $check->price_uzs = $check->price * $check->count;
+                        $check->price_usd = intval($check->price * $check->count) / $usd->nbu_cell_price;
+                    } elseif ($check->cyrruncy == 1) {
+                        $check->price_uzs = ($check->price * $check->count) * $usd->nbu_cell_price;
+                        $check->price_usd = $check->price * $check->count;
+                    }
                     $check->count = $check->count + $count;
                     $check->save();
                 }
@@ -312,11 +319,36 @@ class ProductsController extends Controller
     {
         $log = ProductsPriceLog::where('product_id', $product_id)->orderBy('price', 'asc')->get();
 
+        $nbu = Nbu::orderBy('id', 'desc')->first();
+
         $all_count = 0;
 
         foreach ($log as $item) {
-            $all_count = $all_count + $item->count;
+            $all_count += $item->count;
         }
+
+        // if ($all_count == 0) {
+        //     $reSearch = Product::find($product_id);
+
+        //     if (!$reSearch or $reSearch->count == $count)
+        //         return false;
+        //     else
+        //         $all_count += $reSearch->count;
+
+        //     $log = new ProductsPriceLog;
+        //     $log->product_id = $product_id;
+        //     $log->price = $reSearch->price;
+        //     if ($reSearch->cyrrency == 0) {
+        //         $log->price_uzs = $reSearch->price * $reSearch->count;
+        //         $log->price_usd = intval($reSearch->price * $reSearch->count) / $nbu->nbu_cell_price;
+        //     } elseif ($reSearch->cyrrency == 1) {
+        //         $log->price_uzs = ($reSearch->price * $reSearch->count) * $nbu->nbu_cell_price;
+        //         $log->price_usd = $reSearch->price * $reSearch->count;
+        //     }
+        //     $log->nbu_id = $nbu->id;
+        //     $log->count = $reSearch->count;
+        //     $log->save();
+        // }
 
         if ($all_count < $count)
             return false;
@@ -331,13 +363,25 @@ class ProductsController extends Controller
                 continue;
             } elseif ($check == 0) {
                 $count = $count - $item->count;
+                if ($item->cyrruncy == 0) {
+                    $item->price_uzs = $item->price * $item->count;
+                    $item->price_usd = intval($item->price * $item->count) / $nbu->nbu_cell_price;
+                } elseif ($item->cyrruncy == 1) {
+                    $item->price_uzs = ($item->price * $item->count) * $nbu->nbu_cell_price;
+                    $item->price_usd = $item->price * $item->count;
+                }
                 $item->count = $check;
                 $item->save();
-                break;
             } elseif ($check > 0) {
+                if ($item->cyrruncy == 0) {
+                    $item->price_uzs = $item->price * $item->count;
+                    $item->price_usd = intval($item->price * $item->count) / $nbu->nbu_cell_price;
+                } elseif ($item->cyrruncy == 1) {
+                    $item->price_uzs = ($item->price * $item->count) * $nbu->nbu_cell_price;
+                    $item->price_usd = $item->price * $item->count;
+                }
                 $item->count = $check;
                 $item->save();
-                break;
             }
         }
 
@@ -364,9 +408,12 @@ class ProductsController extends Controller
             $data = $request->validated();
 
             // $product = Product::find($data['product_id']);
-            if (count($data['product_id']) != count($data['count']))
+
+            $productCount = count($data['product_id']);
+
+            if ($productCount != count($data['count']))
                 return $this->error('Maxsulotlar soni va miqdori mos kelmaydi !', 404);
-            
+
             // parse materials
             $materials = $data['materials'];
             $original_values = $data['values'];
@@ -403,6 +450,8 @@ class ProductsController extends Controller
                         $i++;
                         continue;
                     }
+
+                    $is_value = round($is_value / $productCount, 2);
 
                     $is_material = Product::where('id', $materials[$i])->first();
                     if (!$is_material)
