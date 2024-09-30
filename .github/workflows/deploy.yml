@@ -1,1 +1,40 @@
 
+name: Deploy to Server
+
+on:
+  push:
+    branches:
+      - main 
+jobs:
+  deploy:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v2
+
+      - name: Set up SSH and deploy
+        env:
+          SSH_PRIVATE_KEY: ${{ secrets.SSH_PRIVATE_KEY }}
+          HOST: ${{ secrets.HOST }}
+          USER: ${{ secrets.USER }}
+        run: |
+          # SSH kalitini yaratish
+          echo "$SSH_PRIVATE_KEY" > private_key.pem
+          chmod 600 private_key.pem
+
+          # Serverga kodlarni yuklash (fayllarni serverga uzatish)
+          scp -o StrictHostKeyChecking=no -i private_key.pem -r * $USER@$HOST:/var/www/tarhun/data/www/icecream.dadabayev.uz/
+
+          ssh -o StrictHostKeyChecking=no -i private_key.pem $USER@$HOST << 'EOF'
+            cd /var/www/tarhun/data/www/icecream.dadabayev.uz/
+            composer install --no-dev
+            php artisan migrate --force
+            php artisan db:seed
+            php artisan scribe:generate
+            php artisan view:clear 
+            php artisan cache:clear
+            php artisan route:clear
+            php artisan config:clear
+            exit
+          EOF
