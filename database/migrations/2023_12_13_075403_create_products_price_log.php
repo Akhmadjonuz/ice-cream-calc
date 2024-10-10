@@ -16,13 +16,13 @@ return new class extends Migration
             $table->unsignedBigInteger('product_id');
             $table->foreign('product_id')
                 ->references('id')->on('products');
-            $table->float('price')->nullable()->default(0);
-            $table->float('price_uzs')->nullable()->default(0);
-            $table->float('price_usd')->nullable()->default(0);
+            $table->float('price', 99, 2)->nullable()->default(0);
+            $table->float('price_uzs', 99, 2)->nullable()->default(0);
+            $table->float('price_usd', 99, 2)->nullable()->default(0);
             $table->unsignedBigInteger('nbu_id');
             $table->foreign('nbu_id')
                 ->references('id')->on('nbu');
-            $table->float('count')->nullable()->default(0);
+            $table->float('count', 99, 2)->nullable()->default(0);
             $table->timestamps();
         });
     }

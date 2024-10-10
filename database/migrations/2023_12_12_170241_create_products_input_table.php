@@ -17,8 +17,8 @@ return new class extends Migration
             $table->foreign('product_id')
                 ->references('id')->on('products');
             $table->integer('quantity');
-            $table->float('price_uzs')->nullable()->default(0);
-            $table->float('price_usd')->nullable()->default(0);
+            $table->float('price_uzs', 99, 2)->nullable()->default(0);
+            $table->float('price_usd', 99, 2)->nullable()->default(0);
             $table->string('description')->nullable()->default(null);
             $table->string('spent')->default('[]');
             $table->timestamps();

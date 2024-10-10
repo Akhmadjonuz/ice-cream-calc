@@ -16,8 +16,8 @@ return new class extends Migration
             $table->unsignedBigInteger('caterogy_id');
             $table->foreign('caterogy_id')->references('id')->on('caterogy');
             $table->string('name');
-            $table->float('price');
-            $table->float('count')->default(0);
+            $table->float('price', 99, 2)->default(0);
+            $table->float('count', 99, 2)->default(0);
             $table->unsignedBigInteger('type_id');
             $table->foreign('type_id')->references('id')->on('settings');
             $table->boolean('cyrrency')->default(0); // 0 - UZS 1 - USD
