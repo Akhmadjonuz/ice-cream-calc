@@ -20,7 +20,7 @@ return new class extends Migration
             $table->float('price_uzs', 99, 2)->nullable()->default(0);
             $table->float('price_usd', 99, 2)->nullable()->default(0);
             $table->string('description')->nullable()->default(null);
-            $table->string('spent')->default('[]');
+            $table->text('spent')->default('[]');
             $table->timestamps();
         });
     }
